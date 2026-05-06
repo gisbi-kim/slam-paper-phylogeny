@@ -623,6 +623,13 @@
       font-family: "Roboto Mono", monospace;
       white-space: nowrap;
     }
+    .search-hit {
+      background: #fff3bf;
+      color: #7a4d00;
+      border-radius: 3px;
+      padding: 0 .12em;
+      box-shadow: 0 0 0 1px rgba(251,188,4,.22);
+    }
     .empty {
       border: 1px dashed var(--border-strong);
       color: var(--text-muted);
@@ -1407,28 +1414,66 @@
       });
     }
 
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function escapeRegExp(value) {
+      return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function highlighted(value, query) {
+      const escaped = escapeHtml(value);
+      if (!query) return escaped;
+      return escaped.replace(new RegExp(escapeRegExp(query), "gi"), (match) => `<mark class="search-hit">${match}</mark>`);
+    }
+
+    function referenceSearchText(ref) {
+      return [
+        ref.id,
+        ref.year,
+        ref.title,
+        ref.authors,
+        ref.phylum,
+        ref.class,
+        ref.order
+      ].filter(Boolean).join(" ").toLowerCase();
+    }
+
     function renderReferenceMap(lineage) {
       const holder = document.getElementById("referenceMap");
+      const query = searchEl.value.trim();
       const refs = refsForLineage(lineage);
+      const visibleRefs = query ? refs.filter((ref) => referenceSearchText(ref).includes(query.toLowerCase())) : refs;
       if (!refs.length) {
         holder.innerHTML = `<div class="empty">${textFor("refsEmpty")}</div>`;
         return;
       }
-      const shown = refs.slice(0, 80);
+      if (!visibleRefs.length) {
+        holder.innerHTML = `<div class="empty">${textFor("refsEmpty")}</div>`;
+        return;
+      }
+      const shown = visibleRefs.slice(0, 80);
       holder.innerHTML = `
         <table class="chapter-table">
           <thead><tr><th>${textFor("tableId")}</th><th>${textFor("tableYear")}</th><th>${textFor("tableTitle")}</th><th>${textFor("tableMatchedPath")}</th></tr></thead>
           <tbody></tbody>
         </table>
-        <p class="breadcrumb" style="margin-top:10px;">${textFor("showingRefs", { shown: shown.length, total: refs.length })}</p>`;
+        <p class="breadcrumb" style="margin-top:10px;">${textFor("showingRefs", { shown: shown.length, total: visibleRefs.length })}${query ? ` · filtered from ${refs.length}` : ""}</p>`;
       const body = holder.querySelector("tbody");
       shown.forEach((ref) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `<td></td><td></td><td></td><td></td>`;
-        tr.children[0].textContent = `[${ref.id}]`;
-        tr.children[1].textContent = ref.year || "-";
-        tr.children[2].textContent = ref.title;
-        tr.children[3].textContent = `${ref.phylum} > ${ref.class} > ${ref.order}`;
+        tr.children[0].innerHTML = highlighted(`[${ref.id}]`, query);
+        tr.children[1].innerHTML = highlighted(ref.year || "-", query);
+        tr.children[2].innerHTML = highlighted(ref.title, query);
+        tr.children[3].innerHTML = highlighted(`${ref.phylum} > ${ref.class} > ${ref.order}`, query);
         body.appendChild(tr);
       });
     }
@@ -1537,6 +1582,7 @@
     });
     searchEl.addEventListener("input", () => {
       applyFilters();
+      if (selected && selected.lineage) renderReferenceMap(selected.lineage);
       updateUrlState({ replace: true });
     });
     document.querySelectorAll(".language-switch button").forEach((button) => {
