@@ -656,6 +656,13 @@
       flex-wrap: wrap;
       gap: 5px;
       align-items: center;
+      margin-bottom: 6px;
+    }
+    .path-role {
+      min-width: 42px;
+      color: var(--text-muted);
+      font: 600 10px/1 "Roboto Mono", monospace;
+      text-transform: uppercase;
     }
     .path-pill {
       border: 1px solid color-mix(in srgb, var(--pill-color, var(--primary)) 42%, var(--border));
@@ -1484,19 +1491,33 @@
       });
     }
 
-    function refsForLineage(lineage) {
-      if (lineage.length <= 1) return references;
+    function refPathList(ref) {
+      if (Array.isArray(ref.matched_paths) && ref.matched_paths.length) return ref.matched_paths;
+      return [{
+        phylum: ref.phylum,
+        class: ref.class,
+        order: ref.order,
+        genus: ref.genus || "(general)",
+        role: "primary"
+      }];
+    }
+
+    function pathMatchesLineage(path, lineage) {
+      if (lineage.length <= 1) return true;
       const phylum = lineage[1];
       const cls = lineage[2];
       const order = lineage[3];
       const genus = lineage[4];
-      return references.filter((ref) => {
-        if (ref.phylum !== phylum) return false;
-        if (cls && ref.class !== cls) return false;
-        if (order && ref.order !== order) return false;
-        if (genus && ref.genus !== genus) return false;
-        return true;
-      });
+      if (path.phylum !== phylum) return false;
+      if (cls && path.class !== cls) return false;
+      if (order && path.order !== order) return false;
+      if (genus && path.genus !== genus) return false;
+      return true;
+    }
+
+    function refsForLineage(lineage) {
+      if (lineage.length <= 1) return references;
+      return references.filter((ref) => refPathList(ref).some((path) => pathMatchesLineage(path, lineage)));
     }
 
     function escapeHtml(value) {
@@ -1523,9 +1544,9 @@
       return lineage.map((part) => part.replaceAll('"', "&quot;")).join(" > ");
     }
 
-    function renderMatchedPath(ref, query) {
-      const parts = [ref.phylum, ref.class, ref.order].filter(Boolean);
-      const genus = ref.genus || "(general)";
+    function renderSingleMatchedPath(path, query) {
+      const parts = [path.phylum, path.class, path.order].filter(Boolean);
+      const genus = path.genus || "(general)";
       if (!parts.length) return "";
       const pathPills = parts.map((part, index) => {
         const lineage = ["SLAM", ...parts.slice(0, index + 1)];
@@ -1539,7 +1560,12 @@
           ? `<button class="path-pill depth-4 disabled" type="button" disabled>${highlighted(genus, query)}</button>`
           : `<button class="path-pill depth-4" type="button" style="--pill-color:${colorOf(genusLineage)}" data-lineage="${buttonLineagePath(genusLineage)}">${highlighted(genus, query)}</button>`
       );
-      return `<div class="path-pills">${pathPills.join("")}</div>`;
+      const role = path.role === "primary" ? "primary" : "also";
+      return `<div class="path-pills"><span class="path-role">${role}</span>${pathPills.join("")}</div>`;
+    }
+
+    function renderMatchedPath(ref, query) {
+      return refPathList(ref).map((path) => renderSingleMatchedPath(path, query)).join("");
     }
 
     function referenceSearchText(ref) {
@@ -1551,7 +1577,8 @@
         ref.phylum,
         ref.class,
         ref.order,
-        ref.genus
+        ref.genus,
+        ...refPathList(ref).flatMap((path) => [path.phylum, path.class, path.order, path.genus, path.reason])
       ].filter(Boolean).join(" ").toLowerCase();
     }
 

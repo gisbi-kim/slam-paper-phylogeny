@@ -172,6 +172,10 @@
 python scripts/enrich_reference_contexts.py
 python scripts/codex_context_semantic_match.py
 python scripts/assign_genus_labels.py</pre>
+      <div class="note ok">
+        지금 출력은 단일 label이 아니라 <code>matched_paths[]</code>를 같이 저장합니다. 즉 한 논문이 대표 path와 별개로 sensor family, front-end, map representation, evaluation 같은 여러 역할에 동시 참여할 수 있습니다.
+        Regex로 하나를 찍는 구조가 아니라, Handbook citation context와 논문 title/entry의 역할을 보고 primary/secondary semantic membership을 구분합니다.
+      </div>
     </section>
 
     <section class="card">

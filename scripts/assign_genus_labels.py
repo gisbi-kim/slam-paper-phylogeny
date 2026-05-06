@@ -1,8 +1,14 @@
 import csv
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+from codex_context_semantic_match import path_from_context, path_from_title
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -187,7 +193,7 @@ ALIASES = {
     "Event Odometry": ["event odometry"],
     "Event-Inertial Odometry": ["event-inertial", "event inertial"],
     "Event-Based Mapping": ["event-based mapping", "event mapping"],
-    "Strapdown Integration": ["strapdown"],
+    "Strapdown Integration": ["strapdown", "inertial navigation", "imu", "mems imu", "inertial odometry"],
     "Visual-Inertial Odometry": ["visual-inertial", "vio"],
     "Contact Estimation": ["contact estimation", "contact"],
     "Kinematic Factors": ["kinematic factor", "kinematic"],
@@ -267,7 +273,7 @@ ORDER_DEFAULTS = {
     "LiDAR System Families": "LiDAR-Inertial SLAM",
     "Radar System Families": "Radar Odometry",
     "Event System Families": "Event Odometry",
-    "Inertial Odometry": "Visual-Inertial Odometry",
+    "Inertial Odometry": "Strapdown Integration",
     "Place Recognition": "LiDAR Place Recognition",
     "Frame-to-Frame Motion Estimation": "LiDAR Odometry",
     "Robust Cost Functions": "M-estimators",
@@ -382,6 +388,111 @@ def apply_path_override(ref: dict) -> bool:
     return True
 
 
+def path_dict(path: tuple[str, str, str], genus: str, role: str, confidence: float, reason: str) -> dict:
+    return {
+        "phylum": path[0],
+        "class": path[1],
+        "order": path[2],
+        "genus": genus,
+        "role": role,
+        "confidence": round(confidence, 2),
+        "reason": reason,
+    }
+
+
+def path_key(item: dict) -> tuple[str, str, str, str]:
+    return (item.get("phylum", ""), item.get("class", ""), item.get("order", ""), item.get("genus", ""))
+
+
+def semantic_path_votes(ref: dict, context_ref: dict) -> list[tuple[tuple[str, str, str], float, str]]:
+    votes: Counter[tuple[str, str, str]] = Counter()
+    reasons: dict[tuple[str, str, str], str] = {}
+    for ctx in context_ref.get("citation_contexts", [])[:8]:
+        path, reason, section = path_from_context(ctx)
+        if path:
+            votes[path] += 1
+            reasons.setdefault(path, f"{reason} Context: {section}.")
+
+    title_path, title_reason = path_from_title(ref.get("title", ""))
+    if title_path:
+        votes[title_path] += 2
+        reasons.setdefault(title_path, title_reason)
+
+    out = []
+    for path, count in votes.most_common():
+        confidence = min(0.94, 0.48 + 0.12 * count)
+        out.append((path, confidence, reasons.get(path, "Semantic citation/title context.")))
+    return out
+
+
+def conceptual_facets(ref: dict) -> list[tuple[tuple[str, str, str], float, str]]:
+    title = normalize(ref.get("title", ""))
+    entry = normalize(ref.get("entry", ""))
+    text = f"{title} {entry}"
+    facets: list[tuple[tuple[str, str, str], float, str]] = []
+
+    def add(path: tuple[str, str, str], confidence: float, reason: str) -> None:
+        facets.append((path, confidence, reason))
+
+    if any(term in text for term in ["gaussian splat", "3d gaussian", "3dgs", "splatam", "loopsplat", "wildgs", "surface gaussian", "monocular gaussian reconstruction"]):
+        add(("Map Representations", "Neural and Differentiable Maps", "Gaussian Maps"), 0.92, "Conceptually a Gaussian map representation, even when the paper also contributes tracking, dynamics, or semantics.")
+    if any(term in text for term in ["nerf", "neural radiance field", "radiance fields", "neural field"]):
+        add(("Map Representations", "Neural and Differentiable Maps", "Neural Implicit Maps"), 0.9, "Conceptually a neural implicit/radiance-field map representation.")
+    if any(term in text for term in ["visual-inertial", "vio", "imu", "inertial odometry"]):
+        add(("Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry"), 0.82, "Uses inertial/proprioceptive odometry as a system modality.")
+    if any(term in text for term in ["lidar odometry", "lidar slam", "loam", "fast-lio", "lio-sam", "lidar-inertial"]):
+        add(("Sensor & Odometry Modalities", "LiDAR SLAM", "LiDAR System Families"), 0.86, "Belongs to the LiDAR SLAM system family.")
+        add(("Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation"), 0.72, "Also contributes odometry/front-end motion estimation.")
+    if any(term in text for term in ["radar odometry", "radarodometry", "radar slam"]):
+        add(("Sensor & Odometry Modalities", "Radar SLAM", "Radar System Families"), 0.86, "Belongs to the radar SLAM system family.")
+        add(("Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation"), 0.72, "Also contributes odometry/front-end motion estimation.")
+    if any(term in text for term in ["event camera", "event-based", "dynamic vision sensor", "event-inertial"]):
+        add(("Sensor & Odometry Modalities", "Event-Based SLAM", "Event System Families"), 0.84, "Belongs to the event-based SLAM system family.")
+    if any(term in text for term in ["place recognition", "loop closure", "loop-closure", "scan context", "netvlad", "minkloc", "pointnetvlad"]):
+        add(("Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition"), 0.86, "Contributes place recognition or loop-closure candidate generation.")
+    if any(term in text for term in ["dataset", "benchmark"]):
+        add(("Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks"), 0.88, "Dataset/benchmark papers participate in evaluation even when the data is sensor-specific.")
+    robust_frontend = any(term in text for term in ["outlier rejection", "certifiable outlier", "failure recovery", "failure detection"])
+    robust_frontend = robust_frontend or bool(re.search(r"\b(?:ransac|magsac)\b", text))
+    if robust_frontend:
+        add(("Robustness, Evaluation & Operations", "Outlier and Failure Robustness", "Front-End Robustness"), 0.62, "Robustness/failure handling is a cross-cutting operational concern.")
+    if any(term in text for term in ["factor graph", "bayes tree", "graph optimization"]):
+        add(("State, Geometry & Probabilistic Modeling", "Factor Graph Modeling", "Graphical Model Formulation"), 0.78, "Uses factor-graph structure as a modeling contribution.")
+    if any(term in text for term in ["semidefinite", "certifiably", "certifiable", "globally optimal"]):
+        add(("Back-End Optimization & Inference", "Certifiable and Differentiable Solvers", "Certifiably Optimal SLAM"), 0.88, "Contributes certifiable/global optimization.")
+    if any(term in text for term in ["wheel-mounted", "wheelmounted", "wheel-ins", "dead reckoning"]):
+        add(("Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Other Aiding Signals"), 0.9, "Wheel-mounted dead reckoning is an aided proprioceptive odometry signal.")
+    return facets
+
+
+def build_matched_paths(ref: dict, context_ref: dict, order_to_genus: dict) -> list[dict]:
+    primary_path = (ref.get("phylum", ""), ref.get("class", ""), ref.get("order", ""))
+    primary_genus = ref.get("genus", "(general)")
+    paths = [
+        path_dict(
+            primary_path,
+            primary_genus,
+            "primary",
+            float(ref.get("confidence") or 0.8),
+            ref.get("rationale", "Primary curated placement."),
+        )
+    ]
+
+    for semantic_path, confidence, reason in [*semantic_path_votes(ref, context_ref), *conceptual_facets(ref)]:
+        choices = order_to_genus.get(semantic_path, [])
+        genus, _, _ = choose_genus({**ref, "phylum": semantic_path[0], "class": semantic_path[1], "order": semantic_path[2]}, context_ref, choices)
+        paths.append(path_dict(semantic_path, genus, "secondary", confidence, reason))
+
+    deduped = {}
+    for item in paths:
+        key = path_key(item)
+        if key not in deduped or item["confidence"] > deduped[key]["confidence"]:
+            deduped[key] = item
+        if key == path_key(paths[0]):
+            deduped[key]["role"] = "primary"
+    return sorted(deduped.values(), key=lambda item: (item["role"] != "primary", -item["confidence"], item["phylum"]))
+
+
 def write_outputs(refs):
     OUT_JSON.write_text(json.dumps(refs, ensure_ascii=False, indent=2), encoding="utf-8")
     fields = [
@@ -396,12 +507,15 @@ def write_outputs(refs):
         "match_method",
         "confidence",
         "rationale",
+        "matched_paths",
     ]
     with OUT_CSV.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         for ref in refs:
-            writer.writerow({k: ref.get(k, "") for k in fields})
+            row = {k: ref.get(k, "") for k in fields}
+            row["matched_paths"] = json.dumps(ref.get("matched_paths", []), ensure_ascii=False)
+            writer.writerow(row)
     compact_fields = [
         "id",
         "year",
@@ -413,6 +527,7 @@ def write_outputs(refs):
         "match_method",
         "confidence",
         "rationale",
+        "matched_paths",
     ]
     compact = [{k: ref.get(k, "") for k in compact_fields} for ref in refs]
     OUT_JS.write_text(
@@ -436,6 +551,7 @@ def main():
         if apply_path_override(item):
             methods["codex_context_path_override"] += 1
             genus_counts[item["genus"]] += 1
+            item["matched_paths"] = build_matched_paths(item, contexts.get(item["id"], {}), order_to_genus)
             updated.append(item)
             continue
         key = (item.get("phylum"), item.get("class"), item.get("order"))
@@ -452,6 +568,7 @@ def main():
         else:
             item["genus"] = "(unmapped)"
             missing_paths.append(key)
+        item["matched_paths"] = build_matched_paths(item, contexts.get(item["id"], {}), order_to_genus)
         updated.append(item)
     write_outputs(updated)
     print(f"updated {len(updated)} references")
