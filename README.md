@@ -1,5 +1,7 @@
 # SLAM Paper Phylogeny
 
+Hosted site: https://gisbi-kim.github.io/slam-paper-phylogeny/
+
 SLAM Handbook를 기준으로 SLAM 연구 지형을 `Phylum > Class > Order > Genus` 4단계 계통도로 재구성한 초안입니다.
 
 이 작업의 기준은 장 번호를 그대로 베끼는 것이 아니라, SLAM 시스템 안에서의 기능적 역할을 기준으로 MECE하게 재배열하는 것입니다. 같은 장에서 나온 내용도 역할이 다르면 서로 다른 가지로 분해합니다.
