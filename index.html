@@ -655,6 +655,16 @@
     .path-pill.depth-2 { background: #fff8e8; }
     .path-pill.depth-3 { background: #f8f3ff; }
     .path-pill.depth-4 { background: #fceff4; }
+    .path-pill.disabled {
+      border-left-color: var(--border-strong);
+      color: var(--text-muted);
+      cursor: default;
+      background: #f8fafd;
+    }
+    .path-pill.disabled:hover {
+      text-decoration: none;
+      background: #f8fafd;
+    }
     .empty {
       border: 1px dashed var(--border-strong);
       color: var(--text-muted);
@@ -1465,12 +1475,21 @@
 
     function renderMatchedPath(ref, query) {
       const parts = [ref.phylum, ref.class, ref.order].filter(Boolean);
+      const genus = ref.genus || "(general)";
       if (!parts.length) return "";
-      return `<div class="path-pills">${parts.map((part, index) => {
+      const pathPills = parts.map((part, index) => {
         const lineage = ["SLAM", ...parts.slice(0, index + 1)];
         const depthClass = `depth-${index + 1}`;
         return `<button class="path-pill ${depthClass}" type="button" style="--pill-color:${colorOf(lineage)}" data-lineage="${buttonLineagePath(lineage)}">${highlighted(part, query)}</button>`;
-      }).join("")}</div>`;
+      });
+      const genusLineage = ["SLAM", ...parts, genus];
+      const genusIsGeneral = genus === "(general)";
+      pathPills.push(
+        genusIsGeneral
+          ? `<button class="path-pill depth-4 disabled" type="button" disabled>${highlighted(genus, query)}</button>`
+          : `<button class="path-pill depth-4" type="button" style="--pill-color:${colorOf(genusLineage)}" data-lineage="${buttonLineagePath(genusLineage)}">${highlighted(genus, query)}</button>`
+      );
+      return `<div class="path-pills">${pathPills.join("")}</div>`;
     }
 
     function referenceSearchText(ref) {
@@ -1481,7 +1500,8 @@
         ref.authors,
         ref.phylum,
         ref.class,
-        ref.order
+        ref.order,
+        ref.genus
       ].filter(Boolean).join(" ").toLowerCase();
     }
 
