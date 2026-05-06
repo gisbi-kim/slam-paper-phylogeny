@@ -192,7 +192,7 @@ ALIASES = {
     "Contact Estimation": ["contact estimation", "contact"],
     "Kinematic Factors": ["kinematic factor", "kinematic"],
     "Legged State Estimation": ["legged state", "legged"],
-    "Wheel Odometry": ["wheel odometry"],
+    "Wheel Odometry": ["wheel odometry", "wheel-mounted", "wheelmounted", "wheel-ins", "wheel ins", "wheeled", "wheel aided", "dead reckoning"],
     "GNSS Factors": ["gnss", "gps"],
     "UWB / Radio Factors": ["uwb", "radio"],
     "Tightly Coupled Fusion": ["tightly coupled"],
@@ -244,6 +244,17 @@ ALIASES = {
     "Processor / Sensor Co-Design": ["processor", "co-design", "hardware"],
     "Gaussian Belief Propagation": ["gaussian belief propagation"],
     "Continual Learning in Graphs": ["continual learning"],
+}
+
+
+PATH_OVERRIDES = {
+    813: (
+        "Sensor & Odometry Modalities",
+        "Proprioceptive and Aided Odometry",
+        "Other Aiding Signals",
+        "Wheel Odometry",
+        "Wheel-mounted IMU dead reckoning is a wheel/proprioceptive aiding signal rather than a visual-inertial odometry family.",
+    ),
 }
 
 
@@ -324,6 +335,53 @@ def choose_genus(ref: dict, context_ref: dict, genus_choices: list[str]) -> tupl
     return default, "codex_context_genus_default", 0
 
 
+def apply_path_override(ref: dict) -> bool:
+    override = PATH_OVERRIDES.get(ref.get("id"))
+    if not override:
+        low = normalize(" ".join([ref.get("title", ""), ref.get("entry", "")]))
+        if any(
+            term in low
+            for term in [
+                "gaussian splat",
+                "3d gaussian",
+                "3dgs",
+                "splatam",
+                "loopsplat",
+                "wildgs",
+                "surface gaussian",
+                "surface gaussians",
+                "monocular gaussian reconstruction",
+            ]
+        ):
+            override = (
+                "Map Representations",
+                "Neural and Differentiable Maps",
+                "Gaussian Maps",
+                "3D Gaussian Splatting",
+                "Gaussian splatting papers are representation papers and should live under Gaussian Maps.",
+            )
+        elif any(term in low for term in ["nerf", "neural radiance field", "radiance fields"]):
+            override = (
+                "Map Representations",
+                "Neural and Differentiable Maps",
+                "Neural Implicit Maps",
+                "NeRF Maps",
+                "NeRF and neural radiance-field papers should live under Neural Implicit Maps.",
+            )
+        else:
+            return False
+    phy, cls, order, genus, reason = override
+    ref["phylum"] = phy
+    ref["class"] = cls
+    ref["order"] = order
+    ref["genus"] = genus
+    ref["match_method"] = ref.get("match_method", "codex_context_semantic")
+    note = f" Path override: {reason}"
+    if note not in ref.get("rationale", ""):
+        ref["rationale"] = (ref.get("rationale", "") + note).strip()
+    return True
+
+
 def write_outputs(refs):
     OUT_JSON.write_text(json.dumps(refs, ensure_ascii=False, indent=2), encoding="utf-8")
     fields = [
@@ -374,9 +432,14 @@ def main():
     genus_counts = Counter()
     missing_paths = []
     for ref in refs:
-        key = (ref.get("phylum"), ref.get("class"), ref.get("order"))
-        choices = order_to_genus.get(key, [])
         item = dict(ref)
+        if apply_path_override(item):
+            methods["codex_context_path_override"] += 1
+            genus_counts[item["genus"]] += 1
+            updated.append(item)
+            continue
+        key = (item.get("phylum"), item.get("class"), item.get("order"))
+        choices = order_to_genus.get(key, [])
         if choices:
             genus, method, score = choose_genus(item, contexts.get(item["id"], {}), choices)
             item["genus"] = genus

@@ -1010,6 +1010,7 @@
         notSelected: "아직 선택 안 됨",
         leafEmpty: "Leaf node입니다. 이후 논문 데이터가 붙으면 여기서 해당 논문 목록으로 연결하면 됩니다.",
         refsEmpty: "이 branch에 자동 매칭된 Handbook reference가 아직 없습니다.",
+        refsSearchEmpty: "\uc774 branch\uc5d0\ub294 {total}\uac1c\uc758 Handbook reference\uac00 \uc788\uc9c0\ub9cc, \ud604\uc7ac \uac80\uc0c9\uc5b4 ?{query}?\uc640 \uc77c\uce58\ud558\ub294 \ud56d\ubaa9\uc740 \uc5c6\uc2b5\ub2c8\ub2e4.",
         directChildren: "direct children",
         descendants: "descendants",
         refs: "refs",
@@ -1048,6 +1049,7 @@
         notSelected: "Not selected yet",
         leafEmpty: "This is a leaf node. When paper-level data is attached, this area can link directly to the corresponding paper list.",
         refsEmpty: "No Handbook references have been automatically matched to this branch yet.",
+        refsSearchEmpty: "This branch has {total} matched Handbook references, but none match the current search query ?{query}?.",
         directChildren: "direct children",
         descendants: "descendants",
         refs: "refs",
@@ -1563,7 +1565,7 @@
         return;
       }
       if (!visibleRefs.length) {
-        holder.innerHTML = `<div class="empty">${textFor("refsEmpty")}</div>`;
+        holder.innerHTML = `<div class="empty">${textFor("refsSearchEmpty", { total: refs.length, query })}</div>`;
         return;
       }
       const shown = visibleRefs.slice(0, 80);
