@@ -287,13 +287,13 @@
       marker-end: url(#arrow-soft);
     }
     .relation-arrow.feedback {
-      stroke: #00acc1;
+      stroke: #8b5cf6;
       stroke-width: 2.2;
       stroke-dasharray: 8 5;
       marker-end: url(#arrow-feedback);
     }
     .relation-note {
-      fill: #00838f;
+      fill: #6d28d9;
       font: 500 11px "Google Sans", "Noto Sans KR", sans-serif;
       text-anchor: middle;
       dominant-baseline: middle;
@@ -738,7 +738,7 @@
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b818a"></path>
             </marker>
             <marker id="arrow-feedback" viewBox="0 0 10 10" refX="8.7" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#00acc1"></path>
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b5cf6"></path>
             </marker>
           </defs>
 
@@ -755,35 +755,35 @@
           <path class="relation-arrow soft" d="M900 335 C930 315 955 292 985 276"></path>
           <path class="relation-arrow soft" d="M125 185 C125 160 150 142 205 128"></path>
 
-          <rect class="relation-node" x="40" y="185" width="170" height="90" rx="8" stroke="#12a4b8"></rect>
+          <rect class="relation-node" x="40" y="185" width="170" height="90" rx="8" stroke="#ef4444"></rect>
           <text class="relation-label" x="125" y="220">Sensor &amp; Odometry</text>
           <text class="relation-sub" x="125" y="242">Visual/LiDAR/Radar/IMU</text>
 
-          <rect class="relation-node" x="360" y="185" width="160" height="90" rx="8" stroke="#f29900"></rect>
+          <rect class="relation-node" x="360" y="185" width="160" height="90" rx="8" stroke="#22c55e"></rect>
           <text class="relation-label" x="440" y="220">Measurement</text>
           <text class="relation-label" x="440" y="238">Front-End</text>
 
-          <rect class="relation-node" x="680" y="185" width="160" height="90" rx="8" stroke="#5e35b1"></rect>
+          <rect class="relation-node" x="680" y="185" width="160" height="90" rx="8" stroke="#3b82f6"></rect>
           <text class="relation-label" x="760" y="220">Back-End</text>
           <text class="relation-label" x="760" y="238">Optimization</text>
 
-          <rect class="relation-node" x="955" y="185" width="135" height="90" rx="8" stroke="#00acc1"></rect>
+          <rect class="relation-node" x="955" y="185" width="135" height="90" rx="8" stroke="#8b5cf6"></rect>
           <text class="relation-label" x="1022.5" y="220">Map</text>
           <text class="relation-label" x="1022.5" y="238">Representations</text>
 
-          <rect class="relation-node" x="210" y="320" width="280" height="90" rx="8" stroke="#3f51b5"></rect>
+          <rect class="relation-node" x="210" y="320" width="280" height="90" rx="8" stroke="#eab308"></rect>
           <text class="relation-label" x="350" y="356">State, Geometry &amp;</text>
           <text class="relation-label" x="350" y="374">Probabilistic Modeling</text>
 
-          <rect class="relation-node" x="430" y="45" width="260" height="78" rx="8" stroke="#d9307f"></rect>
+          <rect class="relation-node" x="430" y="45" width="260" height="78" rx="8" stroke="#06b6d4"></rect>
           <text class="relation-label" x="560" y="76">Learning, Semantics</text>
           <text class="relation-label" x="560" y="94">&amp; Spatial AI</text>
 
-          <rect class="relation-node" x="40" y="65" width="230" height="78" rx="8" stroke="#1a73e8"></rect>
+          <rect class="relation-node" x="40" y="65" width="230" height="78" rx="8" stroke="#f97316"></rect>
           <text class="relation-label" x="155" y="96">Problem &amp;</text>
           <text class="relation-label" x="155" y="114">System Context</text>
 
-          <rect class="relation-node" x="690" y="335" width="290" height="78" rx="8" stroke="#c5221f"></rect>
+          <rect class="relation-node" x="690" y="335" width="290" height="78" rx="8" stroke="#6366f1"></rect>
           <text class="relation-label" x="835" y="366">Robustness, Evaluation</text>
           <text class="relation-label" x="835" y="384">&amp; Operations</text>
         </svg>
@@ -858,35 +858,35 @@
   <script>
     const phylumMeta = {
       "Problem & System Context": {
-        color: "#1a73e8",
+        color: "#f97316",
         desc: "SLAM 문제 정의, 현대 시스템 구조, autonomy architecture 안에서 SLAM이 맡는 역할."
       },
       "State, Geometry & Probabilistic Modeling": {
-        color: "#3f51b5",
+        color: "#eab308",
         desc: "상태 표현, factor graph, manifold, uncertainty처럼 SLAM 문제를 수학적으로 쓰는 층."
       },
       "Measurement Front-End": {
-        color: "#f29900",
+        color: "#22c55e",
         desc: "raw sensor stream을 odometry, landmark, loop closure, correspondence 같은 pseudo-measurement로 바꾸는 층."
       },
       "Back-End Optimization & Inference": {
-        color: "#5e35b1",
+        color: "#3b82f6",
         desc: "least squares, incremental smoothing, robust optimization, certifiable solver 등 추론 엔진."
       },
       "Map Representations": {
-        color: "#00acc1",
+        color: "#8b5cf6",
         desc: "sparse, dense, neural, semantic, dynamic map처럼 세계를 표현하는 방식."
       },
       "Sensor & Odometry Modalities": {
-        color: "#12a4b8",
+        color: "#ef4444",
         desc: "Visual, LiDAR, Radar, Event, IMU, leg odometry 등 센서/플랫폼별 SLAM family."
       },
       "Robustness, Evaluation & Operations": {
-        color: "#c5221f",
+        color: "#6366f1",
         desc: "outlier, benchmark, metric, runtime, deployment constraint처럼 시스템을 실제로 굴리는 조건."
       },
       "Learning, Semantics & Spatial AI": {
-        color: "#d9307f",
+        color: "#06b6d4",
         desc: "deep SLAM, foundation model, open-world map, spatial AI computation으로 확장되는 frontier."
       }
     };
