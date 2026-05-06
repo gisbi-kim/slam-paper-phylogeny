@@ -10,6 +10,11 @@ HANDBOOK = ROOT.parent / "slam-handbook-public-release" / "main.pdf"
 OUT_DIR = ROOT / "data"
 
 
+TITLE_REPAIRS = {
+    "0: A Vision-Language-Action Flow Model for General Robot Control": "\u03c00: A Vision-Language-Action Flow Model for General Robot Control",
+}
+
+
 TAXONOMY_RULES = [
     (
         ("Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Foundation Models for Spatial AI"),
@@ -227,6 +232,16 @@ def clean(s: str) -> str:
     return s.strip()
 
 
+def repair_title(title: str) -> str:
+    return TITLE_REPAIRS.get(title, title)
+
+
+def repair_entry(entry: str) -> str:
+    for old, new in TITLE_REPAIRS.items():
+        entry = entry.replace(old, new)
+    return entry
+
+
 def extract_title(entry: str) -> str:
     cleaned = clean(entry)
     match = re.search(r"\b(?:19|20)\d{2}[a-z]?(?:\s*\([^)]*\))?\.\s+(.+)", cleaned)
@@ -252,7 +267,7 @@ def extract_title(entry: str) -> str:
     else:
         parts = rest.split(". ")
         rest = parts[0]
-    return clean(rest).rstrip(".")
+    return repair_title(clean(rest).rstrip("."))
 
 
 def infer_year(entry: str) -> str:
@@ -283,7 +298,7 @@ def parse_references(text: str) -> list[dict]:
         number = int(match.group(1))
         entry_start = match.end()
         entry_end = matches[i + 1].start() if i + 1 < len(matches) else len(refs_text)
-        entry = clean(refs_text[entry_start:entry_end])
+        entry = repair_entry(clean(refs_text[entry_start:entry_end]))
         title = extract_title(entry)
         year = infer_year(entry)
         phy, cls, order, method = classify({"title": title, "entry": entry})
