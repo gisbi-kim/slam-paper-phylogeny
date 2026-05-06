@@ -1,0 +1,77 @@
+{
+  "name": "SLAM",
+  "children": [
+    {
+      "name": "Problem & System Context",
+      "children": [
+        {"name": "SLAM Problem Definition", "children": [{"name": "Localization vs Mapping vs SLAM"}, {"name": "Autonomy Role"}]},
+        {"name": "System Architecture", "children": [{"name": "Modern SLAM Pipeline"}, {"name": "Autonomy Integration"}]},
+        {"name": "Historical and Scope Framing", "children": [{"name": "SLAM Eras"}]}
+      ]
+    },
+    {
+      "name": "State, Geometry & Probabilistic Modeling",
+      "children": [
+        {"name": "Factor Graph Modeling", "children": [{"name": "Graphical Model Formulation"}, {"name": "MAP Inference"}]},
+        {"name": "State Representations", "children": [{"name": "Lie Groups and Manifolds"}, {"name": "Continuous-Time Trajectories"}]},
+        {"name": "Observability and Uncertainty", "children": [{"name": "Estimation Consistency"}, {"name": "Inertial Observability"}]}
+      ]
+    },
+    {
+      "name": "Measurement Front-End",
+      "children": [
+        {"name": "Raw-to-Pseudo Measurement Processing", "children": [{"name": "Feature Extraction"}, {"name": "Direct Measurement Formation"}, {"name": "Registration"}]},
+        {"name": "Odometry Front-End", "children": [{"name": "Frame-to-Frame Motion Estimation"}, {"name": "Preintegration and Propagation"}]},
+        {"name": "Place Recognition and Loop Closure", "children": [{"name": "Place Recognition"}, {"name": "Loop Closure Validation"}]},
+        {"name": "Data Association", "children": [{"name": "Correspondence Estimation"}, {"name": "Ambiguity Handling"}]}
+      ]
+    },
+    {
+      "name": "Back-End Optimization & Inference",
+      "children": [
+        {"name": "Least-Squares Solvers", "children": [{"name": "Linear Least Squares"}, {"name": "Nonlinear Optimization"}]},
+        {"name": "Sparsity and Incrementality", "children": [{"name": "Variable Elimination"}, {"name": "Incremental SLAM"}]},
+        {"name": "Robust Back-End", "children": [{"name": "Robust Cost Functions"}, {"name": "Outlier-Robust Optimization"}]},
+        {"name": "Certifiable and Differentiable Solvers", "children": [{"name": "Certifiably Optimal SLAM"}, {"name": "Differentiable Optimization"}]}
+      ]
+    },
+    {
+      "name": "Map Representations",
+      "children": [
+        {"name": "Sparse Geometric Maps", "children": [{"name": "Landmark Maps"}, {"name": "Pose Graph Maps"}]},
+        {"name": "Dense Geometric Maps", "children": [{"name": "Range-Derived Maps"}, {"name": "Dense Reconstruction"}]},
+        {"name": "Neural and Differentiable Maps", "children": [{"name": "Neural Implicit Maps"}, {"name": "Gaussian Maps"}]},
+        {"name": "Semantic and Structured Maps", "children": [{"name": "Metric-Semantic Maps"}, {"name": "Hierarchical Spatial Maps"}]},
+        {"name": "Dynamic and Deformable Maps", "children": [{"name": "Dynamic SLAM Maps"}, {"name": "Deformable SLAM Maps"}]}
+      ]
+    },
+    {
+      "name": "Sensor & Odometry Modalities",
+      "children": [
+        {"name": "Visual SLAM", "children": [{"name": "Camera Models and Pipelines"}, {"name": "Visual System Families"}]},
+        {"name": "LiDAR SLAM", "children": [{"name": "LiDAR Sensing"}, {"name": "LiDAR System Families"}]},
+        {"name": "Radar SLAM", "children": [{"name": "Radar Sensing"}, {"name": "Radar System Families"}]},
+        {"name": "Event-Based SLAM", "children": [{"name": "Event Sensor Processing"}, {"name": "Event System Families"}]},
+        {"name": "Proprioceptive and Aided Odometry", "children": [{"name": "Inertial Odometry"}, {"name": "Leg Odometry"}, {"name": "Other Aiding Signals"}]},
+        {"name": "Multi-Modal Fusion", "children": [{"name": "Sensor Fusion Architectures"}, {"name": "Calibration and Synchronization"}]}
+      ]
+    },
+    {
+      "name": "Robustness, Evaluation & Operations",
+      "children": [
+        {"name": "Outlier and Failure Robustness", "children": [{"name": "Front-End Robustness"}, {"name": "Back-End Robustness"}]},
+        {"name": "Evaluation", "children": [{"name": "Metrics"}, {"name": "Datasets and Benchmarks"}]},
+        {"name": "Operational Constraints", "children": [{"name": "Real-Time Performance"}, {"name": "Deployment Conditions"}]}
+      ]
+    },
+    {
+      "name": "Learning, Semantics & Spatial AI",
+      "children": [
+        {"name": "Learning for Classical SLAM Components", "children": [{"name": "Learned Geometry"}, {"name": "Learned Correspondence"}, {"name": "Learned Optimization"}]},
+        {"name": "Foundation and Open-World Spatial AI", "children": [{"name": "Foundation Models for Spatial AI"}, {"name": "Open-World Mapping"}]},
+        {"name": "Computational Structure", "children": [{"name": "Spatial AI Graphs"}, {"name": "Distributed and Hardware-Aware Computation"}]}
+      ]
+    }
+  ]
+}
+

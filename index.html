@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SLAM Paper Phylogeny</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff;
+      --bg-subtle: #f8fafd;
+      --bg-panel: #fff;
+      --text: #202124;
+      --text-secondary: #5f6368;
+      --text-muted: #80868b;
+      --border: #e8eaed;
+      --border-strong: #dadce0;
+      --primary: #1a73e8;
+      --primary-bg: #e8f0fe;
+      --green: #188038;
+      --green-bg: #e6f4ea;
+      --orange: #b06000;
+      --orange-bg: #fef7e0;
+      --red: #c5221f;
+      --red-bg: #fce8e6;
+      --elev-1: 0 1px 2px rgba(60,64,67,.24), 0 1px 3px 1px rgba(60,64,67,.12);
+      --elev-2: 0 1px 3px rgba(60,64,67,.28), 0 4px 10px 2px rgba(60,64,67,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Google Sans", "Noto Sans KR", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .appbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .appbar-inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(26,115,232,.98), rgba(24,128,56,.92)),
+        radial-gradient(circle at 70% 30%, #fbbc04 0 20%, transparent 22%);
+      box-shadow: var(--elev-1);
+    }
+    .appbar-spacer { flex: 1; }
+    .navlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .navlink:hover {
+      background: var(--bg-subtle);
+      color: var(--text);
+      text-decoration: none;
+    }
+    .hero {
+      background:
+        linear-gradient(180deg, #fff 0%, #fff 58%, #f8fafd 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 26px;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
+      gap: 32px;
+      align-items: end;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font: 700 11px/1.4 "Roboto Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: 46px;
+      line-height: 1.08;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    h1 strong {
+      font-weight: 500;
+      background: linear-gradient(135deg, #1a73e8, #188038, #fbbc04, #c5221f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lede {
+      margin: 16px 0 0;
+      max-width: 760px;
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .summary-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--elev-1);
+      padding: 18px;
+    }
+    .summary-card h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .stat {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .stat strong {
+      display: block;
+      font: 700 24px/1 "Roboto Mono", monospace;
+      color: var(--text);
+    }
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+    .workspace {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 24px 52px;
+    }
+    .relation-panel {
+      margin-bottom: 18px;
+      padding: 20px;
+    }
+    .relation-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .relation-head h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .relation-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    .relation-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin: -2px 0 12px;
+      color: var(--text-secondary);
+      font-size: 12.5px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .legend-line {
+      width: 34px;
+      height: 0;
+      border-top: 2px solid #9aa0a6;
+    }
+    .legend-line.dashed {
+      border-top-style: dashed;
+      border-color: #7b818a;
+    }
+    .relation-figure {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .relation-svg {
+      display: block;
+      min-width: 920px;
+      width: 100%;
+      height: auto;
+    }
+    .relation-node {
+      fill: #fff;
+      stroke-width: 2.5;
+      filter: drop-shadow(0 1px 2px rgba(60,64,67,.16));
+    }
+    .relation-label {
+      fill: var(--text);
+      font: 500 13px "Google Sans", "Noto Sans KR", sans-serif;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    .relation-sub {
+      fill: var(--text-secondary);
+      font: 11px "Google Sans", "Noto Sans KR", sans-serif;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    .relation-arrow {
+      fill: none;
+      stroke: #9aa0a6;
+      stroke-width: 2;
+      marker-end: url(#arrow);
+    }
+    .relation-arrow.soft {
+      stroke-dasharray: 7 5;
+      stroke: #7b818a;
+      stroke-width: 2.1;
+      marker-end: url(#arrow-soft);
+    }
+    .relation-arrow.feedback {
+      stroke: #00acc1;
+      stroke-width: 2.2;
+      stroke-dasharray: 8 5;
+      marker-end: url(#arrow-feedback);
+    }
+    .relation-note {
+      fill: #00838f;
+      font: 500 11px "Google Sans", "Noto Sans KR", sans-serif;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: auto minmax(260px, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .searchbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0 14px;
+      box-shadow: var(--elev-1);
+    }
+    .searchbox span { color: var(--text-muted); }
+    .searchbox input {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      outline: 0;
+      font: inherit;
+      color: var(--text);
+      background: transparent;
+    }
+    .segmented {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 4px;
+      white-space: nowrap;
+      justify-self: start;
+    }
+    .segmented button {
+      border: 0;
+      background: transparent;
+      border-radius: 14px;
+      padding: 6px 10px;
+      color: var(--text-secondary);
+      font: 500 12px/1 "Google Sans", sans-serif;
+      cursor: pointer;
+    }
+    .segmented button.active {
+      color: var(--primary);
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,.10);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--elev-1);
+      min-width: 0;
+    }
+    .tree-panel {
+      position: sticky;
+      top: 82px;
+      max-height: calc(100vh - 104px);
+      overflow: auto;
+      padding: 14px;
+    }
+    .tree ul {
+      list-style: none;
+      margin: 0;
+      padding-left: 18px;
+      border-left: 1px solid var(--border);
+    }
+    .tree > ul {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .tree li { margin: 2px 0; }
+    .node {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 7px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font: inherit;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .node.depth-0 {
+      background: #eef4ff;
+    }
+    .node.depth-1 {
+      background: #f4fbf6;
+    }
+    .node.depth-2 {
+      background: #fff8e8;
+    }
+    .node.depth-3 {
+      background: #f8f3ff;
+    }
+    .node.depth-4 {
+      background: #fceff4;
+    }
+    .node:hover {
+      filter: brightness(.985);
+      box-shadow: inset 0 0 0 1px rgba(60,64,67,.08);
+    }
+    .node.active {
+      background: color-mix(in srgb, var(--node-color, var(--primary)) 18%, #fff);
+      color: #174ea6;
+      border-left-color: var(--node-color, var(--primary));
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--node-color, var(--primary)) 35%, transparent);
+    }
+    .node.ancestor {
+      color: var(--text-secondary);
+      opacity: .92;
+    }
+    .node.collapsed .count::before {
+      content: "+";
+      margin-right: 2px;
+    }
+    .node.hidden { display: none; }
+    .level {
+      color: var(--text-muted);
+      font: 500 11px/1 "Roboto Mono", monospace;
+      text-transform: uppercase;
+    }
+    .depth-0 .level { color: #174ea6; }
+    .depth-1 .level { color: #188038; }
+    .depth-2 .level { color: #b06000; }
+    .depth-3 .level { color: #7e3ff2; }
+    .depth-4 .level { color: #c5225f; }
+    .node-name {
+      overflow-wrap: anywhere;
+    }
+    .count {
+      min-width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 11px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font: 500 11px/1 "Roboto Mono", monospace;
+    }
+    .detail {
+      padding: 24px;
+    }
+    .breadcrumb {
+      margin: 0 0 12px;
+      color: var(--text-muted);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .detail-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+    .detail-copy {
+      margin: 10px 0 0;
+      max-width: 760px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .badge-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 16px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge.color {
+      border-color: color-mix(in srgb, var(--node-color, var(--primary)) 35%, var(--border));
+      background: color-mix(in srgb, var(--node-color, var(--primary)) 12%, #fff);
+      color: var(--text);
+    }
+    .section-title {
+      margin: 24px 0 10px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .child-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .child-card {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--node-color, var(--primary));
+      border-radius: 8px;
+      background: #fff;
+      padding: 12px 14px;
+      min-height: 58px;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      text-align: left;
+      font: inherit;
+    }
+    .child-card:hover {
+      transform: translateX(2px);
+      box-shadow: var(--elev-1);
+    }
+    .child-card strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+    .child-card span {
+      color: var(--text-muted);
+      font-size: 12px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .depth-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .depth-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      padding: 12px;
+      min-width: 0;
+    }
+    .depth-card .k {
+      display: block;
+      color: var(--primary);
+      font: 700 11px/1 "Roboto Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 7px;
+    }
+    .depth-card .v {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+    .rules {
+      margin-top: 24px;
+      border-left: 4px solid var(--green);
+      background: var(--green-bg);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .rules h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--green);
+    }
+    .rules ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .rules li { margin: 5px 0; }
+    .chapter-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 12.5px;
+    }
+    .chapter-table th {
+      text-align: left;
+      padding: 9px 10px;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-strong);
+      font: 500 11px/1.3 "Google Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .chapter-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--text-secondary);
+    }
+    .chapter-table td:first-child {
+      color: var(--text);
+      font-family: "Roboto Mono", monospace;
+      white-space: nowrap;
+    }
+    .empty {
+      border: 1px dashed var(--border-strong);
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .hero-inner, .layout, .toolbar {
+        grid-template-columns: 1fr;
+      }
+      .tree-panel {
+        position: static;
+        max-height: 44vh;
+      }
+      .detail-head {
+        grid-template-columns: 1fr;
+      }
+      .badge-stack { justify-content: flex-start; }
+      .depth-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      h1 { font-size: 34px; }
+      .appbar { padding: 0 16px; }
+      .navlink span.label { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero, .workspace { padding-left: 14px; padding-right: 14px; }
+      .detail { padding: 18px; }
+      .stats, .depth-grid { grid-template-columns: 1fr; }
+      .segmented { overflow-x: auto; max-width: 100%; }
+      .child-card {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .child-card span {
+        text-align: left;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="appbar">
+    <div class="appbar-inner">
+      <a class="brand" href="index.html" aria-label="SLAM Paper Phylogeny home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>SLAM Phylogeny</span>
+      </a>
+      <div class="appbar-spacer"></div>
+      <a class="navlink" href="docs/SLAM_TAXONOMY.md"><span>Taxonomy</span></a>
+      <a class="navlink" href="data/slam_handbook_chapter_map.csv"><span>Chapter map</span></a>
+      <a class="navlink" href="https://github.com/SLAM-Handbook-contributors/slam-handbook-public-release" target="_blank" rel="noreferrer"><span class="label">Handbook</span></a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">SLAM Handbook decomposition</p>
+        <h1>SLAM 논문을 위한 <strong>MECE 계통도</strong></h1>
+        <p class="lede">
+          <a href="https://github.com/gisbi-kim/robotics-paper-phylogeny" target="_blank" rel="noreferrer">robotics-paper-phylogeny</a>의 문법을 따르되, SLAM Handbook을 장별 목차가 아니라 시스템 기능 축으로 재배열했습니다.
+          논문 하나가 어디에 속하는지 판단하기 쉬운 4-depth tree입니다.
+        </p>
+      </div>
+      <div class="summary-card">
+        <h2>Current seed</h2>
+        <div class="stats">
+          <div class="stat"><strong>8</strong><span>Phylum</span></div>
+          <div class="stat"><strong>29</strong><span>Class</span></div>
+          <div class="stat"><strong>60</strong><span>Order seeds</span></div>
+          <div class="stat"><strong id="refStat">1320</strong><span>References matched</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="workspace">
+    <section class="panel relation-panel">
+      <div class="relation-head">
+        <h2>Phylum relationship map</h2>
+        <p>SLAM 시스템을 구성할 때 각 Phylum이 맡는 역할과 흐름</p>
+      </div>
+      <div class="relation-legend">
+        <span class="legend-item"><span class="legend-line"></span>실선 화살표: SLAM main data flow</span>
+        <span class="legend-item"><span class="legend-line dashed"></span>점선 화살표: 보조/피드백 관계 - 수학, 평가, learning, map cue는 여러 SLAM 모듈에 영향을 줌</span>
+      </div>
+      <div class="relation-figure" aria-label="SLAM phylum relationship diagram">
+        <svg class="relation-svg" viewBox="0 0 1120 470" role="img" aria-labelledby="relationTitle relationDesc">
+          <title id="relationTitle">SLAM Phylum relationship map</title>
+          <desc id="relationDesc">Sensor and front-end produce measurements, back-end estimates state, map representations store the world, with modeling foundations below and spatial AI above.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa0a6"></path>
+            </marker>
+            <marker id="arrow-soft" viewBox="0 0 10 10" refX="8.7" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b818a"></path>
+            </marker>
+            <marker id="arrow-feedback" viewBox="0 0 10 10" refX="8.7" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#00acc1"></path>
+            </marker>
+          </defs>
+
+          <path class="relation-arrow" d="M210 230 C270 230 300 230 360 230"></path>
+          <path class="relation-arrow" d="M520 230 C585 230 615 230 680 230"></path>
+          <path class="relation-arrow" d="M840 230 C885 230 910 230 955 230"></path>
+          <path class="relation-arrow feedback" d="M958 198 C850 166 650 166 520 200"></path>
+          <text class="relation-note" x="775" y="156">prediction cue: map-assisted tracking and relocalization</text>
+          <path class="relation-arrow soft" d="M390 320 C405 300 422 288 438 278"></path>
+          <path class="relation-arrow soft" d="M490 335 C570 318 625 294 678 266"></path>
+          <path class="relation-arrow soft" d="M565 123 C610 145 640 165 668 193"></path>
+          <path class="relation-arrow soft" d="M560 123 C510 145 480 158 458 176"></path>
+          <path class="relation-arrow soft" d="M780 335 C772 312 765 296 762 278"></path>
+          <path class="relation-arrow soft" d="M900 335 C930 315 955 292 985 276"></path>
+          <path class="relation-arrow soft" d="M125 185 C125 160 150 142 205 128"></path>
+
+          <rect class="relation-node" x="40" y="185" width="170" height="90" rx="8" stroke="#12a4b8"></rect>
+          <text class="relation-label" x="125" y="220">Sensor &amp; Odometry</text>
+          <text class="relation-sub" x="125" y="242">Visual/LiDAR/Radar/IMU</text>
+
+          <rect class="relation-node" x="360" y="185" width="160" height="90" rx="8" stroke="#f29900"></rect>
+          <text class="relation-label" x="440" y="220">Measurement</text>
+          <text class="relation-label" x="440" y="238">Front-End</text>
+
+          <rect class="relation-node" x="680" y="185" width="160" height="90" rx="8" stroke="#5e35b1"></rect>
+          <text class="relation-label" x="760" y="220">Back-End</text>
+          <text class="relation-label" x="760" y="238">Optimization</text>
+
+          <rect class="relation-node" x="955" y="185" width="135" height="90" rx="8" stroke="#00acc1"></rect>
+          <text class="relation-label" x="1022.5" y="220">Map</text>
+          <text class="relation-label" x="1022.5" y="238">Representations</text>
+
+          <rect class="relation-node" x="210" y="320" width="280" height="90" rx="8" stroke="#3f51b5"></rect>
+          <text class="relation-label" x="350" y="356">State, Geometry &amp;</text>
+          <text class="relation-label" x="350" y="374">Probabilistic Modeling</text>
+
+          <rect class="relation-node" x="430" y="45" width="260" height="78" rx="8" stroke="#d9307f"></rect>
+          <text class="relation-label" x="560" y="76">Learning, Semantics</text>
+          <text class="relation-label" x="560" y="94">&amp; Spatial AI</text>
+
+          <rect class="relation-node" x="40" y="65" width="230" height="78" rx="8" stroke="#1a73e8"></rect>
+          <text class="relation-label" x="155" y="96">Problem &amp;</text>
+          <text class="relation-label" x="155" y="114">System Context</text>
+
+          <rect class="relation-node" x="690" y="335" width="290" height="78" rx="8" stroke="#c5221f"></rect>
+          <text class="relation-label" x="835" y="366">Robustness, Evaluation</text>
+          <text class="relation-label" x="835" y="384">&amp; Operations</text>
+        </svg>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="segmented" aria-label="Depth filter">
+        <button data-depth="all">All</button>
+        <button class="active" data-depth="1">Phylum</button>
+        <button data-depth="2">Class</button>
+        <button data-depth="3">Order</button>
+      </div>
+      <label class="searchbox">
+        <span>Search</span>
+        <input id="search" type="search" placeholder="예: LiDAR, factor graph, loop closure, Gaussian">
+      </label>
+    </div>
+
+    <div class="layout">
+      <aside class="panel tree-panel">
+        <nav class="tree" id="tree" aria-label="SLAM taxonomy tree"></nav>
+      </aside>
+
+      <section class="panel detail" id="detail">
+        <p class="breadcrumb" id="breadcrumb">SLAM</p>
+        <div class="detail-head">
+          <div>
+            <h2 id="title">SLAM</h2>
+            <p class="detail-copy" id="description">
+              왼쪽 트리에서 Phylum, Class, Order를 선택하면 해당 branch의 역할과 하위 항목이 표시됩니다.
+            </p>
+          </div>
+          <div class="badge-stack">
+            <span class="badge color" id="depthBadge">Root</span>
+            <span class="badge" id="childBadge">8 children</span>
+          </div>
+        </div>
+
+        <div class="depth-grid" id="lineage"></div>
+
+        <h3 class="section-title">Children</h3>
+        <div class="child-grid" id="children"></div>
+
+        <h3 class="section-title">Matched Handbook references <a href="matching_method.html" style="font-size:12px; font-weight:500; margin-left:8px;">How matched?</a></h3>
+        <p class="breadcrumb" id="matchSource" style="margin-top:-4px;"></p>
+        <div id="referenceMap"></div>
+
+        <div class="rules">
+          <h3>Primary label rules</h3>
+          <ul>
+            <li>sensor-specific full system은 <strong>Sensor &amp; Odometry Modalities</strong>.</li>
+            <li>residual, registration, association, loop detection은 <strong>Measurement Front-End</strong>.</li>
+            <li>solver, inference, robust objective는 <strong>Back-End Optimization &amp; Inference</strong>.</li>
+            <li>world representation은 <strong>Map Representations</strong>.</li>
+            <li>benchmark, metric, runtime, deployment는 <strong>Robustness, Evaluation &amp; Operations</strong>.</li>
+            <li>learning 자체가 핵심 기여면 <strong>Learning, Semantics &amp; Spatial AI</strong>.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language</p>
+  </footer>
+
+  <script src="data/references.js"></script>
+  <script src="data/references_semantic.js"></script>
+  <script>
+    const phylumMeta = {
+      "Problem & System Context": {
+        color: "#1a73e8",
+        desc: "SLAM 문제 정의, 현대 시스템 구조, autonomy architecture 안에서 SLAM이 맡는 역할."
+      },
+      "State, Geometry & Probabilistic Modeling": {
+        color: "#3f51b5",
+        desc: "상태 표현, factor graph, manifold, uncertainty처럼 SLAM 문제를 수학적으로 쓰는 층."
+      },
+      "Measurement Front-End": {
+        color: "#f29900",
+        desc: "raw sensor stream을 odometry, landmark, loop closure, correspondence 같은 pseudo-measurement로 바꾸는 층."
+      },
+      "Back-End Optimization & Inference": {
+        color: "#5e35b1",
+        desc: "least squares, incremental smoothing, robust optimization, certifiable solver 등 추론 엔진."
+      },
+      "Map Representations": {
+        color: "#00acc1",
+        desc: "sparse, dense, neural, semantic, dynamic map처럼 세계를 표현하는 방식."
+      },
+      "Sensor & Odometry Modalities": {
+        color: "#12a4b8",
+        desc: "Visual, LiDAR, Radar, Event, IMU, leg odometry 등 센서/플랫폼별 SLAM family."
+      },
+      "Robustness, Evaluation & Operations": {
+        color: "#c5221f",
+        desc: "outlier, benchmark, metric, runtime, deployment constraint처럼 시스템을 실제로 굴리는 조건."
+      },
+      "Learning, Semantics & Spatial AI": {
+        color: "#d9307f",
+        desc: "deep SLAM, foundation model, open-world map, spatial AI computation으로 확장되는 frontier."
+      }
+    };
+
+    const leafDescriptions = {
+      "Localization vs Mapping vs SLAM": "pose만 추정하는 localization, world model만 만드는 mapping, 둘을 동시에 닫힌 루프로 푸는 SLAM의 문제 경계를 나누는 논문군입니다.",
+      "Autonomy Role": "SLAM이 자율주행, 로봇 탐사, AR/VR 같은 autonomy stack에서 perception과 planning 사이에 어떤 상태 추정 서비스를 제공하는지 다룹니다.",
+      "Modern SLAM Pipeline": "sensor ingestion, front-end matching, back-end optimization, map update, relocalization으로 이어지는 현대 SLAM 시스템의 표준 파이프라인을 정리합니다.",
+      "Autonomy Integration": "SLAM 결과가 navigation, control, task planning, safety monitor와 연결될 때 필요한 interface, latency, failure handling을 다루는 분류입니다.",
+      "SLAM Eras": "filter-based SLAM, graph-based SLAM, visual/LiDAR SLAM, learning-enhanced SLAM처럼 시대별 문제 설정과 지배적 방법론의 변화를 설명합니다.",
+      "Graphical Model Formulation": "pose, landmark, calibration, bias, loop closure를 factor graph의 variable과 factor로 모델링하는 수학적 표현을 다룹니다.",
+      "MAP Inference": "sensor likelihood와 prior를 결합해 posterior mode를 찾는 MAP 추정 관점의 SLAM formulation과 objective 설계를 포함합니다.",
+      "Lie Groups and Manifolds": "SE(2), SE(3), SO(3) 같은 pose manifold 위에서 perturbation, retraction, Jacobian을 올바르게 정의하는 논문군입니다.",
+      "Continuous-Time Trajectories": "discrete pose graph 대신 spline, Gaussian process, continuous-time trajectory로 motion distortion과 asynchronous sensor를 처리합니다.",
+      "Estimation Consistency": "linearization, gauge freedom, unobservable direction 때문에 필터나 optimizer가 과신하지 않도록 consistency를 분석하고 보정합니다.",
+      "Inertial Observability": "IMU가 들어올 때 gravity, scale, bias, yaw, velocity가 어떤 motion에서 관측 가능한지 따지는 visual-inertial/LiDAR-inertial 핵심 이론입니다.",
+      "Feature Extraction": "image keypoint, line, plane, edge, surfel처럼 raw sensor에서 반복 관측 가능한 geometric cue를 뽑는 front-end 논문군입니다.",
+      "Direct Measurement Formation": "명시적 feature matching 없이 photometric, geometric, range residual을 직접 measurement로 만들어 최적화에 넣는 접근입니다.",
+      "Registration": "ICP, NDT, scan matching, point cloud alignment처럼 서로 다른 frame의 관측을 하나의 relative transform으로 정합하는 방법입니다.",
+      "Frame-to-Frame Motion Estimation": "연속된 camera frame, LiDAR scan, radar scan 사이의 상대 운동을 빠르게 추정해 odometry seed를 만드는 분류입니다.",
+      "Preintegration and Propagation": "고주파 IMU나 wheel/leg signal을 factor graph 시간 간격에 맞게 누적해 motion prior로 전달하는 기술입니다.",
+      "Place Recognition": "현재 관측이 이전에 방문한 장소인지 찾기 위해 visual bag-of-words, LiDAR descriptor, learned global descriptor를 쓰는 논문군입니다.",
+      "Loop Closure Validation": "place recognition 후보가 실제 loop인지 geometric verification, consistency check, robust gating으로 검증하는 단계입니다.",
+      "Correspondence Estimation": "landmark, feature, point, segment, object가 서로 같은 물체나 위치를 가리키는지 결정하는 data association 문제입니다.",
+      "Ambiguity Handling": "perceptual aliasing, repeated structure, weak texture처럼 여러 correspondence가 그럴듯할 때 hypothesis와 uncertainty를 관리합니다.",
+      "Linear Least Squares": "linearized factor graph에서 normal equation, QR/Cholesky, Schur complement로 update step을 푸는 solver 기반입니다.",
+      "Nonlinear Optimization": "Gauss-Newton, Levenberg-Marquardt, trust region처럼 pose와 map의 비선형 residual을 반복적으로 줄이는 back-end 방법입니다.",
+      "Variable Elimination": "factor graph의 sparse 구조를 이용해 어떤 변수를 먼저 제거할지 정하고 fill-in과 계산량을 줄이는 핵심 기술입니다.",
+      "Incremental SLAM": "새 measurement가 들어올 때 전체 문제를 처음부터 풀지 않고 Bayes tree, iSAM류 update로 빠르게 갱신합니다.",
+      "Robust Cost Functions": "Huber, Cauchy, Geman-McClure, switchable constraint 같은 loss로 outlier residual이 최적화를 망치지 않게 합니다.",
+      "Outlier-Robust Optimization": "잘못된 loop closure나 association을 명시적으로 거절하거나 mixture, max-mixture, graduated non-convexity로 견디는 back-end입니다.",
+      "Certifiably Optimal SLAM": "non-convex SLAM 해가 global optimum인지 SDP relaxation, dual certificate 등으로 보증하려는 논문군입니다.",
+      "Differentiable Optimization": "SLAM optimizer 자체를 differentiable layer로 만들어 learning system 안에서 end-to-end로 학습하거나 gradient를 전달합니다.",
+      "Landmark Maps": "point, line, plane, object landmark를 persistent map entity로 두고 robot pose와 함께 추정하는 sparse map 계열입니다.",
+      "Pose Graph Maps": "landmark를 명시하지 않고 pose node와 relative constraint만으로 trajectory와 loop closure 구조를 표현하는 map입니다.",
+      "Range-Derived Maps": "LiDAR/radar/depth 관측으로 occupancy grid, height map, signed distance field 같은 range 기반 공간 표현을 만듭니다.",
+      "Dense Reconstruction": "sparse landmark를 넘어 surface, mesh, volumetric TSDF처럼 사용자가 볼 수 있는 dense geometry를 복원합니다.",
+      "Neural Implicit Maps": "좌표를 넣으면 occupancy, SDF, color, semantic을 예측하는 neural field로 map을 표현하는 최신 계열입니다.",
+      "Gaussian Maps": "3D Gaussian, surfel Gaussian, probabilistic blob으로 geometry와 appearance를 표현해 rendering과 tracking을 함께 노리는 map입니다.",
+      "Metric-Semantic Maps": "metric geometry 위에 class, instance, object relation을 얹어 로봇이 '어디에 무엇이 있는지' 이해하게 합니다.",
+      "Hierarchical Spatial Maps": "room, corridor, floor, object, topology처럼 여러 spatial scale을 계층적으로 묶어 navigation과 reasoning에 쓰는 map입니다.",
+      "Dynamic SLAM Maps": "움직이는 object와 static background를 분리하거나 함께 추정해 dynamic scene에서도 localization과 mapping을 유지합니다.",
+      "Deformable SLAM Maps": "rigid world 가정이 깨지는 organ, cloth, soft object, changing environment에서 deformation field까지 추정하는 SLAM입니다.",
+      "Camera Models and Pipelines": "pinhole, fisheye, stereo, RGB-D camera model과 visual feature/direct pipeline이 pose estimation에 들어가는 방식을 다룹니다.",
+      "Visual System Families": "MonoSLAM, PTAM, ORB-SLAM, DSO, VINS 계열처럼 visual SLAM 시스템 family와 설계 차이를 묶습니다.",
+      "LiDAR Sensing": "spinning/solid-state LiDAR의 scan pattern, motion distortion, range noise, intensity 특성이 SLAM front-end에 미치는 영향을 다룹니다.",
+      "LiDAR System Families": "LOAM, LeGO-LOAM, LIO-SAM, FAST-LIO, Cartographer류처럼 LiDAR 또는 LiDAR-inertial system 계보를 분류합니다.",
+      "Radar Sensing": "radar의 long-range, Doppler, multipath, speckle, low angular resolution 특성을 SLAM measurement로 쓰는 문제입니다.",
+      "Radar System Families": "scan matching radar odometry, radar-inertial odometry, radar place recognition처럼 악천후/저시야 환경을 겨냥한 계열입니다.",
+      "Event Sensor Processing": "event camera의 asynchronous brightness change stream을 feature, time surface, motion cue로 변환하는 front-end입니다.",
+      "Event System Families": "event-only, event-inertial, event-camera fusion SLAM처럼 high-speed/high-dynamic-range 장면을 위한 시스템 계열입니다.",
+      "Inertial Odometry": "IMU preintegration, bias estimation, gravity alignment로 short-term motion prior와 scale observability를 제공하는 odometry입니다.",
+      "Leg Odometry": "legged robot의 contact, kinematics, slip, body motion을 이용해 visual/LiDAR가 약한 순간에도 pose를 보강합니다.",
+      "Other Aiding Signals": "wheel encoder, GNSS, magnetometer, barometer, UWB, prior map처럼 SLAM graph에 보조 factor로 들어오는 신호입니다.",
+      "Sensor Fusion Architectures": "loosely/tightly coupled fusion, filter vs smoother, asynchronous multi-rate update처럼 여러 센서를 묶는 구조를 다룹니다.",
+      "Calibration and Synchronization": "extrinsic/intrinsic calibration, time offset, rolling shutter, sensor delay를 추정하거나 보정해 fusion residual을 맞춥니다.",
+      "Front-End Robustness": "blur, occlusion, rain, dust, sparse texture, moving objects 속에서도 feature, registration, association이 무너지지 않게 합니다.",
+      "Back-End Robustness": "front-end가 넘긴 잘못된 constraint를 optimization 단계에서 탐지, 완화, 제거해 전체 graph 붕괴를 막습니다.",
+      "Metrics": "ATE, RPE, drift, consistency, map quality, runtime처럼 SLAM 성능을 어떤 숫자로 평가할지 정의합니다.",
+      "Datasets and Benchmarks": "KITTI, EuRoC, TUM, Newer College 등 benchmark dataset과 evaluation protocol을 통해 방법을 비교합니다.",
+      "Real-Time Performance": "limited CPU/GPU, memory, power budget 안에서 tracking rate와 map update latency를 유지하는 system engineering입니다.",
+      "Deployment Conditions": "조명, 날씨, 계절, crowd, vibration, platform constraints처럼 실험실 밖에서 SLAM을 깨뜨리는 조건을 다룹니다.",
+      "Learned Geometry": "depth, normal, optical flow, feature, descriptor를 neural network로 추정해 classical geometry front-end를 보강합니다.",
+      "Learned Correspondence": "matching, association, loop candidate ranking을 학습 기반 descriptor나 attention으로 더 강하게 만드는 분류입니다.",
+      "Learned Optimization": "optimizer step, damping, covariance, robust weighting, learned prior를 학습해 back-end 추론을 보조하거나 대체합니다.",
+      "Foundation Models for Spatial AI": "VLM, SAM류 segmentation, open-vocabulary recognition을 SLAM map과 연결해 semantic/spatial reasoning을 확장합니다.",
+      "Open-World Mapping": "미리 정해진 class만이 아니라 새 object, affordance, language query를 수용하는 map representation을 다룹니다.",
+      "Spatial AI Graphs": "pose graph를 넘어 object, room, relation, affordance를 graph로 표현해 mapping과 reasoning을 같이 수행합니다.",
+      "Distributed and Hardware-Aware Computation": "multi-robot, edge/cloud, GPU/NPU, memory hierarchy를 고려해 SLAM computation을 분산하거나 가속합니다."
+    };
+
+    const taxonomy = {
+      name: "SLAM",
+      children: [
+        {name: "Problem & System Context", children: [
+          {name: "SLAM Problem Definition", children: [{name: "Localization vs Mapping vs SLAM"}, {name: "Autonomy Role"}]},
+          {name: "System Architecture", children: [{name: "Modern SLAM Pipeline"}, {name: "Autonomy Integration"}]},
+          {name: "Historical and Scope Framing", children: [{name: "SLAM Eras"}]}
+        ]},
+        {name: "State, Geometry & Probabilistic Modeling", children: [
+          {name: "Factor Graph Modeling", children: [{name: "Graphical Model Formulation"}, {name: "MAP Inference"}]},
+          {name: "State Representations", children: [{name: "Lie Groups and Manifolds"}, {name: "Continuous-Time Trajectories"}]},
+          {name: "Observability and Uncertainty", children: [{name: "Estimation Consistency"}, {name: "Inertial Observability"}]}
+        ]},
+        {name: "Measurement Front-End", children: [
+          {name: "Raw-to-Pseudo Measurement Processing", children: [{name: "Feature Extraction"}, {name: "Direct Measurement Formation"}, {name: "Registration"}]},
+          {name: "Odometry Front-End", children: [{name: "Frame-to-Frame Motion Estimation"}, {name: "Preintegration and Propagation"}]},
+          {name: "Place Recognition and Loop Closure", children: [{name: "Place Recognition"}, {name: "Loop Closure Validation"}]},
+          {name: "Data Association", children: [{name: "Correspondence Estimation"}, {name: "Ambiguity Handling"}]}
+        ]},
+        {name: "Back-End Optimization & Inference", children: [
+          {name: "Least-Squares Solvers", children: [{name: "Linear Least Squares"}, {name: "Nonlinear Optimization"}]},
+          {name: "Sparsity and Incrementality", children: [{name: "Variable Elimination"}, {name: "Incremental SLAM"}]},
+          {name: "Robust Back-End", children: [{name: "Robust Cost Functions"}, {name: "Outlier-Robust Optimization"}]},
+          {name: "Certifiable and Differentiable Solvers", children: [{name: "Certifiably Optimal SLAM"}, {name: "Differentiable Optimization"}]}
+        ]},
+        {name: "Map Representations", children: [
+          {name: "Sparse Geometric Maps", children: [{name: "Landmark Maps"}, {name: "Pose Graph Maps"}]},
+          {name: "Dense Geometric Maps", children: [{name: "Range-Derived Maps"}, {name: "Dense Reconstruction"}]},
+          {name: "Neural and Differentiable Maps", children: [{name: "Neural Implicit Maps"}, {name: "Gaussian Maps"}]},
+          {name: "Semantic and Structured Maps", children: [{name: "Metric-Semantic Maps"}, {name: "Hierarchical Spatial Maps"}]},
+          {name: "Dynamic and Deformable Maps", children: [{name: "Dynamic SLAM Maps"}, {name: "Deformable SLAM Maps"}]}
+        ]},
+        {name: "Sensor & Odometry Modalities", children: [
+          {name: "Visual SLAM", children: [{name: "Camera Models and Pipelines"}, {name: "Visual System Families"}]},
+          {name: "LiDAR SLAM", children: [{name: "LiDAR Sensing"}, {name: "LiDAR System Families"}]},
+          {name: "Radar SLAM", children: [{name: "Radar Sensing"}, {name: "Radar System Families"}]},
+          {name: "Event-Based SLAM", children: [{name: "Event Sensor Processing"}, {name: "Event System Families"}]},
+          {name: "Proprioceptive and Aided Odometry", children: [{name: "Inertial Odometry"}, {name: "Leg Odometry"}, {name: "Other Aiding Signals"}]},
+          {name: "Multi-Modal Fusion", children: [{name: "Sensor Fusion Architectures"}, {name: "Calibration and Synchronization"}]}
+        ]},
+        {name: "Robustness, Evaluation & Operations", children: [
+          {name: "Outlier and Failure Robustness", children: [{name: "Front-End Robustness"}, {name: "Back-End Robustness"}]},
+          {name: "Evaluation", children: [{name: "Metrics"}, {name: "Datasets and Benchmarks"}]},
+          {name: "Operational Constraints", children: [{name: "Real-Time Performance"}, {name: "Deployment Conditions"}]}
+        ]},
+        {name: "Learning, Semantics & Spatial AI", children: [
+          {name: "Learning for Classical SLAM Components", children: [{name: "Learned Geometry"}, {name: "Learned Correspondence"}, {name: "Learned Optimization"}]},
+          {name: "Foundation and Open-World Spatial AI", children: [{name: "Foundation Models for Spatial AI"}, {name: "Open-World Mapping"}]},
+          {name: "Computational Structure", children: [{name: "Spatial AI Graphs"}, {name: "Distributed and Hardware-Aware Computation"}]}
+        ]}
+      ]
+    };
+
+    const labels = ["Root", "Phylum", "Class", "Order", "Genus"];
+    const references = window.SLAM_REFERENCES_SEMANTIC || window.SLAM_REFERENCES || [];
+    const referenceSource = window.SLAM_REFERENCES_SEMANTIC ? "Codex context-aware semantic curation" : "Rule seed fallback";
+    const allNodes = [];
+    let selected = { node: taxonomy, lineage: ["SLAM"], depth: 0, color: "#1a73e8" };
+    let activeButton = null;
+    let depthFilter = "1";
+    const expandedKeys = new Set(["SLAM"]);
+
+    const treeEl = document.getElementById("tree");
+    const searchEl = document.getElementById("search");
+
+    function childCount(node) {
+      return node.children ? node.children.length : 0;
+    }
+
+    function descendantCount(node) {
+      if (!node.children) return 0;
+      return node.children.reduce((sum, child) => sum + 1 + descendantCount(child), 0);
+    }
+
+    function phylumOf(lineage) {
+      return lineage[1] || lineage[0];
+    }
+
+    function colorOf(lineage) {
+      return (phylumMeta[phylumOf(lineage)] || {}).color || "#1a73e8";
+    }
+
+    function lineageKey(lineage) {
+      return lineage.join(" > ");
+    }
+
+    function descriptionFor(node, lineage) {
+      const meta = phylumMeta[node.name] || phylumMeta[phylumOf(lineage)];
+      if (node.name === "SLAM") {
+        return "SLAM Handbook의 각 장을 기능적 역할로 재배열한 4-depth taxonomy seed입니다. Phylum은 논문 분류의 최상위 기준이고, Class/Order/Genus로 내려갈수록 구체화됩니다.";
+      }
+      if (meta && node.name === phylumOf(lineage)) return meta.desc;
+      if (lineage.length === 3) return `${phylumOf(lineage)} 안에서 ${node.name} 계열의 주요 연구 branch입니다.`;
+      if (lineage.length >= 4) {
+        const leafText = leafDescriptions[node.name] || `${node.name}를 중심으로 논문을 묶는 세부 연구 단위입니다.`;
+        return `${lineage[lineage.length - 2]} branch 아래의 구체적인 논문 분류 단위입니다. ${leafText}`;
+      }
+      return meta ? meta.desc : "SLAM taxonomy branch.";
+    }
+
+    function renderTreeNode(node, lineage, depth, parentEntry = null) {
+      const li = document.createElement("li");
+      const button = document.createElement("button");
+      const color = colorOf(lineage);
+      button.className = `node depth-${Math.min(depth, 4)}`;
+      button.style.setProperty("--node-color", color);
+      button.dataset.depth = String(depth);
+      button.dataset.text = lineage.join(" ").toLowerCase();
+      button.innerHTML = `<span class="level">${labels[depth]}</span><span class="node-name"></span><span class="count">${childCount(node) || descendantCount(node)}</span>`;
+      button.querySelector(".node-name").textContent = node.name;
+      li.appendChild(button);
+      const entry = { node, lineage, depth, button, li, children: [], parent: parentEntry, key: lineageKey(lineage) };
+      button.addEventListener("click", () => selectNode(entry));
+      allNodes.push(entry);
+      if (parentEntry) parentEntry.children.push(entry);
+      if (node.children && node.children.length) {
+        const ul = document.createElement("ul");
+        node.children.forEach((child) => ul.appendChild(renderTreeNode(child, [...lineage, child.name], depth + 1, entry)));
+        li.appendChild(ul);
+      }
+      return li;
+    }
+
+    function renderLineage(lineage) {
+      const holder = document.getElementById("lineage");
+      holder.innerHTML = "";
+      ["Phylum", "Class", "Order", "Genus"].forEach((label, index) => {
+        const item = document.createElement("div");
+        item.className = "depth-card";
+        item.innerHTML = `<span class="k">${label}</span><span class="v"></span>`;
+        item.querySelector(".v").textContent = lineage[index + 1] || "아직 선택 안 됨";
+        holder.appendChild(item);
+      });
+    }
+
+    function renderChildren(node, lineage) {
+      const holder = document.getElementById("children");
+      holder.innerHTML = "";
+      if (!node.children || !node.children.length) {
+        holder.innerHTML = `<div class="empty">Leaf node입니다. 이후 논문 데이터가 붙으면 여기서 해당 논문 목록으로 연결하면 됩니다.</div>`;
+        return;
+      }
+      node.children.forEach((child) => {
+        const childLineage = [...lineage, child.name];
+        const match = allNodes.find((entry) => entry.lineage.join(" > ") === childLineage.join(" > "));
+        const card = document.createElement("button");
+        card.className = "child-card";
+        card.type = "button";
+        card.style.setProperty("--node-color", colorOf(childLineage));
+        card.innerHTML = `<strong></strong><span></span>`;
+        card.querySelector("strong").textContent = child.name;
+        card.querySelector("span").textContent = `${childCount(child)} direct children · ${descendantCount(child)} descendants · ${refsForLineage(childLineage).length} refs`;
+        card.addEventListener("click", () => {
+          if (match) selectNode(match, { toggle: false });
+        });
+        holder.appendChild(card);
+      });
+    }
+
+    function refsForLineage(lineage) {
+      if (lineage.length <= 1) return references;
+      const phylum = lineage[1];
+      const cls = lineage[2];
+      const order = lineage[3];
+      return references.filter((ref) => {
+        if (ref.phylum !== phylum) return false;
+        if (cls && ref.class !== cls) return false;
+        if (order && ref.order !== order) return false;
+        return true;
+      });
+    }
+
+    function renderReferenceMap(lineage) {
+      const holder = document.getElementById("referenceMap");
+      const refs = refsForLineage(lineage);
+      if (!refs.length) {
+        holder.innerHTML = `<div class="empty">이 branch에 자동 매칭된 Handbook reference가 아직 없습니다.</div>`;
+        return;
+      }
+      const shown = refs.slice(0, 80);
+      holder.innerHTML = `
+        <table class="chapter-table">
+          <thead><tr><th>ID</th><th>Year</th><th>Title</th><th>Matched path</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="breadcrumb" style="margin-top:10px;">Showing ${shown.length} of ${refs.length} matched references. Full data: data/slam_handbook_references.csv</p>`;
+      const body = holder.querySelector("tbody");
+      shown.forEach((ref) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td></td><td></td><td></td><td></td>`;
+        tr.children[0].textContent = `[${ref.id}]`;
+        tr.children[1].textContent = ref.year || "-";
+        tr.children[2].textContent = ref.title;
+        tr.children[3].textContent = `${ref.phylum} > ${ref.class} > ${ref.order}`;
+        body.appendChild(tr);
+      });
+    }
+
+    function collapseDescendants(entry) {
+      entry.children.forEach((child) => {
+        expandedKeys.delete(child.key);
+        collapseDescendants(child);
+      });
+    }
+
+    function collapseSiblings(entry) {
+      if (!entry.parent) return;
+      entry.parent.children.forEach((sibling) => {
+        if (sibling !== entry) {
+          expandedKeys.delete(sibling.key);
+          collapseDescendants(sibling);
+        }
+      });
+    }
+
+    function expandAncestors(entry) {
+      let current = entry.parent;
+      while (current) {
+        expandedKeys.add(current.key);
+        current = current.parent;
+      }
+    }
+
+    function selectNode(entry, options = {}) {
+      const { toggle = true } = options;
+      const { node, lineage, depth, button } = entry;
+      const wasExpanded = expandedKeys.has(entry.key);
+      selected = { node, lineage, depth, color: colorOf(lineage) };
+      expandAncestors(entry);
+      if (childCount(node)) {
+        collapseSiblings(entry);
+        if (toggle && depth > 0 && wasExpanded) {
+          expandedKeys.delete(entry.key);
+          collapseDescendants(entry);
+        } else {
+          expandedKeys.add(entry.key);
+        }
+      }
+      if (activeButton) activeButton.classList.remove("active");
+      activeButton = button;
+      if (activeButton) activeButton.classList.add("active");
+      document.getElementById("detail").style.setProperty("--node-color", selected.color);
+      document.getElementById("breadcrumb").textContent = lineage.join(" > ");
+      document.getElementById("title").textContent = node.name;
+      document.getElementById("description").textContent = descriptionFor(node, lineage);
+      document.getElementById("depthBadge").textContent = labels[depth];
+      document.getElementById("childBadge").textContent = `${childCount(node)} children · ${descendantCount(node)} descendants`;
+      renderLineage(lineage);
+      renderChildren(node, lineage);
+      renderReferenceMap(lineage);
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = searchEl.value.trim().toLowerCase();
+      const presetDepth = depthFilter === "all" ? 99 : Number(depthFilter);
+
+      const visibleByExpansion = (entry) => {
+        if (entry.depth === 0) return true;
+        if (!entry.parent || !visibleByExpansion(entry.parent)) return false;
+        return entry.depth <= presetDepth || expandedKeys.has(entry.parent.key);
+      };
+
+      const visitSearch = (entry) => {
+        const selfSearchOk = entry.button.dataset.text.includes(q);
+        const childVisible = entry.children.map(visitSearch).some(Boolean);
+        const keepBranch = selfSearchOk || childVisible;
+        entry.button.classList.toggle("hidden", !keepBranch);
+        entry.button.classList.toggle("ancestor", !selfSearchOk && childVisible);
+        entry.li.style.display = keepBranch ? "" : "none";
+        return keepBranch;
+      };
+
+      if (q) {
+        visitSearch(allNodes[0]);
+      } else {
+        allNodes.forEach((entry) => {
+          const visible = visibleByExpansion(entry);
+          entry.button.classList.toggle("hidden", !visible);
+          entry.button.classList.remove("ancestor");
+          entry.li.style.display = visible ? "" : "none";
+        });
+      }
+
+      allNodes.forEach((entry) => {
+        entry.button.classList.toggle("collapsed", childCount(entry.node) > 0 && !expandedKeys.has(entry.key));
+      });
+    }
+
+    document.querySelectorAll(".segmented button").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".segmented button").forEach((b) => b.classList.remove("active"));
+        button.classList.add("active");
+        depthFilter = button.dataset.depth;
+        expandedKeys.clear();
+        expandedKeys.add("SLAM");
+        applyFilters();
+      });
+    });
+    searchEl.addEventListener("input", applyFilters);
+
+    const rootList = document.createElement("ul");
+    rootList.appendChild(renderTreeNode(taxonomy, ["SLAM"], 0));
+    treeEl.appendChild(rootList);
+    document.getElementById("refStat").textContent = String(references.length || 1320);
+    document.getElementById("matchSource").textContent = `Source: ${referenceSource}`;
+    selectNode(allNodes[0], { toggle: false });
+  </script>
+</body>
+</html>

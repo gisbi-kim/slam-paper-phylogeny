@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reference Matching Method - SLAM Phylogeny</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff;
+      --bg-subtle: #f8fafd;
+      --text: #202124;
+      --muted: #5f6368;
+      --border: #e8eaed;
+      --primary: #1a73e8;
+      --green: #188038;
+      --orange: #b06000;
+      --elev: 0 1px 2px rgba(60,64,67,.24), 0 1px 3px 1px rgba(60,64,67,.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg-subtle);
+      color: var(--text);
+      font: 14px/1.6 "Google Sans", "Noto Sans KR", Arial, sans-serif;
+    }
+    .appbar {
+      height: 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1a73e8, #188038);
+      box-shadow: var(--elev);
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 42px 24px 64px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--elev);
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font: 700 11px/1.3 "Roboto Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      line-height: 1.15;
+      font-weight: 500;
+    }
+    h2 {
+      margin: 28px 0 10px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    p { margin: 0 0 12px; color: var(--muted); }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: "Roboto Mono", monospace;
+      font-size: 12px;
+      color: var(--text);
+    }
+    pre {
+      background: #202124;
+      color: #f8fafd;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font: 12px/1.6 "Roboto Mono", monospace;
+    }
+    ol, ul { color: var(--text); padding-left: 22px; }
+    li { margin: 7px 0; }
+    .note {
+      border-left: 4px solid var(--orange);
+      background: #fef7e0;
+      border-radius: 6px;
+      padding: 14px 16px;
+      color: var(--text);
+      margin-top: 12px;
+    }
+    .ok {
+      border-left-color: var(--green);
+      background: #e6f4ea;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      padding: 10px;
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg-subtle);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="appbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"></span>
+      <span>SLAM Phylogeny</span>
+    </a>
+  </div>
+  <main>
+    <section class="card">
+      <p class="eyebrow">Codex context-aware semantic curation</p>
+      <h1>References는 citation context를 읽고 매칭했다</h1>
+      <p>
+        지금 사이트의 <code>Matched Handbook references</code>는 단순 keyword/regex 매칭이 아닙니다.
+        SLAM Handbook 본문에서 각 reference가 실제로 인용된 장, 절, 주변 문장을 추출한 뒤,
+        그 문맥에서 그 논문이 어떤 역할로 호출됐는지를 기준으로 primary taxonomy path를 배정했습니다.
+      </p>
+      <p>
+        즉 title만 보는 것이 아니라, 예를 들어 같은 feature 논문이라도 Visual SLAM 장에서 인용됐는지,
+        Place Recognition 절에서 인용됐는지, Learning 장에서 인용됐는지에 따라 다르게 배정합니다.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Current pipeline</h2>
+      <ol>
+        <li><code>scripts/build_reference_dataset.py</code>로 PDF References의 <code>[1]</code>부터 <code>[1320]</code>까지 파싱합니다.</li>
+        <li><code>scripts/enrich_reference_contexts.py</code>로 본문 citation 주변 문장과 chapter/section을 추출합니다.</li>
+        <li><code>scripts/codex_context_semantic_match.py</code>가 내가 정한 SLAM taxonomy 역할 기준을 적용합니다.</li>
+        <li>reference마다 가장 의미가 강한 citation context를 보고 <code>Phylum > Class > Order</code> 하나를 고릅니다.</li>
+        <li>결과를 confidence, rationale과 함께 <code>data/references_semantic.js</code>에 저장하고 사이트가 이 파일을 우선 사용합니다.</li>
+      </ol>
+      <pre>python scripts/build_reference_dataset.py
+python scripts/enrich_reference_contexts.py
+python scripts/codex_context_semantic_match.py</pre>
+    </section>
+
+    <section class="card">
+      <h2>Decision principle</h2>
+      <ul>
+        <li>sensor-specific full system이면 <code>Sensor & Odometry Modalities</code>.</li>
+        <li>feature, registration, odometry, place recognition, loop closure, data association이면 <code>Measurement Front-End</code>.</li>
+        <li>solver, factor graph inference, robust objective, certifiable method이면 <code>Back-End Optimization & Inference</code>.</li>
+        <li>world representation이면 <code>Map Representations</code>.</li>
+        <li>manifold, Lie group, uncertainty, observability, factor graph modeling이면 <code>State, Geometry & Probabilistic Modeling</code>.</li>
+        <li>learning 자체가 핵심 novelty일 때만 <code>Learning, Semantics & Spatial AI</code>.</li>
+        <li>title만으로 애매하면 Handbook citation context의 chapter/section/excerpt를 우선합니다.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Examples</h2>
+      <table>
+        <thead>
+          <tr><th>Handbook context</th><th>Semantic assignment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>8.3 LiDAR Place Recognition</code></td><td>Measurement Front-End > Place Recognition and Loop Closure > Place Recognition</td></tr>
+          <tr><td><code>11.3 Observability of Aided Inertial Navigation</code></td><td>State, Geometry & Probabilistic Modeling > Observability and Uncertainty > Inertial Observability</td></tr>
+          <tr><td><code>14.3 3D Gaussian Splatting</code></td><td>Map Representations > Neural and Differentiable Maps > Gaussian Maps</td></tr>
+          <tr><td><code>16.4 3D Scene Graphs</code></td><td>Map Representations > Semantic and Structured Maps > Hierarchical Spatial Maps</td></tr>
+          <tr><td><code>18.6 Gaussian Belief Propagation</code></td><td>Learning, Semantics & Spatial AI > Computational Structure > Distributed and Hardware-Aware Computation</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Outputs</h2>
+      <ul>
+        <li><a href="data/slam_handbook_references_semantic.csv">data/slam_handbook_references_semantic.csv</a>: 현재 사이트가 쓰는 semantic curation CSV</li>
+        <li><a href="data/slam_handbook_references_semantic.json">data/slam_handbook_references_semantic.json</a>: full semantic curation JSON</li>
+        <li><a href="data/slam_handbook_references_with_contexts.json">data/slam_handbook_references_with_contexts.json</a>: reference + citation contexts</li>
+        <li><a href="scripts/codex_context_semantic_match.py">scripts/codex_context_semantic_match.py</a>: 현재 curation logic</li>
+        <li><a href="scripts/semantic_match_references.py">scripts/semantic_match_references.py</a>: 외부 frontier API로 재검토할 때 쓸 batch matcher</li>
+      </ul>
+      <div class="note ok">
+        현재 반영된 결과: 1320개 reference 전체 매칭, 1318개에 citation context 사용, 총 2473개 citation context 추출.
+      </div>
+      <div class="note">
+        이 결과는 내가 Handbook context와 taxonomy 역할 기준을 보고 만든 1차 semantic curation입니다.
+        다음 교정 단계에서는 confidence가 낮거나 rationale이 약한 항목부터 사람이 확인하면 됩니다.
+      </div>
+    </section>
+  </main>
+</body>
+</html>

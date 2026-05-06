@@ -1,0 +1,55 @@
+source,chapter,section,title,primary_phylum,primary_class,primary_order
+SLAM Handbook,Prelude,I.1,What is SLAM?,Problem & System Context,SLAM Problem Definition,Localization vs Mapping vs SLAM
+SLAM Handbook,Prelude,I.2,Anatomy of a Modern SLAM System,Problem & System Context,System Architecture,Modern SLAM Pipeline
+SLAM Handbook,Prelude,I.3,Role of SLAM in the Autonomy Architecture,Problem & System Context,System Architecture,Autonomy Integration
+SLAM Handbook,1,1,Factor Graphs for SLAM,"State, Geometry & Probabilistic Modeling",Factor Graph Modeling,Graphical Model Formulation
+SLAM Handbook,1,1.2,From MAP Inference to Least Squares,"State, Geometry & Probabilistic Modeling",Factor Graph Modeling,MAP Inference
+SLAM Handbook,1,1.3,Solving Linear Least Squares,Back-End Optimization & Inference,Least-Squares Solvers,Linear Least Squares
+SLAM Handbook,1,1.4,Nonlinear Optimization,Back-End Optimization & Inference,Least-Squares Solvers,Nonlinear Optimization
+SLAM Handbook,1,1.5,Factor Graphs and Sparsity,Back-End Optimization & Inference,Sparsity and Incrementality,Variable Elimination
+SLAM Handbook,1,1.7,Incremental SLAM,Back-End Optimization & Inference,Sparsity and Incrementality,Incremental SLAM
+SLAM Handbook,2,2,Advanced State Variable Representations,"State, Geometry & Probabilistic Modeling",State Representations,Lie Groups and Manifolds
+SLAM Handbook,2,2.2,Continuous-Time Trajectories,"State, Geometry & Probabilistic Modeling",State Representations,Continuous-Time Trajectories
+SLAM Handbook,3,3,Robustness to Incorrect Data Association and Outliers,Measurement Front-End,Data Association,Ambiguity Handling
+SLAM Handbook,3,3.2,Detecting and Rejecting Outliers in the SLAM Front-end,"Robustness, Evaluation & Operations",Outlier and Failure Robustness,Front-End Robustness
+SLAM Handbook,3,3.3,Increasing Robustness to Outliers in the SLAM Back-end,Back-End Optimization & Inference,Robust Back-End,Outlier-Robust Optimization
+SLAM Handbook,4,4,Differentiable Optimization,Back-End Optimization & Inference,Certifiable and Differentiable Solvers,Differentiable Optimization
+SLAM Handbook,5,5,Dense Map Representations,Map Representations,Dense Geometric Maps,Range-Derived Maps
+SLAM Handbook,5,5.3,Map Representations,Map Representations,Dense Geometric Maps,Dense Reconstruction
+SLAM Handbook,6,6,Certifiably Optimal Solvers and Theoretical Properties of SLAM,Back-End Optimization & Inference,Certifiable and Differentiable Solvers,Certifiably Optimal SLAM
+SLAM Handbook,6,6.2,Accuracy of the Optimal Solution,"State, Geometry & Probabilistic Modeling",Observability and Uncertainty,Estimation Consistency
+SLAM Handbook,Part II,II.1,Key Modules in the SLAM Front-End,Measurement Front-End,Raw-to-Pseudo Measurement Processing,Feature Extraction
+SLAM Handbook,Part II,II.2,Sensors and Factor Graphs,Sensor & Odometry Modalities,Multi-Modal Fusion,Sensor Fusion Architectures
+SLAM Handbook,Part II,II.3,Evaluation,"Robustness, Evaluation & Operations",Evaluation,Metrics
+SLAM Handbook,7,7,Visual SLAM,Sensor & Odometry Modalities,Visual SLAM,Visual System Families
+SLAM Handbook,7,7.3,Visual SLAM Fundamentals,Measurement Front-End,Raw-to-Pseudo Measurement Processing,Feature Extraction
+SLAM Handbook,7,7.6,Real-time Dense Reconstruction,Map Representations,Dense Geometric Maps,Dense Reconstruction
+SLAM Handbook,7,7.8,Combining Vision with Other Modalities,Sensor & Odometry Modalities,Multi-Modal Fusion,Sensor Fusion Architectures
+SLAM Handbook,8,8,LiDAR SLAM,Sensor & Odometry Modalities,LiDAR SLAM,LiDAR System Families
+SLAM Handbook,8,8.2,LiDAR Odometry,Measurement Front-End,Odometry Front-End,Frame-to-Frame Motion Estimation
+SLAM Handbook,8,8.3,LiDAR Place Recognition,Measurement Front-End,Place Recognition and Loop Closure,Place Recognition
+SLAM Handbook,9,9,Radar SLAM,Sensor & Odometry Modalities,Radar SLAM,Radar System Families
+SLAM Handbook,9,9.2,Radar Odometry,Measurement Front-End,Odometry Front-End,Frame-to-Frame Motion Estimation
+SLAM Handbook,9,9.3,Radar Place Recognition,Measurement Front-End,Place Recognition and Loop Closure,Place Recognition
+SLAM Handbook,10,10,Event-based SLAM,Sensor & Odometry Modalities,Event-Based SLAM,Event System Families
+SLAM Handbook,10,10.4,Front-end of an Event-based SLAM System,Measurement Front-End,Raw-to-Pseudo Measurement Processing,Direct Measurement Formation
+SLAM Handbook,10,10.5,Back-end of an Event-based SLAM System,Back-End Optimization & Inference,Least-Squares Solvers,Nonlinear Optimization
+SLAM Handbook,11,11,Inertial Odometry for SLAM,Sensor & Odometry Modalities,Proprioceptive and Aided Odometry,Inertial Odometry
+SLAM Handbook,11,11.2,IMU Preintegration and Factor Graphs,Measurement Front-End,Odometry Front-End,Preintegration and Propagation
+SLAM Handbook,11,11.3,Observability of Aided Inertial Navigation,"State, Geometry & Probabilistic Modeling",Observability and Uncertainty,Inertial Observability
+SLAM Handbook,12,12,Leg Odometry for SLAM,Sensor & Odometry Modalities,Proprioceptive and Aided Odometry,Leg Odometry
+SLAM Handbook,12,12.3,Contact Estimation,Measurement Front-End,Odometry Front-End,Preintegration and Propagation
+SLAM Handbook,13,13,Boosting SLAM with Deep Learning,"Learning, Semantics & Spatial AI",Learning for Classical SLAM Components,Learned Geometry
+SLAM Handbook,13,13.2,Deep Learning for Feature Matching and Optical Flow,"Learning, Semantics & Spatial AI",Learning for Classical SLAM Components,Learned Correspondence
+SLAM Handbook,13,13.3,Differentiable Bundle Adjustment and DROID-SLAM,"Learning, Semantics & Spatial AI",Learning for Classical SLAM Components,Learned Optimization
+SLAM Handbook,14,14,Map Representations with Differentiable Volume Rendering,Map Representations,Neural and Differentiable Maps,Neural Implicit Maps
+SLAM Handbook,14,14.3,3D Gaussian Splatting,Map Representations,Neural and Differentiable Maps,Gaussian Maps
+SLAM Handbook,15,15,Dynamic and Deformable SLAM,Map Representations,Dynamic and Deformable Maps,Dynamic SLAM Maps
+SLAM Handbook,15,15.4,Deformable SLAM,Map Representations,Dynamic and Deformable Maps,Deformable SLAM Maps
+SLAM Handbook,16,16,Metric-Semantic SLAM,Map Representations,Semantic and Structured Maps,Metric-Semantic Maps
+SLAM Handbook,16,16.4,Hierarchical Metric-Semantic Representations and 3D Scene Graphs,Map Representations,Semantic and Structured Maps,Hierarchical Spatial Maps
+SLAM Handbook,17,17,Towards Open-World Spatial AI,"Learning, Semantics & Spatial AI",Foundation and Open-World Spatial AI,Foundation Models for Spatial AI
+SLAM Handbook,17,17.3,Open-World Mapping,"Learning, Semantics & Spatial AI",Foundation and Open-World Spatial AI,Open-World Mapping
+SLAM Handbook,18,18,Computational Structure of Spatial AI Systems,"Learning, Semantics & Spatial AI",Computational Structure,Spatial AI Graphs
+SLAM Handbook,18,18.5,Mapping Spatial AI Graphs to Hardware,"Learning, Semantics & Spatial AI",Computational Structure,Distributed and Hardware-Aware Computation
+SLAM Handbook,18,18.7,Continual Learning within Factor Graphs,"Learning, Semantics & Spatial AI",Computational Structure,Spatial AI Graphs
