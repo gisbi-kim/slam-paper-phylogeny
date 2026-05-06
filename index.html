@@ -630,6 +630,31 @@
       padding: 0 .12em;
       box-shadow: 0 0 0 1px rgba(251,188,4,.22);
     }
+    .path-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+    }
+    .path-pill {
+      border: 1px solid color-mix(in srgb, var(--pill-color, var(--primary)) 42%, var(--border));
+      border-left: 4px solid var(--pill-color, var(--primary));
+      border-radius: 999px;
+      color: var(--text);
+      padding: 4px 8px 4px 7px;
+      font: 500 12px/1.2 "Google Sans", "Noto Sans KR", sans-serif;
+      cursor: pointer;
+      max-width: 100%;
+      text-align: left;
+    }
+    .path-pill:hover {
+      background: color-mix(in srgb, var(--pill-color, var(--primary)) 17%, #fff);
+      text-decoration: underline;
+    }
+    .path-pill.depth-1 { background: #f4fbf6; }
+    .path-pill.depth-2 { background: #fff8e8; }
+    .path-pill.depth-3 { background: #f8f3ff; }
+    .path-pill.depth-4 { background: #fceff4; }
     .empty {
       border: 1px dashed var(--border-strong);
       color: var(--text-muted);
@@ -1434,6 +1459,20 @@
       return escaped.replace(new RegExp(escapeRegExp(query), "gi"), (match) => `<mark class="search-hit">${match}</mark>`);
     }
 
+    function buttonLineagePath(lineage) {
+      return lineage.map((part) => part.replaceAll('"', "&quot;")).join(" > ");
+    }
+
+    function renderMatchedPath(ref, query) {
+      const parts = [ref.phylum, ref.class, ref.order].filter(Boolean);
+      if (!parts.length) return "";
+      return `<div class="path-pills">${parts.map((part, index) => {
+        const lineage = ["SLAM", ...parts.slice(0, index + 1)];
+        const depthClass = `depth-${index + 1}`;
+        return `<button class="path-pill ${depthClass}" type="button" style="--pill-color:${colorOf(lineage)}" data-lineage="${buttonLineagePath(lineage)}">${highlighted(part, query)}</button>`;
+      }).join("")}</div>`;
+    }
+
     function referenceSearchText(ref) {
       return [
         ref.id,
@@ -1473,10 +1512,24 @@
         tr.children[0].innerHTML = highlighted(`[${ref.id}]`, query);
         tr.children[1].innerHTML = highlighted(ref.year || "-", query);
         tr.children[2].innerHTML = highlighted(ref.title, query);
-        tr.children[3].innerHTML = highlighted(`${ref.phylum} > ${ref.class} > ${ref.order}`, query);
+        tr.children[3].innerHTML = renderMatchedPath(ref, query);
+        tr.children[3].querySelectorAll(".path-pill").forEach((pill) => {
+          pill.addEventListener("click", () => {
+            const entry = entryForLineage(pill.dataset.lineage.split(" > "));
+            if (entry) selectNode(entry, { toggle: false });
+          });
+        });
         body.appendChild(tr);
       });
     }
+
+    document.getElementById("referenceMap").addEventListener("click", (event) => {
+      const pill = event.target.closest(".path-pill");
+      if (!pill) return;
+      const lineage = pill.dataset.lineage.split(" > ");
+      const entry = entryForLineage(lineage);
+      if (entry) selectNode(entry, { toggle: false });
+    });
 
     function collapseDescendants(entry) {
       entry.children.forEach((child) => {
