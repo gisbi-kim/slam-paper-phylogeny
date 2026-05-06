@@ -477,6 +477,13 @@
       font-size: 12px;
       overflow-wrap: anywhere;
     }
+    .reference-note {
+      margin: -2px 0 12px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 860px;
+    }
     .detail-head {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -903,6 +910,7 @@
 
         <h3 class="section-title"><span data-i18n="matchedReferences">Matched Handbook references</span> <a href="matching_method.html" style="font-size:12px; font-weight:500; margin-left:8px;" data-i18n="howMatched">How matched?</a></h3>
         <p class="breadcrumb" id="matchSource" style="margin-top:-4px;"></p>
+        <p class="reference-note" id="referenceCorpusNote"></p>
         <div id="referenceMap"></div>
 
         <div class="rules">
@@ -1010,7 +1018,8 @@
         tableTitle: "Title",
         tableMatchedPath: "Matched path",
         showingRefs: "Showing {shown} of {total} matched references. Full data: data/slam_handbook_references.csv",
-        source: "Source: {source}"
+        source: "Source: {source}",
+        referenceCorpusNote: "\uc774 \ud45c\ub294 SLAM Handbook reference list\uc5d0\uc11c \ucd94\ucd9c\ud55c {count}\uac1c \ubb38\ud5cc\uc744 \uacc4\ud1b5\ub3c4\uc5d0 \ub9e4\uce6d\ud55c \uacb0\uacfc\uc785\ub2c8\ub2e4."
       },
       en: {
         eyebrow: "SLAM Handbook decomposition",
@@ -1047,7 +1056,8 @@
         tableTitle: "Title",
         tableMatchedPath: "Matched path",
         showingRefs: "Showing {shown} of {total} matched references. Full data: data/slam_handbook_references.csv",
-        source: "Source: {source}"
+        source: "Source: {source}",
+        referenceCorpusNote: "These papers come from the {count}-item reference list extracted from the SLAM Handbook public release. Each row is that Handbook reference matched to the most suitable Phylum/Class/Order/Genus in this taxonomy."
       }
     };
 
@@ -1293,6 +1303,7 @@
       });
       searchEl.placeholder = textFor("searchPlaceholder");
       document.getElementById("matchSource").textContent = textFor("source", { source: referenceSource });
+      document.getElementById("referenceCorpusNote").textContent = textFor("referenceCorpusNote", { count: references.length.toLocaleString() });
       document.querySelectorAll(".language-switch button").forEach((button) => {
         const active = button.dataset.lang === currentLang;
         button.classList.toggle("active", active);
