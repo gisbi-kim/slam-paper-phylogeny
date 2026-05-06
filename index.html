@@ -707,8 +707,9 @@
         <h2 data-i18n="currentSeed">Current seed</h2>
         <div class="stats">
           <div class="stat"><strong>8</strong><span>Phylum</span></div>
-          <div class="stat"><strong>29</strong><span>Class</span></div>
-          <div class="stat"><strong>60</strong><span>Order seeds</span></div>
+          <div class="stat"><strong>31</strong><span>Class</span></div>
+          <div class="stat"><strong>64</strong><span>Order seeds</span></div>
+          <div class="stat"><strong>204</strong><span>Genus</span></div>
           <div class="stat"><strong id="refStat">1320</strong><span data-i18n="referencesMatched">References matched</span></div>
         </div>
       </div>
@@ -795,6 +796,7 @@
         <button class="active" data-depth="1">Phylum</button>
         <button data-depth="2">Class</button>
         <button data-depth="3">Order</button>
+        <button data-depth="4">Genus</button>
       </div>
       <label class="searchbox">
         <span data-i18n="search">Search</span>
@@ -850,6 +852,7 @@
     <p data-i18n="footer">SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language</p>
   </footer>
 
+  <script src="data/taxonomy_tree.js"></script>
   <script src="data/references.js"></script>
   <script src="data/references_semantic.js"></script>
   <script>
@@ -909,6 +912,8 @@
         footer: "SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language",
         rootDescription: "SLAM Handbook의 각 장을 기능적 역할로 재배열한 4-depth taxonomy seed입니다. Phylum은 논문 분류의 최상위 기준이고, Class/Order/Genus로 내려갈수록 구체화됩니다.",
         classDescription: "{phylum} 안에서 {node} 계열의 주요 연구 branch입니다.",
+        orderDescription: "{parent} 안에서 {node}를 더 구체화한 Order입니다. {order}",
+        genusDescription: "{parent} 아래의 Genus입니다. {node}를 실제 논문 기여의 더 좁은 키워드로 쓰며, 이 단위까지 내려오면 개별 논문의 핵심 방법이나 시스템 변형을 거의 직접 가리킵니다.",
         leafPrefix: "{parent} branch 아래의 구체적인 논문 분류 단위입니다. {leaf}",
         leafFallback: "{node}를 중심으로 논문을 묶는 세부 연구 단위입니다.",
         notSelected: "아직 선택 안 됨",
@@ -944,6 +949,8 @@
         footer: "SLAM Paper Phylogeny seed · based on the SLAM Handbook public release and robotics-paper-phylogeny design language",
         rootDescription: "A 4-depth taxonomy seed that rearranges the SLAM Handbook by functional role. Phylum is the top-level paper classification axis; Class, Order, and Genus become progressively more specific.",
         classDescription: "A major research branch for {node} inside {phylum}.",
+        orderDescription: "An Order that makes {node} more specific within {parent}. {order}",
+        genusDescription: "A Genus under {parent}. It uses {node} as a narrow keyword for paper-level contributions; at this depth, the node usually points almost directly to a concrete method family or system variant.",
         leafPrefix: "A concrete paper-classification unit under the {parent} branch. {leaf}",
         leafFallback: "A fine-grained research unit for grouping papers centered on {node}.",
         notSelected: "Not selected yet",
@@ -1106,7 +1113,7 @@
       "Distributed and Hardware-Aware Computation": "Distributes or accelerates SLAM computation with multi-robot, edge/cloud, GPU/NPU, and memory-hierarchy constraints in mind."
     };
 
-    const taxonomy = {
+    const taxonomy = window.SLAM_TAXONOMY || {
       name: "SLAM",
       children: [
         {name: "Problem & System Context", children: [
@@ -1237,9 +1244,12 @@
       }
       if (meta && node.name === phylumOf(lineage)) return phylumDescriptionFor(node.name);
       if (lineage.length === 3) return textFor("classDescription", { phylum: phylumOf(lineage), node: node.name });
+      if (lineage.length === 4 && childCount(node)) {
+        const orderText = leafDescriptionFor(node.name);
+        return textFor("orderDescription", { parent: lineage[lineage.length - 2], node: node.name, order: orderText });
+      }
       if (lineage.length >= 4) {
-        const leafText = leafDescriptionFor(node.name);
-        return textFor("leafPrefix", { parent: lineage[lineage.length - 2], leaf: leafText });
+        return textFor("genusDescription", { parent: lineage[lineage.length - 2], node: node.name });
       }
       return meta ? phylumDescriptionFor(phylumOf(lineage)) : "SLAM taxonomy branch.";
     }

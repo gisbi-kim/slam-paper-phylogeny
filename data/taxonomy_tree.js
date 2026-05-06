@@ -1,4 +1,4 @@
-{
+window.SLAM_TAXONOMY = {
   "name": "SLAM",
   "children": [
     {
@@ -1129,4 +1129,4 @@
       ]
     }
   ]
-}
+};
