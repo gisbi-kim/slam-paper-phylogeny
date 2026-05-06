@@ -464,6 +464,9 @@
       color: var(--text-muted);
       font: 500 11px/1 "Roboto Mono", monospace;
     }
+    .count:empty {
+      display: none;
+    }
     .detail {
       padding: 24px;
     }
@@ -894,7 +897,7 @@
 
         <div class="depth-grid" id="lineage"></div>
 
-        <h3 class="section-title" data-i18n="children">Children</h3>
+        <h3 class="section-title" id="childrenTitle" data-i18n="children">Children</h3>
         <div class="child-grid" id="children"></div>
 
         <h3 class="section-title"><span data-i18n="matchedReferences">Matched Handbook references</span> <a href="matching_method.html" style="font-size:12px; font-weight:500; margin-left:8px;" data-i18n="howMatched">How matched?</a></h3>
@@ -1411,7 +1414,8 @@
       button.style.setProperty("--node-color", color);
       button.dataset.depth = String(depth);
       button.dataset.text = lineage.join(" ").toLowerCase();
-      button.innerHTML = `<span class="level">${labels[depth]}</span><span class="node-name"></span><span class="count">${childCount(node) || descendantCount(node)}</span>`;
+      const nodeCount = childCount(node) || descendantCount(node) || "";
+      button.innerHTML = `<span class="level">${labels[depth]}</span><span class="node-name"></span><span class="count">${nodeCount}</span>`;
       button.querySelector(".node-name").textContent = node.name;
       li.appendChild(button);
       const entry = { node, lineage, depth, button, li, children: [], parent: parentEntry, key: lineageKey(lineage) };
@@ -1439,12 +1443,16 @@
     }
 
     function renderChildren(node, lineage) {
+      const title = document.getElementById("childrenTitle");
       const holder = document.getElementById("children");
       holder.innerHTML = "";
       if (!node.children || !node.children.length) {
-        holder.innerHTML = `<div class="empty">${textFor("leafEmpty")}</div>`;
+        title.hidden = true;
+        holder.hidden = true;
         return;
       }
+      title.hidden = false;
+      holder.hidden = false;
       orderedChildren(node, lineage).forEach((child) => {
         const childLineage = [...lineage, child.name];
         const match = allNodes.find((entry) => entry.lineage.join(" > ") === childLineage.join(" > "));
