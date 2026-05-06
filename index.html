@@ -1415,7 +1415,7 @@
       button.style.setProperty("--node-color", color);
       button.dataset.depth = String(depth);
       button.dataset.text = lineage.join(" ").toLowerCase();
-      const nodeCount = childCount(node) || descendantCount(node) || "";
+      const nodeCount = childCount(node) || descendantCount(node) || refsForLineage(lineage).length || "";
       button.innerHTML = `<span class="level">${labels[depth]}</span><span class="node-name"></span><span class="count">${nodeCount}</span>`;
       button.querySelector(".node-name").textContent = node.name;
       li.appendChild(button);
