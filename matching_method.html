@@ -164,12 +164,14 @@
         <li><code>scripts/build_reference_dataset.py</code>로 PDF References의 <code>[1]</code>부터 <code>[1320]</code>까지 파싱합니다.</li>
         <li><code>scripts/enrich_reference_contexts.py</code>로 본문 citation 주변 문장과 chapter/section을 추출합니다.</li>
         <li><code>scripts/codex_context_semantic_match.py</code>가 내가 정한 SLAM taxonomy 역할 기준을 적용합니다.</li>
-        <li>reference마다 가장 의미가 강한 citation context를 보고 <code>Phylum > Class > Order</code> 하나를 고릅니다.</li>
+        <li>reference마다 가장 의미가 강한 citation context를 보고 <code>Phylum > Class > Order</code> 하나를 먼저 고릅니다.</li>
+        <li><code>scripts/assign_genus_labels.py</code>가 해당 Order 아래의 Genus 후보 중 title, citation entry, rationale, Handbook context와 가장 잘 맞는 Genus를 고릅니다.</li>
         <li>결과를 confidence, rationale과 함께 <code>data/references_semantic.js</code>에 저장하고 사이트가 이 파일을 우선 사용합니다.</li>
       </ol>
       <pre>python scripts/build_reference_dataset.py
 python scripts/enrich_reference_contexts.py
-python scripts/codex_context_semantic_match.py</pre>
+python scripts/codex_context_semantic_match.py
+python scripts/assign_genus_labels.py</pre>
     </section>
 
     <section class="card">
@@ -192,11 +194,11 @@ python scripts/codex_context_semantic_match.py</pre>
           <tr><th>Handbook context</th><th>Semantic assignment</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>8.3 LiDAR Place Recognition</code></td><td>Measurement Front-End > Place Recognition and Loop Closure > Place Recognition</td></tr>
-          <tr><td><code>11.3 Observability of Aided Inertial Navigation</code></td><td>State, Geometry & Probabilistic Modeling > Observability and Uncertainty > Inertial Observability</td></tr>
-          <tr><td><code>14.3 3D Gaussian Splatting</code></td><td>Map Representations > Neural and Differentiable Maps > Gaussian Maps</td></tr>
-          <tr><td><code>16.4 3D Scene Graphs</code></td><td>Map Representations > Semantic and Structured Maps > Hierarchical Spatial Maps</td></tr>
-          <tr><td><code>18.6 Gaussian Belief Propagation</code></td><td>Learning, Semantics & Spatial AI > Computational Structure > Distributed and Hardware-Aware Computation</td></tr>
+          <tr><td><code>8.3 LiDAR Place Recognition</code></td><td>Measurement Front-End > Place Recognition and Loop Closure > Place Recognition > LiDAR Place Recognition</td></tr>
+          <tr><td><code>11.3 Observability of Aided Inertial Navigation</code></td><td>State, Geometry & Probabilistic Modeling > Observability and Uncertainty > Inertial Observability > Bias Observability</td></tr>
+          <tr><td><code>14.3 3D Gaussian Splatting</code></td><td>Map Representations > Neural and Differentiable Maps > Gaussian Maps > 3D Gaussian Splatting</td></tr>
+          <tr><td><code>16.4 3D Scene Graphs</code></td><td>Map Representations > Semantic and Structured Maps > Hierarchical Spatial Maps > 3D Scene Graphs</td></tr>
+          <tr><td><code>18.6 Gaussian Belief Propagation</code></td><td>Learning, Semantics & Spatial AI > Computational Structure > Distributed and Hardware-Aware Computation > Gaussian Belief Propagation</td></tr>
         </tbody>
       </table>
     </section>
@@ -208,10 +210,11 @@ python scripts/codex_context_semantic_match.py</pre>
         <li><a href="data/slam_handbook_references_semantic.json">data/slam_handbook_references_semantic.json</a>: full semantic curation JSON</li>
         <li><a href="data/slam_handbook_references_with_contexts.json">data/slam_handbook_references_with_contexts.json</a>: reference + citation contexts</li>
         <li><a href="scripts/codex_context_semantic_match.py">scripts/codex_context_semantic_match.py</a>: 현재 curation logic</li>
+        <li><a href="scripts/assign_genus_labels.py">scripts/assign_genus_labels.py</a>: Order-level labels를 Genus-level labels로 세분화하는 script</li>
         <li><a href="scripts/semantic_match_references.py">scripts/semantic_match_references.py</a>: 외부 frontier API로 재검토할 때 쓸 batch matcher</li>
       </ul>
       <div class="note ok">
-        현재 반영된 결과: 1320개 reference 전체 매칭, 1318개에 citation context 사용, 총 2473개 citation context 추출.
+        현재 반영된 결과: 1320개 reference 전체가 <code>Phylum > Class > Order > Genus</code>까지 매칭됨. 1318개에 citation context 사용, 총 2473개 citation context 추출.
       </div>
       <div class="note">
         이 결과는 내가 Handbook context와 taxonomy 역할 기준을 보고 만든 1차 semantic curation입니다.

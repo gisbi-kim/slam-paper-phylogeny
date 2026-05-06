@@ -1475,10 +1475,12 @@
       const phylum = lineage[1];
       const cls = lineage[2];
       const order = lineage[3];
+      const genus = lineage[4];
       return references.filter((ref) => {
         if (ref.phylum !== phylum) return false;
         if (cls && ref.class !== cls) return false;
         if (order && ref.order !== order) return false;
+        if (genus && ref.genus !== genus) return false;
         return true;
       });
     }
