@@ -95,6 +95,32 @@
       color: var(--text);
       text-decoration: none;
     }
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(60,64,67,.08);
+    }
+    .language-switch button {
+      min-width: 42px;
+      height: 28px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text-secondary);
+      font: 700 11px/1 "Roboto Mono", monospace;
+      letter-spacing: .02em;
+      cursor: pointer;
+    }
+    .language-switch button.active {
+      background: #e8f0fe;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(60,64,67,.12);
+    }
     .hero {
       background:
         linear-gradient(180deg, #fff 0%, #fff 58%, #f8fafd 100%);
@@ -629,6 +655,9 @@
       h1 { font-size: 34px; }
       .appbar { padding: 0 16px; }
       .navlink span.label { display: none; }
+      .language-switch button {
+        min-width: 38px;
+      }
     }
     @media (max-width: 560px) {
       .hero, .workspace { padding-left: 14px; padding-right: 14px; }
@@ -657,26 +686,30 @@
       <a class="navlink" href="docs/SLAM_TAXONOMY.md"><span>Taxonomy</span></a>
       <a class="navlink" href="data/slam_handbook_chapter_map.csv"><span>Chapter map</span></a>
       <a class="navlink" href="https://github.com/SLAM-Handbook-contributors/slam-handbook-public-release" target="_blank" rel="noreferrer"><span class="label">Handbook</span></a>
+      <div class="language-switch" aria-label="Language">
+        <button class="active" type="button" data-lang="ko">KOR</button>
+        <button type="button" data-lang="en">ENG</button>
+      </div>
     </div>
   </div>
 
   <section class="hero">
     <div class="hero-inner">
       <div>
-        <p class="eyebrow">SLAM Handbook decomposition</p>
-        <h1>SLAM 논문을 위한 <strong>MECE 계통도</strong></h1>
-        <p class="lede">
+        <p class="eyebrow" data-i18n="eyebrow">SLAM Handbook decomposition</p>
+        <h1 data-i18n-html="heroTitle">SLAM 논문을 위한 <strong>MECE 계통도</strong></h1>
+        <p class="lede" data-i18n-html="heroLede">
           <a href="https://github.com/gisbi-kim/robotics-paper-phylogeny" target="_blank" rel="noreferrer">robotics-paper-phylogeny</a>의 문법을 따르되, SLAM Handbook을 장별 목차가 아니라 시스템 기능 축으로 재배열했습니다.
           논문 하나가 어디에 속하는지 판단하기 쉬운 4-depth tree입니다.
         </p>
       </div>
       <div class="summary-card">
-        <h2>Current seed</h2>
+        <h2 data-i18n="currentSeed">Current seed</h2>
         <div class="stats">
           <div class="stat"><strong>8</strong><span>Phylum</span></div>
           <div class="stat"><strong>29</strong><span>Class</span></div>
           <div class="stat"><strong>60</strong><span>Order seeds</span></div>
-          <div class="stat"><strong id="refStat">1320</strong><span>References matched</span></div>
+          <div class="stat"><strong id="refStat">1320</strong><span data-i18n="referencesMatched">References matched</span></div>
         </div>
       </div>
     </div>
@@ -685,12 +718,12 @@
   <main class="workspace">
     <section class="panel relation-panel">
       <div class="relation-head">
-        <h2>Phylum relationship map</h2>
-        <p>SLAM 시스템을 구성할 때 각 Phylum이 맡는 역할과 흐름</p>
+        <h2 data-i18n="relationTitleText">Phylum relationship map</h2>
+        <p data-i18n="relationSubtitle">SLAM 시스템을 구성할 때 각 Phylum이 맡는 역할과 흐름</p>
       </div>
       <div class="relation-legend">
-        <span class="legend-item"><span class="legend-line"></span>실선 화살표: SLAM main data flow</span>
-        <span class="legend-item"><span class="legend-line dashed"></span>점선 화살표: 보조/피드백 관계 - 수학, 평가, learning, map cue는 여러 SLAM 모듈에 영향을 줌</span>
+        <span class="legend-item"><span class="legend-line"></span><span data-i18n="solidArrow">실선 화살표: SLAM main data flow</span></span>
+        <span class="legend-item"><span class="legend-line dashed"></span><span data-i18n="dashedArrow">점선 화살표: 보조/피드백 관계 - 수학, 평가, learning, map cue는 여러 SLAM 모듈에 영향을 줌</span></span>
       </div>
       <div class="relation-figure" aria-label="SLAM phylum relationship diagram">
         <svg class="relation-svg" viewBox="0 0 1120 470" role="img" aria-labelledby="relationTitle relationDesc">
@@ -764,7 +797,7 @@
         <button data-depth="3">Order</button>
       </div>
       <label class="searchbox">
-        <span>Search</span>
+        <span data-i18n="search">Search</span>
         <input id="search" type="search" placeholder="예: LiDAR, factor graph, loop closure, Gaussian">
       </label>
     </div>
@@ -791,16 +824,16 @@
 
         <div class="depth-grid" id="lineage"></div>
 
-        <h3 class="section-title">Children</h3>
+        <h3 class="section-title" data-i18n="children">Children</h3>
         <div class="child-grid" id="children"></div>
 
-        <h3 class="section-title">Matched Handbook references <a href="matching_method.html" style="font-size:12px; font-weight:500; margin-left:8px;">How matched?</a></h3>
+        <h3 class="section-title"><span data-i18n="matchedReferences">Matched Handbook references</span> <a href="matching_method.html" style="font-size:12px; font-weight:500; margin-left:8px;" data-i18n="howMatched">How matched?</a></h3>
         <p class="breadcrumb" id="matchSource" style="margin-top:-4px;"></p>
         <div id="referenceMap"></div>
 
         <div class="rules">
-          <h3>Primary label rules</h3>
-          <ul>
+          <h3 data-i18n="primaryRules">Primary label rules</h3>
+          <ul data-i18n-html="rulesList">
             <li>sensor-specific full system은 <strong>Sensor &amp; Odometry Modalities</strong>.</li>
             <li>residual, registration, association, loop detection은 <strong>Measurement Front-End</strong>.</li>
             <li>solver, inference, robust objective는 <strong>Back-End Optimization &amp; Inference</strong>.</li>
@@ -814,7 +847,7 @@
   </main>
 
   <footer>
-    <p>SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language</p>
+    <p data-i18n="footer">SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language</p>
   </footer>
 
   <script src="data/references.js"></script>
@@ -853,6 +886,90 @@
         color: "#d9307f",
         desc: "deep SLAM, foundation model, open-world map, spatial AI computation으로 확장되는 frontier."
       }
+    };
+
+    const uiText = {
+      ko: {
+        eyebrow: "SLAM Handbook decomposition",
+        heroTitle: "SLAM 논문을 위한 <strong>MECE 계통도</strong>",
+        heroLede: "<a href=\"https://github.com/gisbi-kim/robotics-paper-phylogeny\" target=\"_blank\" rel=\"noreferrer\">robotics-paper-phylogeny</a>의 문법을 따르되, SLAM Handbook을 장별 목차가 아니라 시스템 기능 축으로 재배열했습니다. 논문 하나가 어디에 속하는지 판단하기 쉬운 4-depth tree입니다.",
+        currentSeed: "Current seed",
+        referencesMatched: "References matched",
+        relationTitleText: "Phylum relationship map",
+        relationSubtitle: "SLAM 시스템을 구성할 때 각 Phylum이 맡는 역할과 흐름",
+        solidArrow: "실선 화살표: SLAM main data flow",
+        dashedArrow: "점선 화살표: 보조/피드백 관계 - 수학, 평가, learning, map cue는 여러 SLAM 모듈에 영향을 줌",
+        search: "Search",
+        searchPlaceholder: "예: LiDAR, factor graph, loop closure, Gaussian",
+        children: "Children",
+        matchedReferences: "Matched Handbook references",
+        howMatched: "How matched?",
+        primaryRules: "Primary label rules",
+        rulesList: "<li>sensor-specific full system은 <strong>Sensor &amp; Odometry Modalities</strong>.</li><li>residual, registration, association, loop detection은 <strong>Measurement Front-End</strong>.</li><li>solver, inference, robust objective는 <strong>Back-End Optimization &amp; Inference</strong>.</li><li>world representation은 <strong>Map Representations</strong>.</li><li>benchmark, metric, runtime, deployment는 <strong>Robustness, Evaluation &amp; Operations</strong>.</li><li>learning 자체가 핵심 기여면 <strong>Learning, Semantics &amp; Spatial AI</strong>.</li>",
+        footer: "SLAM Paper Phylogeny seed · based on SLAM Handbook public release and robotics-paper-phylogeny design language",
+        rootDescription: "SLAM Handbook의 각 장을 기능적 역할로 재배열한 4-depth taxonomy seed입니다. Phylum은 논문 분류의 최상위 기준이고, Class/Order/Genus로 내려갈수록 구체화됩니다.",
+        classDescription: "{phylum} 안에서 {node} 계열의 주요 연구 branch입니다.",
+        leafPrefix: "{parent} branch 아래의 구체적인 논문 분류 단위입니다. {leaf}",
+        leafFallback: "{node}를 중심으로 논문을 묶는 세부 연구 단위입니다.",
+        notSelected: "아직 선택 안 됨",
+        leafEmpty: "Leaf node입니다. 이후 논문 데이터가 붙으면 여기서 해당 논문 목록으로 연결하면 됩니다.",
+        refsEmpty: "이 branch에 자동 매칭된 Handbook reference가 아직 없습니다.",
+        directChildren: "direct children",
+        descendants: "descendants",
+        refs: "refs",
+        tableId: "ID",
+        tableYear: "Year",
+        tableTitle: "Title",
+        tableMatchedPath: "Matched path",
+        showingRefs: "Showing {shown} of {total} matched references. Full data: data/slam_handbook_references.csv",
+        source: "Source: {source}"
+      },
+      en: {
+        eyebrow: "SLAM Handbook decomposition",
+        heroTitle: "A <strong>MECE Phylogeny</strong> for SLAM Papers",
+        heroLede: "Following the grammar of <a href=\"https://github.com/gisbi-kim/robotics-paper-phylogeny\" target=\"_blank\" rel=\"noreferrer\">robotics-paper-phylogeny</a>, this site reorganizes the SLAM Handbook by system function rather than chapter order. The result is a 4-depth tree that makes it easier to decide where a paper belongs.",
+        currentSeed: "Current seed",
+        referencesMatched: "References matched",
+        relationTitleText: "Phylum relationship map",
+        relationSubtitle: "Roles and flow among Phyla when composing a SLAM system",
+        solidArrow: "Solid arrows: SLAM main data flow",
+        dashedArrow: "Dashed arrows: auxiliary and feedback relations - math, evaluation, learning, and map cues influence multiple SLAM modules",
+        search: "Search",
+        searchPlaceholder: "e.g. LiDAR, factor graph, loop closure, Gaussian",
+        children: "Children",
+        matchedReferences: "Matched Handbook references",
+        howMatched: "How matched?",
+        primaryRules: "Primary label rules",
+        rulesList: "<li>Sensor-specific full systems go to <strong>Sensor &amp; Odometry Modalities</strong>.</li><li>Residuals, registration, association, and loop detection go to <strong>Measurement Front-End</strong>.</li><li>Solvers, inference, and robust objectives go to <strong>Back-End Optimization &amp; Inference</strong>.</li><li>World representations go to <strong>Map Representations</strong>.</li><li>Benchmarks, metrics, runtime, and deployment go to <strong>Robustness, Evaluation &amp; Operations</strong>.</li><li>If learning itself is the main contribution, use <strong>Learning, Semantics &amp; Spatial AI</strong>.</li>",
+        footer: "SLAM Paper Phylogeny seed · based on the SLAM Handbook public release and robotics-paper-phylogeny design language",
+        rootDescription: "A 4-depth taxonomy seed that rearranges the SLAM Handbook by functional role. Phylum is the top-level paper classification axis; Class, Order, and Genus become progressively more specific.",
+        classDescription: "A major research branch for {node} inside {phylum}.",
+        leafPrefix: "A concrete paper-classification unit under the {parent} branch. {leaf}",
+        leafFallback: "A fine-grained research unit for grouping papers centered on {node}.",
+        notSelected: "Not selected yet",
+        leafEmpty: "This is a leaf node. When paper-level data is attached, this area can link directly to the corresponding paper list.",
+        refsEmpty: "No Handbook references have been automatically matched to this branch yet.",
+        directChildren: "direct children",
+        descendants: "descendants",
+        refs: "refs",
+        tableId: "ID",
+        tableYear: "Year",
+        tableTitle: "Title",
+        tableMatchedPath: "Matched path",
+        showingRefs: "Showing {shown} of {total} matched references. Full data: data/slam_handbook_references.csv",
+        source: "Source: {source}"
+      }
+    };
+
+    const phylumDescriptionsEn = {
+      "Problem & System Context": "Problem definition, modern system architecture, and the role SLAM plays inside autonomy stacks.",
+      "State, Geometry & Probabilistic Modeling": "The mathematical layer that writes SLAM in terms of state, factor graphs, manifolds, and uncertainty.",
+      "Measurement Front-End": "The layer that converts raw sensor streams into pseudo-measurements such as odometry, landmarks, loop closures, and correspondences.",
+      "Back-End Optimization & Inference": "The inference engine: least squares, incremental smoothing, robust optimization, and certifiable solvers.",
+      "Map Representations": "How the world is represented: sparse, dense, neural, semantic, and dynamic maps.",
+      "Sensor & Odometry Modalities": "SLAM families organized by sensors and platforms: visual, LiDAR, radar, event cameras, IMU, and leg odometry.",
+      "Robustness, Evaluation & Operations": "The conditions for running SLAM in practice: outliers, benchmarks, metrics, runtime, and deployment constraints.",
+      "Learning, Semantics & Spatial AI": "The frontier extending SLAM toward deep SLAM, foundation models, open-world maps, and spatial AI computation."
     };
 
     const leafDescriptions = {
@@ -922,6 +1039,73 @@
       "Distributed and Hardware-Aware Computation": "multi-robot, edge/cloud, GPU/NPU, memory hierarchy를 고려해 SLAM computation을 분산하거나 가속합니다."
     };
 
+    const leafDescriptionsEn = {
+      "Localization vs Mapping vs SLAM": "This group separates the boundaries between localization, which estimates pose only; mapping, which builds a world model; and SLAM, which solves both in a closed loop.",
+      "Autonomy Role": "Covers what state-estimation service SLAM provides between perception and planning in autonomous driving, robotic exploration, AR/VR, and related autonomy stacks.",
+      "Modern SLAM Pipeline": "Organizes the standard modern pipeline from sensor ingestion to front-end matching, back-end optimization, map update, and relocalization.",
+      "Autonomy Integration": "Covers the interfaces, latency, and failure handling needed when SLAM outputs feed navigation, control, task planning, and safety monitors.",
+      "SLAM Eras": "Explains shifts in problem settings and dominant methods across filter-based SLAM, graph-based SLAM, visual/LiDAR SLAM, and learning-enhanced SLAM.",
+      "Graphical Model Formulation": "Covers how poses, landmarks, calibration, biases, and loop closures are modeled as variables and factors in a factor graph.",
+      "MAP Inference": "Includes SLAM formulations and objective design from the maximum-a-posteriori view, combining sensor likelihoods with priors.",
+      "Lie Groups and Manifolds": "Covers how perturbations, retractions, and Jacobians are correctly defined on pose manifolds such as SE(2), SE(3), and SO(3).",
+      "Continuous-Time Trajectories": "Uses splines, Gaussian processes, or other continuous-time trajectory models instead of discrete pose graphs to handle motion distortion and asynchronous sensors.",
+      "Estimation Consistency": "Analyzes and corrects overconfidence caused by linearization, gauge freedom, and unobservable directions in filters or optimizers.",
+      "Inertial Observability": "Studies which quantities such as gravity, scale, bias, yaw, and velocity become observable under different motions in visual-inertial or LiDAR-inertial SLAM.",
+      "Feature Extraction": "Extracts repeatable geometric cues such as image keypoints, lines, planes, edges, and surfels from raw sensor data.",
+      "Direct Measurement Formation": "Forms photometric, geometric, or range residuals directly as measurements without relying on explicit feature matching.",
+      "Registration": "Aligns observations from different frames into a relative transform, including ICP, NDT, scan matching, and point-cloud alignment.",
+      "Frame-to-Frame Motion Estimation": "Rapidly estimates relative motion between consecutive camera frames, LiDAR scans, or radar scans to provide odometry seeds.",
+      "Preintegration and Propagation": "Accumulates high-rate IMU, wheel, or leg signals across graph intervals and passes them as motion priors.",
+      "Place Recognition": "Finds whether the current observation corresponds to a previously visited place using visual bag-of-words, LiDAR descriptors, or learned global descriptors.",
+      "Loop Closure Validation": "Verifies whether a place-recognition candidate is a true loop using geometric verification, consistency checks, and robust gating.",
+      "Correspondence Estimation": "Decides whether landmarks, features, points, segments, or objects refer to the same entity or location.",
+      "Ambiguity Handling": "Manages hypotheses and uncertainty when multiple correspondences are plausible due to perceptual aliasing, repeated structure, or weak texture.",
+      "Linear Least Squares": "Solves the update step of a linearized factor graph using normal equations, QR/Cholesky factorization, and Schur complements.",
+      "Nonlinear Optimization": "Reduces nonlinear residuals over poses and maps through iterative methods such as Gauss-Newton, Levenberg-Marquardt, and trust-region schemes.",
+      "Variable Elimination": "Uses sparse factor-graph structure to decide elimination order, reduce fill-in, and control computation.",
+      "Incremental SLAM": "Updates the solution quickly as new measurements arrive instead of resolving the full problem from scratch, as in Bayes-tree and iSAM-style methods.",
+      "Robust Cost Functions": "Uses losses such as Huber, Cauchy, Geman-McClure, and switchable constraints so outlier residuals do not dominate optimization.",
+      "Outlier-Robust Optimization": "Explicitly rejects or downweights bad loop closures and associations using mixtures, max-mixtures, graduated non-convexity, and related methods.",
+      "Certifiably Optimal SLAM": "Attempts to certify whether a non-convex SLAM solution is globally optimal using SDP relaxations, dual certificates, and related theory.",
+      "Differentiable Optimization": "Turns the SLAM optimizer into a differentiable layer so gradients can pass through it inside end-to-end learning systems.",
+      "Landmark Maps": "Represents persistent map entities such as points, lines, planes, or objects and estimates them jointly with robot poses.",
+      "Pose Graph Maps": "Represents trajectory and loop-closure structure using pose nodes and relative constraints without explicitly maintaining landmarks.",
+      "Range-Derived Maps": "Builds range-based spatial representations such as occupancy grids, height maps, or signed-distance fields from LiDAR, radar, or depth data.",
+      "Dense Reconstruction": "Recovers inspectable dense geometry such as surfaces, meshes, and volumetric TSDF maps beyond sparse landmarks.",
+      "Neural Implicit Maps": "Represents maps as neural fields that predict occupancy, SDF, color, or semantics from coordinates.",
+      "Gaussian Maps": "Uses 3D Gaussians, surfel Gaussians, or probabilistic blobs to represent geometry and appearance for tracking and rendering.",
+      "Metric-Semantic Maps": "Adds classes, instances, and object relations on top of metric geometry so robots can reason about what is where.",
+      "Hierarchical Spatial Maps": "Organizes space across multiple scales such as objects, rooms, corridors, floors, topology, and navigation regions.",
+      "Dynamic SLAM Maps": "Separates or jointly estimates moving objects and static background so localization and mapping can survive dynamic scenes.",
+      "Deformable SLAM Maps": "Estimates deformation fields when the rigid-world assumption breaks, such as in organs, cloth, soft objects, or changing environments.",
+      "Camera Models and Pipelines": "Covers pinhole, fisheye, stereo, and RGB-D camera models and how visual feature/direct pipelines use them for pose estimation.",
+      "Visual System Families": "Groups visual SLAM system lineages such as MonoSLAM, PTAM, ORB-SLAM, DSO, and VINS by design choices.",
+      "LiDAR Sensing": "Covers how spinning and solid-state LiDAR scan patterns, motion distortion, range noise, and intensity affect SLAM front-ends.",
+      "LiDAR System Families": "Classifies LiDAR and LiDAR-inertial system families such as LOAM, LeGO-LOAM, LIO-SAM, FAST-LIO, and Cartographer.",
+      "Radar Sensing": "Uses radar properties such as long range, Doppler, multipath, speckle, and low angular resolution as SLAM measurements.",
+      "Radar System Families": "Groups radar odometry, radar-inertial odometry, and radar place-recognition systems aimed at adverse weather and low-visibility operation.",
+      "Event Sensor Processing": "Converts asynchronous brightness-change streams from event cameras into features, time surfaces, and motion cues.",
+      "Event System Families": "Groups event-only, event-inertial, and event-camera fusion SLAM systems for high-speed and high-dynamic-range scenes.",
+      "Inertial Odometry": "Uses IMU preintegration, bias estimation, and gravity alignment to provide short-term motion priors and scale observability.",
+      "Leg Odometry": "Uses contacts, kinematics, slip models, and body motion in legged robots to support pose estimation when visual or LiDAR cues weaken.",
+      "Other Aiding Signals": "Covers auxiliary factors such as wheel encoders, GNSS, magnetometers, barometers, UWB, and prior maps.",
+      "Sensor Fusion Architectures": "Covers loosely and tightly coupled fusion, filter versus smoother designs, and asynchronous multi-rate updates.",
+      "Calibration and Synchronization": "Estimates or corrects extrinsic/intrinsic calibration, time offsets, rolling shutter, sensor delays, and other fusion misalignments.",
+      "Front-End Robustness": "Keeps feature extraction, registration, and association stable under blur, occlusion, rain, dust, weak texture, and moving objects.",
+      "Back-End Robustness": "Detects, softens, or removes bad constraints passed by the front-end so the entire graph does not collapse.",
+      "Metrics": "Defines how SLAM performance is measured, including ATE, RPE, drift, consistency, map quality, and runtime.",
+      "Datasets and Benchmarks": "Uses benchmark datasets and protocols such as KITTI, EuRoC, TUM, and Newer College to compare methods.",
+      "Real-Time Performance": "Maintains tracking rate and map-update latency under limited CPU/GPU, memory, and power budgets.",
+      "Deployment Conditions": "Covers real-world factors that break SLAM outside the lab, including lighting, weather, seasons, crowds, vibration, and platform constraints.",
+      "Learned Geometry": "Uses neural networks to estimate depth, normals, optical flow, features, or descriptors that strengthen classical geometry front-ends.",
+      "Learned Correspondence": "Improves matching, association, and loop-candidate ranking with learned descriptors, attention, and related models.",
+      "Learned Optimization": "Learns optimizer steps, damping, covariance, robust weighting, or priors to assist or replace parts of back-end inference.",
+      "Foundation Models for Spatial AI": "Connects VLMs, segmentation models such as SAM, and open-vocabulary recognition to SLAM maps for semantic and spatial reasoning.",
+      "Open-World Mapping": "Builds map representations that can accept new objects, affordances, and language queries instead of only predefined classes.",
+      "Spatial AI Graphs": "Extends pose graphs into graphs of objects, rooms, relations, and affordances so mapping and reasoning happen together.",
+      "Distributed and Hardware-Aware Computation": "Distributes or accelerates SLAM computation with multi-robot, edge/cloud, GPU/NPU, and memory-hierarchy constraints in mind."
+    };
+
     const taxonomy = {
       name: "SLAM",
       children: [
@@ -982,10 +1166,48 @@
     let selected = { node: taxonomy, lineage: ["SLAM"], depth: 0, color: "#1a73e8" };
     let activeButton = null;
     let depthFilter = "1";
+    let currentLang = localStorage.getItem("slamPhylogenyLang") || "ko";
+    if (!uiText[currentLang]) currentLang = "ko";
     const expandedKeys = new Set(["SLAM"]);
 
     const treeEl = document.getElementById("tree");
     const searchEl = document.getElementById("search");
+
+    function textFor(key, replacements = {}) {
+      const template = (uiText[currentLang] && uiText[currentLang][key]) || uiText.ko[key] || "";
+      return Object.entries(replacements).reduce((text, [name, value]) => {
+        return text.replaceAll(`{${name}}`, value);
+      }, template);
+    }
+
+    function phylumDescriptionFor(name) {
+      if (currentLang === "en") return phylumDescriptionsEn[name] || (phylumMeta[name] || {}).desc;
+      return (phylumMeta[name] || {}).desc;
+    }
+
+    function leafDescriptionFor(name) {
+      if (currentLang === "en") {
+        return leafDescriptionsEn[name] || textFor("leafFallback", { node: name });
+      }
+      return leafDescriptions[name] || textFor("leafFallback", { node: name });
+    }
+
+    function applyStaticTranslations() {
+      document.documentElement.lang = currentLang === "en" ? "en" : "ko";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        el.textContent = textFor(el.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        el.innerHTML = textFor(el.dataset.i18nHtml);
+      });
+      searchEl.placeholder = textFor("searchPlaceholder");
+      document.getElementById("matchSource").textContent = textFor("source", { source: referenceSource });
+      document.querySelectorAll(".language-switch button").forEach((button) => {
+        const active = button.dataset.lang === currentLang;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+    }
 
     function childCount(node) {
       return node.children ? node.children.length : 0;
@@ -1011,15 +1233,15 @@
     function descriptionFor(node, lineage) {
       const meta = phylumMeta[node.name] || phylumMeta[phylumOf(lineage)];
       if (node.name === "SLAM") {
-        return "SLAM Handbook의 각 장을 기능적 역할로 재배열한 4-depth taxonomy seed입니다. Phylum은 논문 분류의 최상위 기준이고, Class/Order/Genus로 내려갈수록 구체화됩니다.";
+        return textFor("rootDescription");
       }
-      if (meta && node.name === phylumOf(lineage)) return meta.desc;
-      if (lineage.length === 3) return `${phylumOf(lineage)} 안에서 ${node.name} 계열의 주요 연구 branch입니다.`;
+      if (meta && node.name === phylumOf(lineage)) return phylumDescriptionFor(node.name);
+      if (lineage.length === 3) return textFor("classDescription", { phylum: phylumOf(lineage), node: node.name });
       if (lineage.length >= 4) {
-        const leafText = leafDescriptions[node.name] || `${node.name}를 중심으로 논문을 묶는 세부 연구 단위입니다.`;
-        return `${lineage[lineage.length - 2]} branch 아래의 구체적인 논문 분류 단위입니다. ${leafText}`;
+        const leafText = leafDescriptionFor(node.name);
+        return textFor("leafPrefix", { parent: lineage[lineage.length - 2], leaf: leafText });
       }
-      return meta ? meta.desc : "SLAM taxonomy branch.";
+      return meta ? phylumDescriptionFor(phylumOf(lineage)) : "SLAM taxonomy branch.";
     }
 
     function renderTreeNode(node, lineage, depth, parentEntry = null) {
@@ -1052,7 +1274,7 @@
         const item = document.createElement("div");
         item.className = "depth-card";
         item.innerHTML = `<span class="k">${label}</span><span class="v"></span>`;
-        item.querySelector(".v").textContent = lineage[index + 1] || "아직 선택 안 됨";
+        item.querySelector(".v").textContent = lineage[index + 1] || textFor("notSelected");
         holder.appendChild(item);
       });
     }
@@ -1061,7 +1283,7 @@
       const holder = document.getElementById("children");
       holder.innerHTML = "";
       if (!node.children || !node.children.length) {
-        holder.innerHTML = `<div class="empty">Leaf node입니다. 이후 논문 데이터가 붙으면 여기서 해당 논문 목록으로 연결하면 됩니다.</div>`;
+        holder.innerHTML = `<div class="empty">${textFor("leafEmpty")}</div>`;
         return;
       }
       node.children.forEach((child) => {
@@ -1073,7 +1295,7 @@
         card.style.setProperty("--node-color", colorOf(childLineage));
         card.innerHTML = `<strong></strong><span></span>`;
         card.querySelector("strong").textContent = child.name;
-        card.querySelector("span").textContent = `${childCount(child)} direct children · ${descendantCount(child)} descendants · ${refsForLineage(childLineage).length} refs`;
+        card.querySelector("span").textContent = `${childCount(child)} ${textFor("directChildren")} · ${descendantCount(child)} ${textFor("descendants")} · ${refsForLineage(childLineage).length} ${textFor("refs")}`;
         card.addEventListener("click", () => {
           if (match) selectNode(match, { toggle: false });
         });
@@ -1098,16 +1320,16 @@
       const holder = document.getElementById("referenceMap");
       const refs = refsForLineage(lineage);
       if (!refs.length) {
-        holder.innerHTML = `<div class="empty">이 branch에 자동 매칭된 Handbook reference가 아직 없습니다.</div>`;
+        holder.innerHTML = `<div class="empty">${textFor("refsEmpty")}</div>`;
         return;
       }
       const shown = refs.slice(0, 80);
       holder.innerHTML = `
         <table class="chapter-table">
-          <thead><tr><th>ID</th><th>Year</th><th>Title</th><th>Matched path</th></tr></thead>
+          <thead><tr><th>${textFor("tableId")}</th><th>${textFor("tableYear")}</th><th>${textFor("tableTitle")}</th><th>${textFor("tableMatchedPath")}</th></tr></thead>
           <tbody></tbody>
         </table>
-        <p class="breadcrumb" style="margin-top:10px;">Showing ${shown.length} of ${refs.length} matched references. Full data: data/slam_handbook_references.csv</p>`;
+        <p class="breadcrumb" style="margin-top:10px;">${textFor("showingRefs", { shown: shown.length, total: refs.length })}</p>`;
       const body = holder.querySelector("tbody");
       shown.forEach((ref) => {
         const tr = document.createElement("tr");
@@ -1168,7 +1390,7 @@
       document.getElementById("title").textContent = node.name;
       document.getElementById("description").textContent = descriptionFor(node, lineage);
       document.getElementById("depthBadge").textContent = labels[depth];
-      document.getElementById("childBadge").textContent = `${childCount(node)} children · ${descendantCount(node)} descendants`;
+      document.getElementById("childBadge").textContent = `${childCount(node)} ${textFor("children").toLowerCase()} · ${descendantCount(node)} ${textFor("descendants")}`;
       renderLineage(lineage);
       renderChildren(node, lineage);
       renderReferenceMap(lineage);
@@ -1222,12 +1444,24 @@
       });
     });
     searchEl.addEventListener("input", applyFilters);
+    document.querySelectorAll(".language-switch button").forEach((button) => {
+      button.addEventListener("click", () => {
+        currentLang = button.dataset.lang;
+        localStorage.setItem("slamPhylogenyLang", currentLang);
+        applyStaticTranslations();
+        if (selected && activeButton) {
+          const entry = allNodes.find((candidate) => candidate.button === activeButton) || allNodes[0];
+          selectNode(entry, { toggle: false });
+        }
+      });
+    });
 
     const rootList = document.createElement("ul");
     rootList.appendChild(renderTreeNode(taxonomy, ["SLAM"], 0));
     treeEl.appendChild(rootList);
+    applyStaticTranslations();
     document.getElementById("refStat").textContent = String(references.length || 1320);
-    document.getElementById("matchSource").textContent = `Source: ${referenceSource}`;
+    document.getElementById("matchSource").textContent = textFor("source", { source: referenceSource });
     selectNode(allNodes[0], { toggle: false });
   </script>
 </body>
