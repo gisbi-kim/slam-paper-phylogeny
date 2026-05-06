@@ -857,6 +857,10 @@
   <script src="data/references_semantic.js"></script>
   <script>
     const phylumMeta = {
+      "Sensor & Odometry Modalities": {
+        color: "#ef4444",
+        desc: "Visual, LiDAR, Radar, Event, IMU, leg odometry 등 센서/플랫폼별 SLAM family."
+      },
       "Problem & System Context": {
         color: "#f97316",
         desc: "SLAM 문제 정의, 현대 시스템 구조, autonomy architecture 안에서 SLAM이 맡는 역할."
@@ -877,10 +881,6 @@
         color: "#8b5cf6",
         desc: "sparse, dense, neural, semantic, dynamic map처럼 세계를 표현하는 방식."
       },
-      "Sensor & Odometry Modalities": {
-        color: "#ef4444",
-        desc: "Visual, LiDAR, Radar, Event, IMU, leg odometry 등 센서/플랫폼별 SLAM family."
-      },
       "Robustness, Evaluation & Operations": {
         color: "#6366f1",
         desc: "outlier, benchmark, metric, runtime, deployment constraint처럼 시스템을 실제로 굴리는 조건."
@@ -890,6 +890,17 @@
         desc: "deep SLAM, foundation model, open-world map, spatial AI computation으로 확장되는 frontier."
       }
     };
+
+    const phylumDisplayOrder = [
+      "Sensor & Odometry Modalities",
+      "Problem & System Context",
+      "State, Geometry & Probabilistic Modeling",
+      "Measurement Front-End",
+      "Learning, Semantics & Spatial AI",
+      "Back-End Optimization & Inference",
+      "Robustness, Evaluation & Operations",
+      "Map Representations"
+    ];
 
     const uiText = {
       ko: {
@@ -1233,6 +1244,17 @@
       return (phylumMeta[phylumOf(lineage)] || {}).color || "#1a73e8";
     }
 
+    function orderedChildren(node, lineage) {
+      const children = node.children || [];
+      if (lineage.length !== 1) return children;
+      const order = new Map(phylumDisplayOrder.map((name, index) => [name, index]));
+      return [...children].sort((a, b) => {
+        const aIndex = order.has(a.name) ? order.get(a.name) : 999;
+        const bIndex = order.has(b.name) ? order.get(b.name) : 999;
+        return aIndex - bIndex;
+      });
+    }
+
     function lineageKey(lineage) {
       return lineage.join(" > ");
     }
@@ -1271,7 +1293,7 @@
       if (parentEntry) parentEntry.children.push(entry);
       if (node.children && node.children.length) {
         const ul = document.createElement("ul");
-        node.children.forEach((child) => ul.appendChild(renderTreeNode(child, [...lineage, child.name], depth + 1, entry)));
+        orderedChildren(node, lineage).forEach((child) => ul.appendChild(renderTreeNode(child, [...lineage, child.name], depth + 1, entry)));
         li.appendChild(ul);
       }
       return li;
@@ -1296,7 +1318,7 @@
         holder.innerHTML = `<div class="empty">${textFor("leafEmpty")}</div>`;
         return;
       }
-      node.children.forEach((child) => {
+      orderedChildren(node, lineage).forEach((child) => {
         const childLineage = [...lineage, child.name];
         const match = allNodes.find((entry) => entry.lineage.join(" > ") === childLineage.join(" > "));
         const card = document.createElement("button");
