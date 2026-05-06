@@ -1184,7 +1184,8 @@
     let selected = { node: taxonomy, lineage: ["SLAM"], depth: 0, color: "#1a73e8" };
     let activeButton = null;
     let depthFilter = "1";
-    let currentLang = localStorage.getItem("slamPhylogenyLang") || "ko";
+    const initialParams = new URLSearchParams(window.location.search);
+    let currentLang = initialParams.get("lang") || localStorage.getItem("slamPhylogenyLang") || "ko";
     if (!uiText[currentLang]) currentLang = "ko";
     const expandedKeys = new Set(["SLAM"]);
 
@@ -1257,6 +1258,64 @@
 
     function lineageKey(lineage) {
       return lineage.join(" > ");
+    }
+
+    function pathSlug(lineage) {
+      return lineage.join(" > ");
+    }
+
+    function lineageFromSlug(slug) {
+      if (!slug) return ["SLAM"];
+      return slug.split(" > ").filter(Boolean);
+    }
+
+    function entryForLineage(lineage) {
+      const key = lineageKey(lineage);
+      return allNodes.find((entry) => entry.key === key);
+    }
+
+    function setDepthFilter(nextDepth) {
+      const validDepths = new Set(["all", "1", "2", "3", "4"]);
+      depthFilter = validDepths.has(String(nextDepth)) ? String(nextDepth) : "1";
+      document.querySelectorAll(".segmented button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.depth === depthFilter);
+      });
+    }
+
+    function updateUrlState(options = {}) {
+      const { replace = false } = options;
+      const params = new URLSearchParams();
+      params.set("lang", currentLang);
+      params.set("depth", depthFilter);
+      if (searchEl.value.trim()) params.set("q", searchEl.value.trim());
+      if (selected && selected.lineage) params.set("path", pathSlug(selected.lineage));
+      const nextUrl = `${window.location.pathname}?${params.toString()}`;
+      const method = replace ? "replaceState" : "pushState";
+      window.history[method](
+        {
+          lang: currentLang,
+          depth: depthFilter,
+          q: searchEl.value,
+          path: selected && selected.lineage ? pathSlug(selected.lineage) : "SLAM"
+        },
+        "",
+        nextUrl
+      );
+    }
+
+    function applyUrlState(options = {}) {
+      const { updateUrl = true, replaceUrl = true } = options;
+      const params = new URLSearchParams(window.location.search);
+      const nextLang = params.get("lang");
+      if (nextLang && uiText[nextLang]) currentLang = nextLang;
+      setDepthFilter(params.get("depth") || "1");
+      searchEl.value = params.get("q") || "";
+      applyStaticTranslations();
+      expandedKeys.clear();
+      expandedKeys.add("SLAM");
+      const entry = entryForLineage(lineageFromSlug(params.get("path"))) || allNodes[0];
+      selectNode(entry, { toggle: false, updateUrl });
+      if (updateUrl) updateUrlState({ replace: replaceUrl });
     }
 
     function descriptionFor(node, lineage) {
@@ -1401,6 +1460,7 @@
 
     function selectNode(entry, options = {}) {
       const { toggle = true } = options;
+      const { updateUrl = true } = options;
       const { node, lineage, depth, button } = entry;
       const wasExpanded = expandedKeys.has(entry.key);
       selected = { node, lineage, depth, color: colorOf(lineage) };
@@ -1427,6 +1487,7 @@
       renderChildren(node, lineage);
       renderReferenceMap(lineage);
       applyFilters();
+      if (updateUrl) updateUrlState();
     }
 
     function applyFilters() {
@@ -1467,15 +1528,17 @@
 
     document.querySelectorAll(".segmented button").forEach((button) => {
       button.addEventListener("click", () => {
-        document.querySelectorAll(".segmented button").forEach((b) => b.classList.remove("active"));
-        button.classList.add("active");
-        depthFilter = button.dataset.depth;
+        setDepthFilter(button.dataset.depth);
         expandedKeys.clear();
         expandedKeys.add("SLAM");
         applyFilters();
+        updateUrlState();
       });
     });
-    searchEl.addEventListener("input", applyFilters);
+    searchEl.addEventListener("input", () => {
+      applyFilters();
+      updateUrlState({ replace: true });
+    });
     document.querySelectorAll(".language-switch button").forEach((button) => {
       button.addEventListener("click", () => {
         currentLang = button.dataset.lang;
@@ -1487,14 +1550,13 @@
         }
       });
     });
+    window.addEventListener("popstate", () => applyUrlState({ updateUrl: false }));
 
     const rootList = document.createElement("ul");
     rootList.appendChild(renderTreeNode(taxonomy, ["SLAM"], 0));
     treeEl.appendChild(rootList);
-    applyStaticTranslations();
     document.getElementById("refStat").textContent = String(references.length || 1320);
-    document.getElementById("matchSource").textContent = textFor("source", { source: referenceSource });
-    selectNode(allNodes[0], { toggle: false });
+    applyUrlState();
   </script>
 </body>
 </html>
