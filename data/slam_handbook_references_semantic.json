@@ -4,11 +4,11 @@
     "year": "2022",
     "title": "Socratic Models: Composing Zero-Shot Multimodal Reasoning with Language",
     "entry": "A, Zeng, Attarian, M., Ichter, B., Choromanski, K., Wong, A., Welker, S., Tombari, F., Purohit, A., Ryoo, M., Sindhwani, V., Lee, J., Vanhoucke, V., and Florence, P. 2022. Socratic Models: Composing Zero-Shot Multimodal Reasoning with Language. arXiv preprint.",
-    "phylum": "Back-End Optimization & Inference",
-    "class": "Robust Back-End",
-    "order": "Outlier-Robust Optimization",
-    "genus": "Robust Pose Graph Optimization",
-    "match_method": "codex_context_semantic",
+    "phylum": "Learning, Semantics & Spatial AI",
+    "class": "Foundation and Open-World Spatial AI",
+    "order": "Foundation Models for Spatial AI",
+    "genus": "Vision-Language Grounding",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -59,17 +59,17 @@
         "excerpt": "timization of either x or wi's when fixing the other is easy. To see this, observe that when wi's are fixed, problem (3.16) becomes a weighted least squares; analogously, when x is fixed, problem (3.16) becomes N min (wi) + wiri2(x), wi [0,1],i=1,...,N i=1 which splits into N subproblems, each optimizing a scalar wi min (wi) + wiri2(x). (3.21) wi [0,1] Problem (3.21) is easy to solve and often admits a closed-form solution. In fact, for the G-M robust loss, the solution of (3.21) is just (3.20). For the"
       }
     ],
-    "confidence": 0.96,
-    "rationale": "Cited in robust back-end optimization context. Strongest Handbook context: 3.3.2 Black-Rangarajan Duality. Genus label: Robust Pose Graph Optimization (codex_context_genus, score=6). Genus label: Robust Pose Graph Optimization (codex_context_genus, score=64).",
+    "confidence": 0.92,
+    "rationale": "Socratic Models composes pretrained VLMs and LLMs for zero-shot multimodal reasoning. The Handbook citation context (Black-Rangarajan duality) appears to be a citation-key collision with an unrelated paper; the actual paper is a foundation-model VLM composition work. Uncertainty: Current label was derived from a Handbook context that does not match the paper title; confidence based on title content rather than the (wrong) cited section.",
     "matched_paths": [
       {
-        "phylum": "Back-End Optimization & Inference",
-        "class": "Robust Back-End",
-        "order": "Outlier-Robust Optimization",
-        "genus": "Robust Pose Graph Optimization",
+        "phylum": "Learning, Semantics & Spatial AI",
+        "class": "Foundation and Open-World Spatial AI",
+        "order": "Foundation Models for Spatial AI",
+        "genus": "Vision-Language Grounding",
         "role": "primary",
-        "confidence": 0.96,
-        "reason": "Cited in robust back-end optimization context. Strongest Handbook context: 3.3.2 Black-Rangarajan Duality. Genus label: Robust Pose Graph Optimization (codex_context_genus, score=6). Genus label: Robust Pose Graph Optimization (codex_context_genus, score=64)."
+        "confidence": 0.92,
+        "reason": "Socratic Models composes pretrained VLMs and LLMs for zero-shot multimodal reasoning. The Handbook citation context (Black-Rangarajan duality) appears to be a citation-key collision with an unrelated paper; the actual paper is a foundation-model VLM composition work."
       }
     ]
   },
@@ -137,11 +137,11 @@
     "year": "2023",
     "title": "Kimera2: Robust and Accurate Metric-Semantic SLAM in the Real World",
     "entry": "Abate, M., Chang, Y., Hughes, N., and Carlone, L. 2023a. Kimera2: Robust and Accurate Metric-Semantic SLAM in the Real World. In: Intl. Sym. on Experimental Robotics (ISER).",
-    "phylum": "Sensor & Odometry Modalities",
-    "class": "Proprioceptive and Aided Odometry",
-    "order": "Inertial Odometry",
-    "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "phylum": "Map Representations",
+    "class": "Semantic and Structured Maps",
+    "order": "Metric-Semantic Maps",
+    "genus": "Dense Semantic Maps",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -156,26 +156,26 @@
         "excerpt": "e ground truth (GT) trajectory. The final absolute trajectory error (ATE) for the 11.42-kilometer path is approximately 2.05 degrees and 21.2 meters (0.18% of the trajectory traveled). Notably, these results are obtained from the pure online VIO without loop closure. Applications of VIO to self-driving cars and other autonomous systems is discussed in [3, 4], which also discusses challenges related to feature tracking, keyframe section, and fusion of different sensor modalities (including monocular, stereo, and RGB-D camera images, as well as wheel odometry). 11.4.2 Extrinsic Calibration In order to enable accurate aided inertial navigation, one needs to perform extrinsic calib"
       }
     ],
-    "confidence": 0.74,
-    "rationale": "Cited in VIO practical context. Strongest Handbook context: 11.4 Visual-Inertial Odometry and Practical Considerations        327. Genus label: Visual-Inertial Odometry (codex_context_genus, score=61).",
+    "confidence": 0.88,
+    "rationale": "Kimera2 is centrally a metric-semantic SLAM system that builds dense semantic 3D meshes; this is the principal contribution beyond the underlying VIO.",
     "matched_paths": [
+      {
+        "phylum": "Map Representations",
+        "class": "Semantic and Structured Maps",
+        "order": "Metric-Semantic Maps",
+        "genus": "Dense Semantic Maps",
+        "role": "primary",
+        "confidence": 0.88,
+        "reason": "Kimera2 is centrally a metric-semantic SLAM system that builds dense semantic 3D meshes; this is the principal contribution beyond the underlying VIO."
+      },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Proprioceptive and Aided Odometry",
         "order": "Inertial Odometry",
         "genus": "Visual-Inertial Odometry",
-        "role": "primary",
-        "confidence": 0.74,
-        "reason": "Cited in VIO practical context. Strongest Handbook context: 11.4 Visual-Inertial Odometry and Practical Considerations        327. Genus label: Visual-Inertial Odometry (codex_context_genus, score=61)."
-      },
-      {
-        "phylum": "Map Representations",
-        "class": "Semantic and Structured Maps",
-        "order": "Metric-Semantic Maps",
-        "genus": "Sparse Semantic Landmarks",
         "role": "secondary",
-        "confidence": 0.72,
-        "reason": "Title is about metric-semantic map representation."
+        "confidence": 0.85,
+        "reason": "Built on a stereo-VIO front-end and explicitly cited in the Handbook's VIO practical considerations section."
       }
     ]
   },
@@ -224,9 +224,9 @@
     "entry": "Achiam, Josh, Adler, Steven, Agarwal, Sandhini, Ahmad, Lama, Akkaya, Ilge, Aleman, Florencia Leoni, Almeida, Diogo, Altenschmidt, Janko, Altman, Sam, Anadkat, Shyamal, et al. 2023. Gpt-4 technical report. arXiv preprint.",
     "phylum": "Learning, Semantics & Spatial AI",
     "class": "Foundation and Open-World Spatial AI",
-    "order": "Open-World Mapping",
-    "genus": "Open-Set Object Maps",
-    "match_method": "codex_context_semantic",
+    "order": "Foundation Models for Spatial AI",
+    "genus": "Large-Scale Semantic Priors",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -241,17 +241,26 @@
         "excerpt": "t is reasonable to revisit one of the first questions from Chapter I to this SLAM Handbook --the question of the need for SLAM maps, or at least explicit map representations. In this section, we will detail some ways in which explicit maps could, in some cases, be replaced directly by foundation models. Long-context VLMs. Models such as Gemini and GPT4+ [1078, 5] can directly process sequences of RGB images that we would otherwise use to build a map, although to what extent long-context VLMs have a coherent understanding of the spatial structure underlying the images is unclear. OpenEQA [726] benchmarks various integrations of VLMs and scene graphs for embodied question answering tasks. They find that directly promp"
       }
     ],
-    "confidence": 0.74,
-    "rationale": "Cited in open-world mapping context. Strongest Handbook context: 17.3 Open-World Mapping  499. Genus label: Open-Set Object Maps (codex_context_genus, score=3). Genus label: Open-Set Object Maps (codex_context_genus, score=45).",
+    "confidence": 0.9,
+    "rationale": "GPT-4 is a large-scale foundation model providing world/semantic priors. Cited in 17.3 Open-World Mapping and 17.4.2 (whether maps can be replaced by long-context VLMs). Uncertainty: GPT-4 is a generic foundation model; primary leaf depends on whether it is read as 'semantic prior' (chosen) or 'open-set object map' (current label, less precise).",
     "matched_paths": [
       {
         "phylum": "Learning, Semantics & Spatial AI",
         "class": "Foundation and Open-World Spatial AI",
-        "order": "Open-World Mapping",
-        "genus": "Open-Set Object Maps",
+        "order": "Foundation Models for Spatial AI",
+        "genus": "Large-Scale Semantic Priors",
         "role": "primary",
-        "confidence": 0.74,
-        "reason": "Cited in open-world mapping context. Strongest Handbook context: 17.3 Open-World Mapping  499. Genus label: Open-Set Object Maps (codex_context_genus, score=3). Genus label: Open-Set Object Maps (codex_context_genus, score=45)."
+        "confidence": 0.9,
+        "reason": "GPT-4 is a large-scale foundation model providing world/semantic priors. Cited in 17.3 Open-World Mapping and 17.4.2 (whether maps can be replaced by long-context VLMs)."
+      },
+      {
+        "phylum": "Learning, Semantics & Spatial AI",
+        "class": "Foundation and Open-World Spatial AI",
+        "order": "Open-World Mapping",
+        "genus": "Language-Grounded Maps",
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Used as the language backbone for language-grounded mapping discussions in the open-world chapter."
       }
     ]
   },
@@ -264,7 +273,7 @@
     "class": "Radar SLAM",
     "order": "Radar System Families",
     "genus": "Radar Odometry",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -273,8 +282,8 @@
         "excerpt": "re are also several ambiguous peaks. CFAR produces an adaptive threshold, plotted with a black line. Detections reported by the CFAR filter are plotted in blue, and in this case includes several \"false alarms\". The k strongest filter (with k = 12 in this case) is more conservative and only returns points around the main targets. Figure from Adolfsson et al. [6] (�2021 IEEE). to generate point clouds based on range-Doppler velocity matrices. Xu et al. [1210] train a regressor and classifier, where the regressor outputs improved, higher-resolution depth readings, and the classifier provides an estimate of whether the data is out of range. These methods strive to learn models that can retain only those returns in th"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is a radar odometry/SLAM system. Genus label: Radar Odometry (codex_context_genus, score=58).",
+    "confidence": 0.93,
+    "rationale": "CFEAR is a full radar-odometry system contribution, exactly matching the radar SLAM family leaf.",
     "matched_paths": [
       {
         "phylum": "Sensor & Odometry Modalities",
@@ -282,8 +291,8 @@
         "order": "Radar System Families",
         "genus": "Radar Odometry",
         "role": "primary",
-        "confidence": 0.86,
-        "reason": "Belongs to the radar SLAM system family."
+        "confidence": 0.93,
+        "reason": "CFEAR is a full radar-odometry system contribution, exactly matching the radar SLAM family leaf."
       },
       {
         "phylum": "Measurement Front-End",
@@ -291,8 +300,8 @@
         "order": "Frame-to-Frame Motion Estimation",
         "genus": "Radar Odometry",
         "role": "secondary",
-        "confidence": 0.72,
-        "reason": "Also contributes odometry/front-end motion estimation."
+        "confidence": 0.8,
+        "reason": "Also contributes a registration-based front-end with conservative filtering and k-strongest peak detection."
       }
     ]
   },
@@ -470,7 +479,7 @@
     "class": "Robust Back-End",
     "order": "Robust Cost Functions",
     "genus": "M-estimators",
-    "match_method": "codex_context_fallback",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -491,8 +500,8 @@
         "excerpt": "ata Association and Outliers optimize the Huber loss in our M3500 experiments, while IRLS takes less than 1.5 seconds. On the other hand, this faster convergence often comes at the cost of a slightly decreased accuracy, as can be seen by comparing Figure 3.7 and Figure 3.6. The convergence properties of the update rule (3.12) has been studied in [10, 817]. 3.3.2 Black-Rangarajan Duality The weight update rule (3.12) is widely used in practice, but its derivation was somewhat heuristic. It also has the issues that (3.12) is not well-defined at the nondifferentiable points of (e.g., the cut-off point of the truncated quadratic loss). We now introduce a more principled framework, namely the"
       }
     ],
-    "confidence": 0.42,
-    "rationale": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: M-estimators (codex_context_genus, score=55).",
+    "confidence": 0.95,
+    "rationale": "Theoretical convergence result for IRLS as a solver for M-estimators; canonical M-estimator-theory citation. Cited in the Handbook's robustness-to-incorrect-association section.",
     "matched_paths": [
       {
         "phylum": "Back-End Optimization & Inference",
@@ -500,8 +509,8 @@
         "order": "Robust Cost Functions",
         "genus": "M-estimators",
         "role": "primary",
-        "confidence": 0.42,
-        "reason": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: M-estimators (codex_context_genus, score=55)."
+        "confidence": 0.95,
+        "reason": "Theoretical convergence result for IRLS as a solver for M-estimators; canonical M-estimator-theory citation. Cited in the Handbook's robustness-to-incorrect-association section."
       }
     ]
   },
@@ -1024,11 +1033,11 @@
     "year": "2024",
     "title": "BFAR: improving radar odometry estimation using a bounded false alarm rate detector",
     "entry": "Alhashimi, Anas, Adolfsson, Daniel, Andreasson, Henrik, Lilienthal, Achim J., and Magnusson, Martin. 2024. BFAR: improving radar odometry estimation using a bounded false alarm rate detector. Autonomous Robots, 48(29).",
-    "phylum": "Measurement Front-End",
-    "class": "Odometry Front-End",
-    "order": "Frame-to-Frame Motion Estimation",
+    "phylum": "Sensor & Odometry Modalities",
+    "class": "Radar SLAM",
+    "order": "Radar System Families",
     "genus": "Radar Odometry",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -1049,35 +1058,26 @@
         "excerpt": "number of points in the neighborhood. Kung et al. [615] use a fixed threshold to extract a point cloud from the radargram and aggregate multiple point clouds into a radar submap using an NDT representation where the contribution of each point is weighted by its returned signal strength. Burnett et al. [127] extract point clouds from radargrams using BFAR [25] and aggregate into a local submap, after which a continuous-time ICP formulation is used to optimize a trajectory estimate where points are associated with a Gaussian process motion prior. The methods above are all based on 2D radar data. Recent pipelines for registrationbased 3+1D radar odometry tend to adopt similar strategies --although point clo"
       }
     ],
-    "confidence": 0.74,
-    "rationale": "Cited in radar odometry context. Strongest Handbook context: 9.2.4 Registration-based Odometry. Genus label: Radar Odometry (codex_context_genus, score=42).",
+    "confidence": 0.9,
+    "rationale": "Full radar-odometry system using a learned BFAR detector; sits in the radar SLAM family.",
     "matched_paths": [
-      {
-        "phylum": "Measurement Front-End",
-        "class": "Odometry Front-End",
-        "order": "Frame-to-Frame Motion Estimation",
-        "genus": "Radar Odometry",
-        "role": "primary",
-        "confidence": 0.74,
-        "reason": "Cited in radar odometry context. Strongest Handbook context: 9.2.4 Registration-based Odometry. Genus label: Radar Odometry (codex_context_genus, score=42)."
-      },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Radar SLAM",
         "order": "Radar System Families",
         "genus": "Radar Odometry",
-        "role": "secondary",
-        "confidence": 0.86,
-        "reason": "Belongs to the radar SLAM system family."
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "Full radar-odometry system using a learned BFAR detector; sits in the radar SLAM family."
       },
       {
-        "phylum": "Sensor & Odometry Modalities",
-        "class": "Radar SLAM",
-        "order": "Radar Sensing",
-        "genus": "Imaging Radar",
+        "phylum": "Measurement Front-End",
+        "class": "Odometry Front-End",
+        "order": "Frame-to-Frame Motion Estimation",
+        "genus": "Radar Odometry",
         "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in radar sensing introduction. Context: 9.1.4 Radar Filtering."
+        "confidence": 0.8,
+        "reason": "BFAR is also a radar-front-end detector contribution improving point selection prior to scan registration."
       }
     ]
   },
@@ -1241,8 +1241,8 @@
     "phylum": "Robustness, Evaluation & Operations",
     "class": "Evaluation",
     "order": "Datasets and Benchmarks",
-    "genus": "Event SLAM Datasets",
-    "match_method": "codex_context_semantic",
+    "genus": "Visual SLAM Datasets",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -1251,26 +1251,26 @@
         "excerpt": "work on pairs of images and events. Instead of applying a direct numerical error loss, they use an adversarial discriminator loss and a pair of cycle consistency losses. EventGAN generates a 3D spatio-temporal voxel grid for each polarity (instead of a set of individual events). This voxel grid representation is commonly used as input to ANNs. VISTA 2.0 [30] is a simulator that integrates multiple sensor types, including RGB cameras, LiDAR, and event-based cameras, to facilitate policy learning for autonomous vehicles. It uses high-fidelity, real-world data to simulate diverse scenarios, such as varying weather, lighting, and road conditions. The event camera simulator works similarly to ESIM with adaptive sa"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in event datasets/simulators/benchmarks context. Strongest Handbook context: 10.7 Datasets, Simulators, and Benchmarks  297. Genus label: Event SLAM Datasets (codex_context_genus, score=22). Genus label: Event SLAM Datasets (codex_context_genus, score=42).",
+    "confidence": 0.6,
+    "rationale": "VISTA 2.0 is an AV simulator covering RGB, event, and LiDAR; the closest taxonomy leaf is Visual SLAM Datasets given its primary RGB camera focus and end-to-end policy learning use case. Uncertainty: VISTA 2.0 is multi-modal; current label (event-only) over-narrows it. No 'simulator' leaf exists, so dataset leaves are the closest fit.",
     "matched_paths": [
       {
         "phylum": "Robustness, Evaluation & Operations",
         "class": "Evaluation",
         "order": "Datasets and Benchmarks",
-        "genus": "Event SLAM Datasets",
+        "genus": "Visual SLAM Datasets",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in event datasets/simulators/benchmarks context. Strongest Handbook context: 10.7 Datasets, Simulators, and Benchmarks  297. Genus label: Event SLAM Datasets (codex_context_genus, score=22). Genus label: Event SLAM Datasets (codex_context_genus, score=42)."
+        "confidence": 0.6,
+        "reason": "VISTA 2.0 is an AV simulator covering RGB, event, and LiDAR; the closest taxonomy leaf is Visual SLAM Datasets given its primary RGB camera focus and end-to-end policy learning use case."
       },
       {
-        "phylum": "Sensor & Odometry Modalities",
-        "class": "Proprioceptive and Aided Odometry",
-        "order": "Inertial Odometry",
-        "genus": "Strapdown Integration",
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Evaluation",
+        "order": "Datasets and Benchmarks",
+        "genus": "Event SLAM Datasets",
         "role": "secondary",
-        "confidence": 0.82,
-        "reason": "Uses inertial/proprioceptive odometry as a system modality."
+        "confidence": 0.5,
+        "reason": "Cited in the event-camera datasets/simulators section because VISTA 2.0 also synthesizes event streams."
       }
     ]
   },
@@ -2097,11 +2097,11 @@
     "year": "2014",
     "title": "Batch ContinuousTime Trajectory Estimation as Exactly Sparse Gaussian Process Regression",
     "entry": "Barfoot, Tim D, Tong, Chi Hay, and Sa - rkk - a, Simo. 2014. Batch ContinuousTime Trajectory Estimation as Exactly Sparse Gaussian Process Regression. Pages 1-10 of: Robotics: Science and Systems (RSS), vol. 10. Citeseer.",
-    "phylum": "Problem & System Context",
-    "class": "Historical and Scope Framing",
-    "order": "SLAM Eras",
-    "genus": "Spatial AI Era",
-    "match_method": "codex_context_fallback",
+    "phylum": "State, Geometry & Probabilistic Modeling",
+    "class": "State Representations",
+    "order": "Continuous-Time Trajectories",
+    "genus": "Gaussian Process Trajectories",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -2110,17 +2110,17 @@
         "excerpt": "sed in simpler LiDAR odometry systems [256, 1133], however, the constant velocity assumption is inherently less accurate when the motion contains high-frequency motions. Continuous-Time Trajectory Optimization. Another widely used approach for motion compensation is continuous-time trajectory optimization techniques using splines [282, 715] and the GP [50] (cf. Chapter 2). Continuous-time trajectories allow pose estimates to be made at any time instant without relying on linear interpolation. They can be used to remove the distortion of each individual point, however, conventional continuous-time trajectory optimization is time-consuming and often implemented offline [715]. IMU-based Motion Compensation"
       }
     ],
-    "confidence": 0.42,
-    "rationale": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: Spatial AI Era (codex_context_genus, score=3). Genus label: Spatial AI Era (codex_context_genus, score=45).",
+    "confidence": 0.97,
+    "rationale": "Anderson and Barfoot's foundational GP-trajectory paper; the canonical reference for sparse-GP continuous-time SLAM. Uncertainty: Current label ('SLAM Eras > Spatial AI Era') is incorrect; this is a state-representation/continuous-time paper.",
     "matched_paths": [
       {
-        "phylum": "Problem & System Context",
-        "class": "Historical and Scope Framing",
-        "order": "SLAM Eras",
-        "genus": "Spatial AI Era",
+        "phylum": "State, Geometry & Probabilistic Modeling",
+        "class": "State Representations",
+        "order": "Continuous-Time Trajectories",
+        "genus": "Gaussian Process Trajectories",
         "role": "primary",
-        "confidence": 0.42,
-        "reason": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: Spatial AI Era (codex_context_genus, score=3). Genus label: Spatial AI Era (codex_context_genus, score=45)."
+        "confidence": 0.97,
+        "reason": "Anderson and Barfoot's foundational GP-trajectory paper; the canonical reference for sparse-GP continuous-time SLAM."
       }
     ]
   },
@@ -3018,7 +3018,7 @@
     "class": "Dynamic and Deformable Maps",
     "order": "Dynamic SLAM Maps",
     "genus": "Short-Term Dynamic Objects",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -3027,8 +3027,8 @@
         "excerpt": "gh transform [1073]. These methods allowed simply discarding measurements of dynamic objects as outliers. Later, efforts turned to not simply ignoring dynamic objects, but also trying to reconstruct the environment regions occluded by them, either by interpolating missing data [1071], recovering data from alternative sensor poses where no occlusion occurred [75], or by image `inpainting' using machine learning [77]. The result is much more useful for localization because there are no `holes' in the rendered map. We will address dynamic objects as outliers in Section 15.2.1. An alternative also pursued in related work is to track the dynamic objects as part of the SLAM framework. In computer vision, this probl"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in short-term dynamic SLAM context. Strongest Handbook context: 15.2 Short-term Dynamics and Dynamic SLAM. Genus label: Short-Term Dynamic Objects (codex_context_genus, score=44). Genus label: Short-Term Dynamic Objects (codex_context_genus, score=64).",
+    "confidence": 0.88,
+    "rationale": "Targets removal of short-term dynamic objects from 3D maps to keep static map clean; cited in 15.2 Short-term Dynamics and Dynamic SLAM.",
     "matched_paths": [
       {
         "phylum": "Map Representations",
@@ -3036,8 +3036,17 @@
         "order": "Dynamic SLAM Maps",
         "genus": "Short-Term Dynamic Objects",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in short-term dynamic SLAM context. Strongest Handbook context: 15.2 Short-term Dynamics and Dynamic SLAM. Genus label: Short-Term Dynamic Objects (codex_context_genus, score=44). Genus label: Short-Term Dynamic Objects (codex_context_genus, score=64)."
+        "confidence": 0.88,
+        "reason": "Targets removal of short-term dynamic objects from 3D maps to keep static map clean; cited in 15.2 Short-term Dynamics and Dynamic SLAM."
+      },
+      {
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Outlier and Failure Robustness",
+        "order": "Front-End Robustness",
+        "genus": "Dynamic Object Rejection",
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Dynamic object rejection at the front-end is the operational mechanism that produces the cleaned maps."
       }
     ]
   },
@@ -3206,9 +3215,9 @@
     "entry": "Bezdek, James C, and Hathaway, Richard J. 2003. Convergence of alternating optimization. Neural, Parallel & Scientific Computations, 11(4), 351-368.",
     "phylum": "Back-End Optimization & Inference",
     "class": "Robust Back-End",
-    "order": "Outlier-Robust Optimization",
-    "genus": "Robust Pose Graph Optimization",
-    "match_method": "codex_context_semantic",
+    "order": "Robust Cost Functions",
+    "genus": "M-estimators",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -3223,17 +3232,17 @@
         "excerpt": "duced global descriptors are typically effective only when the point cloud projections are consistently aligned in a specific direction (i.e., top-view or spherical-view). This requirement may restrict the application of the method to vehicles traveling with 3 As an example RING++ [1212] uses a representation of 120 by 120 pixels equally spaced over a [-80, 80] meter grid. 240 LiDAR SLAM predictable directions along roads. To address this issue, BTC [1258, 1259] was proposed that utilizes both local and global descriptors. This approach aims to maintain the local geometry and the overall structure of a scan, effectively combining the strengths of each type of descriptor. Direct 3D Data Processing. More re"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in robust back-end optimization context. Strongest Handbook context: 3.3.3 Alternating Minimization. Genus label: Robust Pose Graph Optimization (codex_context_genus, score=9). Genus label: Robust Pose Graph Optimization (codex_context_genus, score=64).",
+    "confidence": 0.78,
+    "rationale": "Alternating-minimization convergence theory underlies the IRLS / Black-Rangarajan algorithmic schemes used for M-estimators in robust SLAM optimization. Uncertainty: Pure optimization-theory paper; closest SLAM-relevant genus is M-estimators since the Handbook uses it for B-R duality / alternating min in robust optimization.",
     "matched_paths": [
       {
         "phylum": "Back-End Optimization & Inference",
         "class": "Robust Back-End",
-        "order": "Outlier-Robust Optimization",
-        "genus": "Robust Pose Graph Optimization",
+        "order": "Robust Cost Functions",
+        "genus": "M-estimators",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in robust back-end optimization context. Strongest Handbook context: 3.3.3 Alternating Minimization. Genus label: Robust Pose Graph Optimization (codex_context_genus, score=9). Genus label: Robust Pose Graph Optimization (codex_context_genus, score=64)."
+        "confidence": 0.78,
+        "reason": "Alternating-minimization convergence theory underlies the IRLS / Black-Rangarajan algorithmic schemes used for M-estimators in robust SLAM optimization."
       }
     ]
   },
@@ -3968,7 +3977,7 @@
     "class": "Odometry Front-End",
     "order": "Frame-to-Frame Motion Estimation",
     "genus": "LiDAR Odometry",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -3983,8 +3992,8 @@
         "excerpt": "ces in 2D scan matching, Olson [825] introduced an impactful approach using correlation techniques for real-time registration. Early extensions to 3D LiDAR built on these 2D scanning techniques by actively moving the sensor in a nodding [433] or rotating manner [100], or by passively 228 LiDAR SLAM using the motion of a human carrier [102] or vehicle [100] to accumulate denser 3D point clouds. These 3D point clouds enabled 3D scan matching for LiDAR SLAM but introduced significant computational challenges due to the increased data size. Addressing these challenges, LOAM [1269] demonstrated real-time scan matching capabilities forming the basis for follow-up methods in LiDAR odometry and SLAM. 8.2.1 Foun"
       }
     ],
-    "confidence": 0.74,
-    "rationale": "Cited in LiDAR odometry context. Strongest Handbook context: 8.2 LiDAR Odometry. Genus label: LiDAR Odometry (codex_context_genus, score=74).",
+    "confidence": 0.9,
+    "rationale": "Continuous-time 3D LiDAR odometry from a rolling 2D laser; classic LiDAR odometry contribution.",
     "matched_paths": [
       {
         "phylum": "Measurement Front-End",
@@ -3992,8 +4001,17 @@
         "order": "Frame-to-Frame Motion Estimation",
         "genus": "LiDAR Odometry",
         "role": "primary",
-        "confidence": 0.74,
-        "reason": "Cited in LiDAR odometry context. Strongest Handbook context: 8.2 LiDAR Odometry. Genus label: LiDAR Odometry (codex_context_genus, score=74)."
+        "confidence": 0.9,
+        "reason": "Continuous-time 3D LiDAR odometry from a rolling 2D laser; classic LiDAR odometry contribution."
+      },
+      {
+        "phylum": "Measurement Front-End",
+        "class": "Raw-to-Pseudo Measurement Processing",
+        "order": "Registration",
+        "genus": "Scan-to-Map Matching",
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "The method is fundamentally scan-matching with motion compensation; contributes to the registration genus."
       }
     ]
   },
@@ -6042,7 +6060,7 @@
     "class": "Proprioceptive and Aided Odometry",
     "order": "Inertial Odometry",
     "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -6051,8 +6069,8 @@
         "excerpt": "6.3 Further Readings & Recent Trends 181 the covariance estimates described earlier in this chapter. Finally, there is a growing literature using uncertainty quantification to guide active perception and active SLAM (see [876] for a survey) and to determine how to subselect measurements during life-long SLAM or in the presence of resource constraints [275, 561, 1094, 150]. PART II SLAM IN PRACTICE II Prelude Ayoung Kim, Timothy Barfoot, Luca Carlone, Frank Dellaert, and Daniel Cremers Part I laid the foundations of SLAM by introducing the basic language of factor graphs and their role as a SLAM back-end."
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is primarily visual-inertial/inertial odometry. Genus label: Visual-Inertial Odometry (codex_context_genus, score=25). Genus label: Visual-Inertial Odometry (codex_context_genus, score=45).",
+    "confidence": 0.9,
+    "rationale": "VIO system with attention-based feature selection for fast navigation.",
     "matched_paths": [
       {
         "phylum": "Sensor & Odometry Modalities",
@@ -6060,17 +6078,8 @@
         "order": "Inertial Odometry",
         "genus": "Visual-Inertial Odometry",
         "role": "primary",
-        "confidence": 0.82,
-        "reason": "Title is primarily visual-inertial/inertial odometry. Genus label: Visual-Inertial Odometry (codex_context_genus, score=25). Genus label: Visual-Inertial Odometry (codex_context_genus, score=45)."
-      },
-      {
-        "phylum": "Back-End Optimization & Inference",
-        "class": "Certifiable and Differentiable Solvers",
-        "order": "Certifiably Optimal SLAM",
-        "genus": "SE-Sync-style Solvers",
-        "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in theoretical properties chapter further-reading context. Context: 6.3 Further Readings & Recent Trends  181."
+        "confidence": 0.9,
+        "reason": "VIO system with attention-based feature selection for fast navigation."
       }
     ]
   },
@@ -8033,11 +8042,11 @@
     "year": "2024",
     "title": "Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots",
     "entry": "Chi, Cheng, Xu, Zhenjia, Pan, Chuer, Cousineau, Eric, Burchfiel, Benjamin, Feng, Siyuan, Tedrake, Russ, and Song, Shuran. 2024b. Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots. In: Robotics: Science and Systems (RSS).",
-    "phylum": "Learning, Semantics & Spatial AI",
-    "class": "Foundation and Open-World Spatial AI",
-    "order": "Open-World Mapping",
-    "genus": "Open-Set Object Maps",
-    "match_method": "codex_context_semantic",
+    "phylum": "Problem & System Context",
+    "class": "SLAM Problem Definition",
+    "order": "Autonomy Role",
+    "genus": "Manipulation Support",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -8046,17 +8055,17 @@
         "excerpt": "often together with associated high-fidelity simulations. For example, DROID [559] leveraged a VR headset for teleoperation. The ALOHA [1077] setup is relatively low-cost and comprises two sets of synchronized manipulators so that humans can provide demonstrations that will be mimicked directly on the robot hardware. The \"Universal Manipulation Interface\" [200] is a low-cost handheld gripper setup that exactly matches a robot gripper and eye-in-hand sensor configuration and therefore can be easily used to collect robot demonstrations in a flexible and low-cost manner. For the most part, the data in these aforementioned datasets takes the form of trajectories of sensor-action pairs D = {zt, ut}tT=1, where T is"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in open-world Spatial AI further-reading context. Strongest Handbook context: 17.4 Further Readings & Recent Trends  517. Genus label: Open-Set Object Maps (codex_context_genus, score=6). Genus label: Open-Set Object Maps (codex_context_genus, score=45).",
+    "confidence": 0.7,
+    "rationale": "UMI is fundamentally a robot teleoperation/teaching framework for manipulation; in the SLAM taxonomy the closest fit is the autonomy role of supporting manipulation, not open-world mapping. Uncertainty: UMI is barely a SLAM paper; current label (Open-Set Object Maps) is poor. Listing only one path with moderate confidence to avoid inflating membership.",
     "matched_paths": [
       {
-        "phylum": "Learning, Semantics & Spatial AI",
-        "class": "Foundation and Open-World Spatial AI",
-        "order": "Open-World Mapping",
-        "genus": "Open-Set Object Maps",
+        "phylum": "Problem & System Context",
+        "class": "SLAM Problem Definition",
+        "order": "Autonomy Role",
+        "genus": "Manipulation Support",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in open-world Spatial AI further-reading context. Strongest Handbook context: 17.4 Further Readings & Recent Trends  517. Genus label: Open-Set Object Maps (codex_context_genus, score=6). Genus label: Open-Set Object Maps (codex_context_genus, score=45)."
+        "confidence": 0.7,
+        "reason": "UMI is fundamentally a robot teleoperation/teaching framework for manipulation; in the SLAM taxonomy the closest fit is the autonomy role of supporting manipulation, not open-world mapping."
       }
     ]
   },
@@ -9891,7 +9900,7 @@
     "class": "Factor Graph Modeling",
     "order": "Graphical Model Formulation",
     "genus": "Variables and Factors",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -9900,8 +9909,8 @@
         "excerpt": "divided into modules and spread potentially across several hardware processors and sensors, but so far said little about the algorithms that will keep the stored representations up to date. As explained throughout this handbook, probability and estimation theory provide the fundamental background for state estimation in SLAM, and in particular factor graphs [250] have been universally useful as a flexible representation of the structure of the complex structure of SLAM systems. Sutton's famous `Bitter Lesson' of AI [1063] is that `general methods that leverage computation are ultimately the most effective, and by a large margin'. In Spatial AI, if we truly believe that low-power computation and storage resources"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is primarily about factor graph modeling. Genus label: Variables and Factors (codex_context_genus, score=16). Genus label: Variables and Factors (codex_context_genus, score=74).",
+    "confidence": 0.95,
+    "rationale": "Dellaert and Kaess' canonical factor-graphs reference defining variables, factors, and the graphical structure used throughout SLAM.",
     "matched_paths": [
       {
         "phylum": "State, Geometry & Probabilistic Modeling",
@@ -9909,17 +9918,17 @@
         "order": "Graphical Model Formulation",
         "genus": "Variables and Factors",
         "role": "primary",
-        "confidence": 0.82,
-        "reason": "Title is primarily about factor graph modeling. Genus label: Variables and Factors (codex_context_genus, score=16). Genus label: Variables and Factors (codex_context_genus, score=74)."
+        "confidence": 0.95,
+        "reason": "Dellaert and Kaess' canonical factor-graphs reference defining variables, factors, and the graphical structure used throughout SLAM."
       },
       {
-        "phylum": "Learning, Semantics & Spatial AI",
-        "class": "Computational Structure",
-        "order": "Distributed and Hardware-Aware Computation",
-        "genus": "Processor / Sensor Co-Design",
+        "phylum": "Back-End Optimization & Inference",
+        "class": "Sparsity and Incrementality",
+        "order": "Variable Elimination",
+        "genus": "Bayes Trees",
         "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in Gaussian belief propagation / distributed computation context. Context: 18.6 Convergent Distributed Computation."
+        "confidence": 0.7,
+        "reason": "Also contains the Bayes-tree elimination machinery that underlies iSAM-style incremental SLAM."
       }
     ]
   },
@@ -12102,11 +12111,11 @@
     "year": "2019",
     "title": "Closed-form preintegration methods for graph-based visual-inertial navigation",
     "entry": "Eckenhoff, Kevin, Geneva, Patrick, and Huang, Guoquan. 2019. Closed-form preintegration methods for graph-based visual-inertial navigation. Intl. J. of Robotics Research, 38(5), 563-586.",
-    "phylum": "Sensor & Odometry Modalities",
-    "class": "Proprioceptive and Aided Odometry",
-    "order": "Inertial Odometry",
-    "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "phylum": "Measurement Front-End",
+    "class": "Odometry Front-End",
+    "order": "Preintegration and Propagation",
+    "genus": "IMU Preintegration",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -12127,17 +12136,26 @@
         "excerpt": "n of the velocity and position preintegrated measurements by solving the continuous-time system of differential equation (LTV) assuming constant accelerometer measurements or constant local acceleration (the two different models are presented in [300]). Compared with the standard preintegration [335] that considers constant global acceleration, the work [300] demonstrates that the assumption of constant local acceleration is more representative of real scenarios leading to an overall VIO accuracy improvement of around 5% on the EuRoc dataset [131] over both the standard preintegration and the constant accelerometer measurement model. In order to loosen the constant acceleration motion model assumptions, one"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is primarily visual-inertial/inertial odometry. Genus label: Visual-Inertial Odometry (codex_context_genus, score=41). Genus label: Visual-Inertial Odometry (codex_context_genus, score=61).",
+    "confidence": 0.93,
+    "rationale": "Eckenhoff et al.'s closed-form IMU preintegration paper; central preintegration-formula contribution.",
     "matched_paths": [
+      {
+        "phylum": "Measurement Front-End",
+        "class": "Odometry Front-End",
+        "order": "Preintegration and Propagation",
+        "genus": "IMU Preintegration",
+        "role": "primary",
+        "confidence": 0.93,
+        "reason": "Eckenhoff et al.'s closed-form IMU preintegration paper; central preintegration-formula contribution."
+      },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Proprioceptive and Aided Odometry",
         "order": "Inertial Odometry",
         "genus": "Visual-Inertial Odometry",
-        "role": "primary",
-        "confidence": 0.82,
-        "reason": "Title is primarily visual-inertial/inertial odometry. Genus label: Visual-Inertial Odometry (codex_context_genus, score=41). Genus label: Visual-Inertial Odometry (codex_context_genus, score=61)."
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Preintegration is integrated into a graph-based VIO pipeline."
       }
     ]
   },
@@ -14234,10 +14252,10 @@
     "title": "Unified temporal and spatial calibration for multi-sensor systems",
     "entry": "Furgale, Paul, Rehder, Joern, and Siegwart, Roland. 2013. Unified temporal and spatial calibration for multi-sensor systems. Pages 1280-1286 of: IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS). IEEE.",
     "phylum": "Sensor & Odometry Modalities",
-    "class": "Proprioceptive and Aided Odometry",
-    "order": "Inertial Odometry",
-    "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "class": "Multi-Modal Fusion",
+    "order": "Calibration and Synchronization",
+    "genus": "Temporal Calibration",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -14246,17 +14264,26 @@
         "excerpt": "of the camera with respect to the IMU). The literature provides a variety of methods to address the calibration problem. These can be mainly divided into two categories: offline and online calibration methods. Offline approaches require a calibration procedure to be performed before the system is deployed. It often involves the use of a calibration target [350], a known motion pattern [686], or prior knowledge about the environment [631, 714]. These procedures can be more-or-less time consuming, and may require specific equipment and trained operators. Thus, while generally more accurate, offline calibration methods can be cumbersome and undesirable in some scenarios where the final system is expected to be used"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in VIO practical context. Strongest Handbook context: 11.4.2 Extrinsic Calibration. Genus label: Visual-Inertial Odometry (codex_context_genus, score=19). Genus label: Visual-Inertial Odometry (codex_context_genus, score=61).",
+    "confidence": 0.92,
+    "rationale": "Furgale et al.'s unified spatio-temporal calibration paper; canonical reference for joint extrinsic + time-offset estimation.",
     "matched_paths": [
       {
         "phylum": "Sensor & Odometry Modalities",
-        "class": "Proprioceptive and Aided Odometry",
-        "order": "Inertial Odometry",
-        "genus": "Visual-Inertial Odometry",
+        "class": "Multi-Modal Fusion",
+        "order": "Calibration and Synchronization",
+        "genus": "Temporal Calibration",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in VIO practical context. Strongest Handbook context: 11.4.2 Extrinsic Calibration. Genus label: Visual-Inertial Odometry (codex_context_genus, score=19). Genus label: Visual-Inertial Odometry (codex_context_genus, score=61)."
+        "confidence": 0.92,
+        "reason": "Furgale et al.'s unified spatio-temporal calibration paper; canonical reference for joint extrinsic + time-offset estimation."
+      },
+      {
+        "phylum": "Sensor & Odometry Modalities",
+        "class": "Multi-Modal Fusion",
+        "order": "Calibration and Synchronization",
+        "genus": "Extrinsic Calibration",
+        "role": "secondary",
+        "confidence": 0.88,
+        "reason": "Also estimates spatial extrinsics; the paper explicitly unifies both."
       }
     ]
   },
@@ -16383,10 +16410,10 @@
     "title": "Non-linear Constraint Network Optimization for Efficient Map Learning",
     "entry": "Grisetti, G., Stachniss, C., and Burgard, W. 2009. Non-linear Constraint Network Optimization for Efficient Map Learning. Trans. on Intelligent Transportation systems.",
     "phylum": "Back-End Optimization & Inference",
-    "class": "Certifiable and Differentiable Solvers",
-    "order": "Certifiably Optimal SLAM",
-    "genus": "SE-Sync-style Solvers",
-    "match_method": "codex_context_semantic",
+    "class": "Least-Squares Solvers",
+    "order": "Nonlinear Optimization",
+    "genus": "Gauss-Newton",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -16395,17 +16422,26 @@
         "excerpt": "(6.9) in which a robot navigated through the multi-level parking garage shown in (a). (b) shows the correct (i.e. globally optimal) solution of (6.9) computed using SE-Sync [937], while (c) and (d) show examples of suboptimal local minima obtained from a local optimization method initialized at a randomly-sampled starting point. (Panel (a) reproduced from [400]). of common SLAM formulations (e.g., PGO) under mild conditions. These techniques, called certifiably correct optimization methods, are based on convex relaxation (rather than local optimization). Moreover, they are certifiably optimal in the sense that upon computing a solution to the optimization problem, they will be able to quantify how suboptimal"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in certifiably optimal solver context. Strongest Handbook context: 6.1 Certifiably Optimal Solvers for SLAM       151. Genus label: SE-Sync-style Solvers (codex_context_genus, score=25). Genus label: SE-Sync-style Solvers (codex_context_genus, score=45).",
+    "confidence": 0.78,
+    "rationale": "Grisetti et al.'s TORO is a tree-parameterized stochastic-gradient pose-graph solver; an iterative nonlinear least-squares method, NOT a certifiable/SDP-style solver. Uncertainty: Current label ('SE-Sync-style / Certifiably Optimal') is wrong; TORO predates and is independent of certifiable SLAM.",
     "matched_paths": [
       {
         "phylum": "Back-End Optimization & Inference",
-        "class": "Certifiable and Differentiable Solvers",
-        "order": "Certifiably Optimal SLAM",
-        "genus": "SE-Sync-style Solvers",
+        "class": "Least-Squares Solvers",
+        "order": "Nonlinear Optimization",
+        "genus": "Gauss-Newton",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in certifiably optimal solver context. Strongest Handbook context: 6.1 Certifiably Optimal Solvers for SLAM       151. Genus label: SE-Sync-style Solvers (codex_context_genus, score=25). Genus label: SE-Sync-style Solvers (codex_context_genus, score=45)."
+        "confidence": 0.78,
+        "reason": "Grisetti et al.'s TORO is a tree-parameterized stochastic-gradient pose-graph solver; an iterative nonlinear least-squares method, NOT a certifiable/SDP-style solver."
+      },
+      {
+        "phylum": "State, Geometry & Probabilistic Modeling",
+        "class": "Factor Graph Modeling",
+        "order": "Graphical Model Formulation",
+        "genus": "Pose-Graph Models",
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "Foundational pose-graph optimization formulation referenced widely."
       }
     ]
   },
@@ -18525,8 +18561,8 @@
     "phylum": "Map Representations",
     "class": "Dynamic and Deformable Maps",
     "order": "Dynamic SLAM Maps",
-    "genus": "Short-Term Dynamic Objects",
-    "match_method": "codex_context_semantic",
+    "genus": "Multi-Body Scene Models",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -18547,17 +18583,17 @@
         "excerpt": "quite robust to changes and dynamics in the environment, even without explicitly modeling them. Nonetheless, integrating dynamic object tracking for state 452 Dynamic and Deformable SLAM estimation has shown to improve robustness and accuracy if there are large occlusions [691, 450], large fractions of moving objects [897], and strong motion priors [450, 76]. However, these advantages come at increased computational cost and currently each of these challenges is addressed separately. SLAM solutions that are efficient and robust to a diverse range of extreme conditions, or `corner cases', remain an open problem. Differentiable Scene Representations. Differentiable rendering models such as NeRF and 3DGS as in"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Cited in short-term dynamic SLAM context. Strongest Handbook context: 15.2 Short-term Dynamics and Dynamic SLAM  429. Genus label: Short-Term Dynamic Objects (codex_context_genus, score=60). Genus label: Short-Term Dynamic Objects (codex_context_genus, score=80).",
+    "confidence": 0.85,
+    "rationale": "Jointly tracks the camera and an articulated human body; canonical multi-body dynamic SLAM contribution.",
     "matched_paths": [
       {
         "phylum": "Map Representations",
         "class": "Dynamic and Deformable Maps",
         "order": "Dynamic SLAM Maps",
-        "genus": "Short-Term Dynamic Objects",
+        "genus": "Multi-Body Scene Models",
         "role": "primary",
-        "confidence": 0.84,
-        "reason": "Cited in short-term dynamic SLAM context. Context: 15.2 Short-term Dynamics and Dynamic SLAM  429."
+        "confidence": 0.85,
+        "reason": "Jointly tracks the camera and an articulated human body; canonical multi-body dynamic SLAM contribution."
       },
       {
         "phylum": "Sensor & Odometry Modalities",
@@ -18566,7 +18602,16 @@
         "genus": "Visual-Inertial Odometry",
         "role": "secondary",
         "confidence": 0.82,
-        "reason": "Uses inertial/proprioceptive odometry as a system modality."
+        "reason": "Built on a tightly-coupled VIO front-end."
+      },
+      {
+        "phylum": "Map Representations",
+        "class": "Dynamic and Deformable Maps",
+        "order": "Deformable SLAM Maps",
+        "genus": "Deformable Object Maps",
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Human-body model is articulated/deformable; touches the deformable-map genus."
       }
     ]
   },
@@ -20646,9 +20691,9 @@
     "entry": "ICRA Quadruped Robot Challenge. 2024. ICRA Quadruped Robot Challenge. https://quadruped-robot-challenges.notion.site/ Quadruped-Robot-Challenges-bdc4af35638c4036817c3212e602b0e3. [Online; accessed 10-Jun-2024].",
     "phylum": "Sensor & Odometry Modalities",
     "class": "Proprioceptive and Aided Odometry",
-    "order": "Inertial Odometry",
-    "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "order": "Leg Odometry",
+    "genus": "Legged State Estimation",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -20657,17 +20702,26 @@
         "excerpt": "becoming widespread thanks to their ability to traverse highly unstructured terrains. Their main advantage is that legs provide an active suspension that decouples the motion of the robot's body from the terrain profile [988]. This enables them to negotiate staircases, uneven terrain, and other ground obstacles that are challenging for wheeled platforms [218, 500]. Even though the SLAM algorithms reviewed in the other chapters are directly applicable to legged robots, the additional sensing introduced by the legs is a valuable new source of information that can be exploited for odometry. This is particularly important for legged locomotion control and planning, where high-frequency and low drift real-time pose and"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in inertial odometry further-reading context. Strongest Handbook context: 11.5 Further Readings & Recent Trends  331. Genus label: Visual-Inertial Odometry (codex_context_genus, score=6). Genus label: Visual-Inertial Odometry (codex_context_genus, score=45).",
+    "confidence": 0.88,
+    "rationale": "ICRA challenge focused on quadruped state estimation in unstructured terrain; primary contribution is legged-robot SLAM benchmarking. Uncertainty: Current label (VIO) is clearly wrong; this is legged.",
     "matched_paths": [
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Proprioceptive and Aided Odometry",
-        "order": "Inertial Odometry",
-        "genus": "Visual-Inertial Odometry",
+        "order": "Leg Odometry",
+        "genus": "Legged State Estimation",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in inertial odometry further-reading context. Strongest Handbook context: 11.5 Further Readings & Recent Trends  331. Genus label: Visual-Inertial Odometry (codex_context_genus, score=6). Genus label: Visual-Inertial Odometry (codex_context_genus, score=45)."
+        "confidence": 0.88,
+        "reason": "ICRA challenge focused on quadruped state estimation in unstructured terrain; primary contribution is legged-robot SLAM benchmarking."
+      },
+      {
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Evaluation",
+        "order": "Datasets and Benchmarks",
+        "genus": "Legged SLAM Datasets",
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "Provides a quadruped-specific benchmark/competition dataset."
       }
     ]
   },
@@ -24930,11 +24984,11 @@
     "year": "2022",
     "title": "Special Issue on Advancements and Lessons Learned during Phases I and II of the DARPA Subterranean Challenge",
     "entry": "Kottege, Navinda, Scherer, Sebastian, Faigl, J., and Agha, Ali. 2022. Special Issue on Advancements and Lessons Learned during Phases I and II of the DARPA Subterranean Challenge. Field Robotics, 1947-1950.",
-    "phylum": "Sensor & Odometry Modalities",
-    "class": "LiDAR SLAM",
-    "order": "LiDAR System Families",
-    "genus": "Scan-Matching SLAM",
-    "match_method": "codex_context_semantic",
+    "phylum": "Robustness, Evaluation & Operations",
+    "class": "Operational Constraints",
+    "order": "Deployment Conditions",
+    "genus": "GPS-Denied Operation",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -24943,17 +24997,26 @@
         "excerpt": "n, fielded 14 3D-printed robots equipped with 2D LiDAR scanners [828] as well as cameras (to identify loop closures). Each robot carried out 2D LiDAR odometry and transmitted its pose-graph constraints to a base station which assembled a global 2D multi-robot map. Research progress over the last decade was evidenced by the DARPA Subterranean Challenge [600] which was held in Louisville, Kentucky in 2021. It posed a similar challenge to competing teams at MAGIC --to explore unknown environments-but with the robots operating in more complex 3D underground environments with stairs, curbs, and ramps. Here 3D multi-beam LiDAR was heavily used but also augmented with visual odometry, wheel/legged and, in some case"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in LiDAR SLAM system context. Strongest Handbook context: 8.4 LiDAR SLAM  247. Genus label: Scan-Matching SLAM (codex_context_genus, score=3). Genus label: Scan-Matching SLAM (codex_context_genus, score=26).",
+    "confidence": 0.9,
+    "rationale": "DARPA SubT is the canonical large-scale GPS-denied multi-robot SLAM deployment study.",
     "matched_paths": [
       {
-        "phylum": "Sensor & Odometry Modalities",
-        "class": "LiDAR SLAM",
-        "order": "LiDAR System Families",
-        "genus": "Scan-Matching SLAM",
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Operational Constraints",
+        "order": "Deployment Conditions",
+        "genus": "GPS-Denied Operation",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in LiDAR SLAM system context. Strongest Handbook context: 8.4 LiDAR SLAM  247. Genus label: Scan-Matching SLAM (codex_context_genus, score=3). Genus label: Scan-Matching SLAM (codex_context_genus, score=26)."
+        "confidence": 0.9,
+        "reason": "DARPA SubT is the canonical large-scale GPS-denied multi-robot SLAM deployment study."
+      },
+      {
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Operational Constraints",
+        "order": "Deployment Conditions",
+        "genus": "Large-Scale Operation",
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Multi-kilometer subterranean operations with multi-robot fleets are large-scale by definition."
       }
     ]
   },
@@ -28988,8 +29051,8 @@
     "phylum": "Problem & System Context",
     "class": "Historical and Scope Framing",
     "order": "SLAM Eras",
-    "genus": "Spatial AI Era",
-    "match_method": "codex_context_fallback",
+    "genus": "Probabilistic Robotics Era",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -28998,17 +29061,35 @@
         "excerpt": "ter concludes with a discussion of further readings and recent trends (Section 1.8). Historical Note A smoothing approach to SLAM involves not just the most current robot location, but the entire robot trajectory up to the current time. A number of authors consider the problem of smoothing the robot trajectory only [172, 701, 700, 420, 594, 312], now known as pose-based SLAM. This is particularly suited to sensors such as laser-range finders that yield pairwise constraints between nearby robot poses. More generally, one can consider the full SLAM problem [1088], i.e., the problem of optimally estimating the entire set of sensor poses along with the parameters of all features in the environment."
       }
     ],
-    "confidence": 0.42,
-    "rationale": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: Spatial AI Era (codex_context_genus, score=6). Genus label: Spatial AI Era (codex_context_genus, score=45).",
+    "confidence": 0.88,
+    "rationale": "Lu and Milios 1997 is the seminal pose-graph / scan-matching SLAM paper, foundational for the probabilistic robotics era. Uncertainty: Current label ('Spatial AI Era') is anachronistic; this 1997 paper predates the spatial-AI era by ~20 years.",
     "matched_paths": [
       {
         "phylum": "Problem & System Context",
         "class": "Historical and Scope Framing",
         "order": "SLAM Eras",
-        "genus": "Spatial AI Era",
+        "genus": "Probabilistic Robotics Era",
         "role": "primary",
-        "confidence": 0.42,
-        "reason": "No reliable citation section was recovered; retained parser seed as low-confidence fallback. Genus label: Spatial AI Era (codex_context_genus, score=6). Genus label: Spatial AI Era (codex_context_genus, score=45)."
+        "confidence": 0.88,
+        "reason": "Lu and Milios 1997 is the seminal pose-graph / scan-matching SLAM paper, foundational for the probabilistic robotics era."
+      },
+      {
+        "phylum": "Measurement Front-End",
+        "class": "Raw-to-Pseudo Measurement Processing",
+        "order": "Registration",
+        "genus": "Scan-to-Map Matching",
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Introduced a foundational 2D-range-scan matching scheme that is still cited as the basis of modern scan-matching SLAM."
+      },
+      {
+        "phylum": "State, Geometry & Probabilistic Modeling",
+        "class": "Factor Graph Modeling",
+        "order": "Graphical Model Formulation",
+        "genus": "Pose-Graph Models",
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Defined the pose-graph formulation that became the dominant SLAM back-end model."
       }
     ]
   },
@@ -33049,11 +33130,11 @@
     "year": "2011",
     "title": "DTAM: Dense tracking and mapping in real-time",
     "entry": "Newcombe, Richard A, Lovegrove, Steven J, and Davison, Andrew J. 2011a. DTAM: Dense tracking and mapping in real-time. Pages 2320-2327 of: Intl. Conf. on Computer Vision (ICCV). IEEE.",
-    "phylum": "Learning, Semantics & Spatial AI",
-    "class": "Computational Structure",
-    "order": "Distributed and Hardware-Aware Computation",
-    "genus": "Processor / Sensor Co-Design",
-    "match_method": "codex_context_semantic",
+    "phylum": "Map Representations",
+    "class": "Dense Geometric Maps",
+    "order": "Dense Reconstruction",
+    "genus": "Real-Time Dense Reconstruction",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -33080,35 +33161,35 @@
         "excerpt": "torage. 18.5 Mapping Spatial AI Graphs to Hardware 537 18.5.2 Real-Time Loop We make a hypothesis that the core computation graph for the tightest realtime loop of future SLAM systems will have many elements which are familiar from today's systems. Specifically the dense SLAM paradigm introduced by Newcombe et al. [799, 801, 800] is at the center of this, because this approach aims to model the world in dense, generative detail such that every new pixel of data from a camera can be compared against a model-based prediction. This allows systems which are generally `aware', since as they continually model the state of the world in front of the camera, they can detect when something is"
       }
     ],
-    "confidence": 0.74,
-    "rationale": "Cited in processor/sensor hardware context. Strongest Handbook context: 18.4 The Future Landscape of Processor and Sensor Hardware  529. Genus label: Processor / Sensor Co-Design (codex_context_genus, score=41). Genus label: Processor / Sensor Co-Design (codex_context_genus, score=80).",
+    "confidence": 0.95,
+    "rationale": "DTAM is the canonical real-time dense visual SLAM paper; its principal contribution is dense reconstruction at frame rate. Uncertainty: Current label ('Processor / Sensor Co-Design') is incorrect; DTAM is a representation/dense-reconstruction paper, not co-design.",
     "matched_paths": [
-      {
-        "phylum": "Learning, Semantics & Spatial AI",
-        "class": "Computational Structure",
-        "order": "Distributed and Hardware-Aware Computation",
-        "genus": "Processor / Sensor Co-Design",
-        "role": "primary",
-        "confidence": 0.74,
-        "reason": "Cited in processor/sensor hardware context. Strongest Handbook context: 18.4 The Future Landscape of Processor and Sensor Hardware  529. Genus label: Processor / Sensor Co-Design (codex_context_genus, score=41). Genus label: Processor / Sensor Co-Design (codex_context_genus, score=80)."
-      },
       {
         "phylum": "Map Representations",
         "class": "Dense Geometric Maps",
         "order": "Dense Reconstruction",
         "genus": "Real-Time Dense Reconstruction",
-        "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in real-time dense reconstruction context. Context: 7.6 Real-time Dense Reconstruction."
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "DTAM is the canonical real-time dense visual SLAM paper; its principal contribution is dense reconstruction at frame rate."
       },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Visual SLAM",
-        "order": "Camera Models and Pipelines",
-        "genus": "Monocular SLAM",
+        "order": "Visual System Families",
+        "genus": "Direct Visual SLAM",
         "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in depth-camera/RGB-D SLAM context. Context: 7.7 SLAM with Depth-sensing Cameras  217."
+        "confidence": 0.88,
+        "reason": "DTAM is a direct method using photometric residuals over the dense depth map."
+      },
+      {
+        "phylum": "Measurement Front-End",
+        "class": "Raw-to-Pseudo Measurement Processing",
+        "order": "Direct Measurement Formation",
+        "genus": "Photometric Residuals",
+        "role": "secondary",
+        "confidence": 0.75,
+        "reason": "Introduces a per-pixel photometric residual formulation against a dense depth model."
       }
     ]
   },
@@ -37258,7 +37339,7 @@
     "class": "Dynamic and Deformable Maps",
     "order": "Dynamic SLAM Maps",
     "genus": "Long-Term Lifelong Changes",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -37267,8 +37348,8 @@
         "excerpt": "t has been used in a variety of communities. Most prominently, 2D or image-based change detection has been widely studied in computer vision. In this setting, the goal is to identify differences between two images of the same scene or even from the same view-point, with applications in background subtraction, surveillance, medical imaging, and many others [900]. Additionally, image-based change detection from satellite data is an active area of research in remote sensing [39]. In robotics, the ability to detect changes between images is also highly useful. However, in the context of mapping, where the goal is to estimate the underlying 3D structure of the scene from all observations, change detection can direc"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in long-term/lifelong SLAM context. Strongest Handbook context: 15.3 Long-term Dynamic and Lifelong SLAM  437. Genus label: Long-Term Lifelong Changes (codex_context_genus, score=60). Genus label: Long-Term Lifelong Changes (codex_context_genus, score=80).",
+    "confidence": 0.78,
+    "rationale": "A survey of image-domain change detection cited as background for long-term/lifelong SLAM map updates. Uncertainty: Survey paper from CV literature; SLAM relevance is secondary, hence single-path moderate-confidence.",
     "matched_paths": [
       {
         "phylum": "Map Representations",
@@ -37276,8 +37357,8 @@
         "order": "Dynamic SLAM Maps",
         "genus": "Long-Term Lifelong Changes",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in long-term/lifelong SLAM context. Strongest Handbook context: 15.3 Long-term Dynamic and Lifelong SLAM  437. Genus label: Long-Term Lifelong Changes (codex_context_genus, score=60). Genus label: Long-Term Lifelong Changes (codex_context_genus, score=80)."
+        "confidence": 0.78,
+        "reason": "A survey of image-domain change detection cited as background for long-term/lifelong SLAM map updates."
       }
     ]
   },
@@ -41543,8 +41624,8 @@
     "phylum": "Measurement Front-End",
     "class": "Place Recognition and Loop Closure",
     "order": "Place Recognition",
-    "genus": "Cross-Modal Place Recognition",
-    "match_method": "codex_context_semantic",
+    "genus": "LiDAR Place Recognition",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -41553,26 +41634,26 @@
         "excerpt": "opic. Ongoing research includes methods for robust retrieval which generalize across the various categories of LiDAR sensors [529]. Other research looks to achieve heterogeneous place recognition between LiDAR and other modalities such as radar [1248] and OpenStreetMap [211]. Researchers have also successfully leveraged the LiDAR's intensity information [1000, 1151], alongside traditional XYZ data to improve performance. Long-term place recognition across multiple mapping sessions [566] is another promising research topic; as is change detection and lifelong map management [565, 1251]. Multi-Sensor Fusion. Fusing multiple sensors with complementary characteristics is a key route to more robust and resilient rob"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is primarily about place recognition / loop closure. Genus label: Cross-Modal Place Recognition (codex_context_genus, score=12). Genus label: Cross-Modal Place Recognition (codex_context_genus, score=48).",
+    "confidence": 0.85,
+    "rationale": "Performs LiDAR-based place recognition by treating imaging-LiDAR returns as range images; data origin is still LiDAR. Uncertainty: Imaging-LiDAR straddles LiDAR vs cross-modal; primary moved from cross-modal to LiDAR because the underlying sensor is LiDAR.",
     "matched_paths": [
       {
         "phylum": "Measurement Front-End",
         "class": "Place Recognition and Loop Closure",
         "order": "Place Recognition",
-        "genus": "Cross-Modal Place Recognition",
+        "genus": "LiDAR Place Recognition",
         "role": "primary",
-        "confidence": 0.86,
-        "reason": "Contributes place recognition or loop-closure candidate generation."
+        "confidence": 0.85,
+        "reason": "Performs LiDAR-based place recognition by treating imaging-LiDAR returns as range images; data origin is still LiDAR."
       },
       {
-        "phylum": "Sensor & Odometry Modalities",
-        "class": "LiDAR SLAM",
-        "order": "LiDAR System Families",
-        "genus": "LiDAR-Inertial SLAM",
+        "phylum": "Measurement Front-End",
+        "class": "Place Recognition and Loop Closure",
+        "order": "Place Recognition",
+        "genus": "Cross-Modal Place Recognition",
         "role": "secondary",
-        "confidence": 0.6,
-        "reason": "Cited in LiDAR SLAM further-reading context. Context: 8.5 Further Readings & Recent Trends."
+        "confidence": 0.55,
+        "reason": "Uses image-style descriptors on LiDAR range/intensity, so retains some cross-modal flavor; weaker than the LiDAR primary."
       }
     ]
   },
@@ -45496,11 +45577,11 @@
     "year": "1985",
     "title": "A brief history of walking machines. Boston, MA: Springer US",
     "entry": "Todd, D. J. 1985. A brief history of walking machines. Boston, MA: Springer US. Pages 169-177.",
-    "phylum": "Sensor & Odometry Modalities",
-    "class": "Proprioceptive and Aided Odometry",
-    "order": "Leg Odometry",
-    "genus": "Legged State Estimation",
-    "match_method": "codex_context_semantic",
+    "phylum": "Problem & System Context",
+    "class": "Historical and Scope Framing",
+    "order": "SLAM Eras",
+    "genus": "Probabilistic Robotics Era",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -45509,17 +45590,26 @@
         "excerpt": "the limitations of wheeled vehicles on rough terrain [674]. General Electric's Walking Truck [776], a 1400 kg machine, is one of the best examples of the human-operated machines designed in this period. With the development of new control strategies in the 1960s, the efforts shifted to smaller scale platforms that could generate automatic walking behavior [750, 751, 1100]. Raibert's monopods, bipeds, and quadrupeds developed in the late 1980s showed remarkable locomotion capabilities [902], motivating the use of legged platforms for real-world tasks. Achieving real-world autonomy has then been the main driver to develop leg odometry and state estimation systems. The work by Roston and Krotkov [947] presented one of the e"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in leg odometry background. Strongest Handbook context: 12.1.1 Historical Background. Genus label: Legged State Estimation (codex_context_genus, score=25). Genus label: Legged State Estimation (codex_context_genus, score=61).",
+    "confidence": 0.7,
+    "rationale": "Historical Springer chapter on walking-robot history; cited as background context in the Handbook's legged-robot historical note. Uncertainty: 1985 history reference predates SLAM as a discipline; closest era leaf is Probabilistic Robotics Era as a coarse historical bucket.",
     "matched_paths": [
+      {
+        "phylum": "Problem & System Context",
+        "class": "Historical and Scope Framing",
+        "order": "SLAM Eras",
+        "genus": "Probabilistic Robotics Era",
+        "role": "primary",
+        "confidence": 0.7,
+        "reason": "Historical Springer chapter on walking-robot history; cited as background context in the Handbook's legged-robot historical note."
+      },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Proprioceptive and Aided Odometry",
         "order": "Leg Odometry",
         "genus": "Legged State Estimation",
-        "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in leg odometry background. Strongest Handbook context: 12.1.1 Historical Background. Genus label: Legged State Estimation (codex_context_genus, score=25). Genus label: Legged State Estimation (codex_context_genus, score=61)."
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Cited inside the legged state-estimation chapter to introduce walking-machine antecedents (e.g. GE Walking Truck)."
       }
     ]
   },
@@ -47427,7 +47517,7 @@
     "class": "LiDAR SLAM",
     "order": "LiDAR System Families",
     "genus": "LOAM-style Odometry",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -47442,8 +47532,8 @@
         "excerpt": "Volumetric Data Blocks. Here we follow the terminology used in [792]. 136 Dense Map Representations is applied to store only a subset of points in the map representation, pruning redundant measurements. Stemming from the point-based voxelization used in LOAM, several follow-up approaches [998, 1150, 839, 667, 894, 999] refine the extraction of points [998, 1150, 839], improve the optimization pipeline [839, 667], or integrate information of an IMU [894, 999]. Another branch of methods handles the amount of point cloud data differently to avoid reliance on a capable feature extraction approach. Regularly sampling the point clouds via a voxel grid [256] significantly reduces the number of points per LiDAR scan and rem"
       }
     ],
-    "confidence": 0.82,
-    "rationale": "Title is a LiDAR odometry/SLAM system. Genus label: LOAM-style Odometry (codex_context_genus, score=22). Genus label: LOAM-style Odometry (codex_context_genus, score=42).",
+    "confidence": 0.95,
+    "rationale": "Direct descendant of LOAM with optimized feature association; canonical LOAM-family system.",
     "matched_paths": [
       {
         "phylum": "Sensor & Odometry Modalities",
@@ -47451,8 +47541,8 @@
         "order": "LiDAR System Families",
         "genus": "LOAM-style Odometry",
         "role": "primary",
-        "confidence": 0.86,
-        "reason": "Belongs to the LiDAR SLAM system family."
+        "confidence": 0.95,
+        "reason": "Direct descendant of LOAM with optimized feature association; canonical LOAM-family system."
       },
       {
         "phylum": "Measurement Front-End",
@@ -47460,8 +47550,8 @@
         "order": "Frame-to-Frame Motion Estimation",
         "genus": "LiDAR Odometry",
         "role": "secondary",
-        "confidence": 0.72,
-        "reason": "Also contributes odometry/front-end motion estimation."
+        "confidence": 0.82,
+        "reason": "Front-end edge/plane feature-based LiDAR odometry."
       }
     ]
   },
@@ -49820,9 +49910,9 @@
     "entry": "Wu, Yibin, Kuang, Jian, Niu, Xiaoji, Behley, Jens, Klingbeil, Lasse, and Kuhlmann, Heiner. 2023b. Wheel-SLAM: Simultaneous Localization and Terrain Mapping Using One Wheel-Mounted IMU. IEEE Robotics and Automation Letters, 8(1), 280-287.",
     "phylum": "Sensor & Odometry Modalities",
     "class": "Proprioceptive and Aided Odometry",
-    "order": "Inertial Odometry",
-    "genus": "Visual-Inertial Odometry",
-    "match_method": "codex_context_semantic",
+    "order": "Other Aiding Signals",
+    "genus": "Wheel Odometry",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -49831,26 +49921,26 @@
         "excerpt": "titive IMU-based odometry estimates with sub-percent positional error. In [441] the critical information is the knowledge of contact between the robot's feet and the ground, while in [813] the one-planerotation motion is used to constrain the IMU biases and therefore limit the deadreckoning drift. The work [813] has been extended into a full SLAM system [1200] by detecting loop closures based on pattern recognition in the road bank angle over time, providing an interesting example of an IMU-based proprioceptive system that can perform loop closure detection and correction. It is important to note that while the use of inertial sensors generally offers better performance and robustness, dropouts or saturation of t"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in inertial odometry further-reading context. Strongest Handbook context: 11.5 Further Readings & Recent Trends  331. Genus label: Visual-Inertial Odometry (codex_context_genus, score=6). Genus label: Visual-Inertial Odometry (codex_context_genus, score=45).",
+    "confidence": 0.9,
+    "rationale": "Wheel-mounted IMU exploits wheel kinematics; the central novelty is wheel-aided proprioceptive odometry. Uncertainty: Current label (VIO) is wrong; this is single-IMU wheel SLAM, not visual-inertial.",
     "matched_paths": [
-      {
-        "phylum": "Sensor & Odometry Modalities",
-        "class": "Proprioceptive and Aided Odometry",
-        "order": "Inertial Odometry",
-        "genus": "Visual-Inertial Odometry",
-        "role": "primary",
-        "confidence": 0.82,
-        "reason": "Uses inertial/proprioceptive odometry as a system modality."
-      },
       {
         "phylum": "Sensor & Odometry Modalities",
         "class": "Proprioceptive and Aided Odometry",
         "order": "Other Aiding Signals",
         "genus": "Wheel Odometry",
-        "role": "secondary",
+        "role": "primary",
         "confidence": 0.9,
-        "reason": "Wheel-mounted dead reckoning is an aided proprioceptive odometry signal."
+        "reason": "Wheel-mounted IMU exploits wheel kinematics; the central novelty is wheel-aided proprioceptive odometry."
+      },
+      {
+        "phylum": "Measurement Front-End",
+        "class": "Odometry Front-End",
+        "order": "Preintegration and Propagation",
+        "genus": "Wheel / Kinematic Propagation",
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "Contributes a wheel-IMU propagation/preintegration model used as a front-end factor."
       }
     ]
   },
@@ -52054,8 +52144,8 @@
     "phylum": "Robustness, Evaluation & Operations",
     "class": "Evaluation",
     "order": "Datasets and Benchmarks",
-    "genus": "Event SLAM Datasets",
-    "match_method": "codex_context_semantic",
+    "genus": "Visual SLAM Datasets",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -52064,17 +52154,26 @@
         "excerpt": "[372] Car 640 � 480 2E, 2F, Lidar, GPS TUM-VIE [584] Hand-held 1280 � 720 2E, 2F, I EDS [461] Hand-held 640 � 480 E, F(RGB), I VECtor [363] Hand-held 640 � 480 2E, 2F, RGB-D, I, Lidar M2DGR [1250] Ground Robot 640 � 480 E, F, I, Lidar, GPS, Thermal ViViD++ [635] Hand-held, Car 240 � 180, 640 � 480 E, F, RGB-D, Thermal, Lidar, GPS FusionPortable [523] Hand-held, Quadruped Robot 346 � 240 2E, 2F, I, Lidar, GPS Stereo HKU-VIO [183] Hand-held 346 � 260"
       }
     ],
-    "confidence": 0.9,
-    "rationale": "Cited in event datasets/simulators/benchmarks context. Strongest Handbook context: 10.7 Datasets, Simulators, and Benchmarks              299. Genus label: Event SLAM Datasets (codex_context_genus, score=22). Genus label: Event SLAM Datasets (codex_context_genus, score=42).",
+    "confidence": 0.78,
+    "rationale": "Ground-robot SLAM dataset with stereo + RGB + IR cameras as primary modality, plus IMU/GNSS/LiDAR. Visual SLAM Datasets is the closest leaf for a ground-robot multi-camera benchmark. Uncertainty: Current label (Event SLAM Datasets) is wrong; M2DGR has no event camera.",
     "matched_paths": [
       {
         "phylum": "Robustness, Evaluation & Operations",
         "class": "Evaluation",
         "order": "Datasets and Benchmarks",
-        "genus": "Event SLAM Datasets",
+        "genus": "Visual SLAM Datasets",
         "role": "primary",
-        "confidence": 0.9,
-        "reason": "Cited in event datasets/simulators/benchmarks context. Strongest Handbook context: 10.7 Datasets, Simulators, and Benchmarks              299. Genus label: Event SLAM Datasets (codex_context_genus, score=22). Genus label: Event SLAM Datasets (codex_context_genus, score=42)."
+        "confidence": 0.78,
+        "reason": "Ground-robot SLAM dataset with stereo + RGB + IR cameras as primary modality, plus IMU/GNSS/LiDAR. Visual SLAM Datasets is the closest leaf for a ground-robot multi-camera benchmark."
+      },
+      {
+        "phylum": "Robustness, Evaluation & Operations",
+        "class": "Evaluation",
+        "order": "Datasets and Benchmarks",
+        "genus": "LiDAR SLAM Datasets",
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "Also includes 3D LiDAR sequences widely used for LiDAR SLAM evaluation."
       }
     ]
   },
@@ -54075,7 +54174,7 @@
     "class": "Semantic and Structured Maps",
     "order": "Metric-Semantic Maps",
     "genus": "Sparse Semantic Landmarks",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -54084,8 +54183,8 @@
         "excerpt": "describe plausible objects shapes. We refer to the projection of a semantic landmark sj onto the image plane of a camera as a semantic keypoint zj R2. Semantic keypoints can be detected in camera images using convolutional neural network models trained using supervised learning to provide heatmaps consisting of 2D Gaussians centered at each keypoint [854, 1300]. This is illustrated in Figure 16.1. The residual error between an object landmark i, with world-frame pose qi, scale 458 Metric-Semantic SLAM (b) (a) (c) Figure 16.1 Semantic keypoints extracted from an RGB measurement. (a) An outdoor environment with tw"
       }
     ],
-    "confidence": 0.66,
-    "rationale": "Cited in sparse metric-semantic representation context. Strongest Handbook context: 16.2 Sparse Metric-Semantic Representations  457. Genus label: Sparse Semantic Landmarks (codex_context_genus, score=22). Genus label: Sparse Semantic Landmarks (codex_context_genus, score=61).",
+    "confidence": 0.78,
+    "rationale": "In the SLAM context StarMap is used as a category-agnostic semantic-keypoint detector to instantiate sparse semantic landmarks.",
     "matched_paths": [
       {
         "phylum": "Map Representations",
@@ -54093,8 +54192,17 @@
         "order": "Metric-Semantic Maps",
         "genus": "Sparse Semantic Landmarks",
         "role": "primary",
-        "confidence": 0.66,
-        "reason": "Cited in sparse metric-semantic representation context. Strongest Handbook context: 16.2 Sparse Metric-Semantic Representations  457. Genus label: Sparse Semantic Landmarks (codex_context_genus, score=22). Genus label: Sparse Semantic Landmarks (codex_context_genus, score=61)."
+        "confidence": 0.78,
+        "reason": "In the SLAM context StarMap is used as a category-agnostic semantic-keypoint detector to instantiate sparse semantic landmarks."
+      },
+      {
+        "phylum": "Learning, Semantics & Spatial AI",
+        "class": "Learning for Classical SLAM Components",
+        "order": "Learned Geometry",
+        "genus": "Camera Pose Prediction",
+        "role": "secondary",
+        "confidence": 0.55,
+        "reason": "Also predicts viewpoint from images, a learned-geometry component used in the SLAM pipeline."
       }
     ]
   },
@@ -54937,7 +55045,7 @@
     "class": "Place Recognition and Loop Closure",
     "order": "Place Recognition",
     "genus": "LiDAR Place Recognition",
-    "match_method": "codex_context_semantic",
+    "match_method": "llm_semantic_assignment",
     "citation_contexts": [
       {
         "part": "PART III FROM SLAM TO SPATIAL AI                            359",
@@ -54946,8 +55054,8 @@
         "excerpt": "oduces a set of inlier points which are likely to be stationary. The remaining outlier points can then be filtered as noise. Rather than using NetVLAD which was designed for visual place recognition, Peng et al. [858] demonstrate a radar-specific feature extraction backbone named MinkLoc4D which takes inspiration from LiDAR place recognition architectures [1320]. 9.3.3 Descriptor-based Radar Place Recognition Using hand-crafted descriptors instead of learned embeddings is often effective as well. A common approach for radar PR is to directly adopt LiDAR descriptors, such as Scan Context [568], RING [1212], or M2DP [445]; though proper adjustments are necessary due to the differing sensor data for"
       }
     ],
-    "confidence": 0.9,
-    "rationale": "Cited in radar place recognition context. Strongest Handbook context: 9.3 Radar Place Recognition  271. Genus label: LiDAR Place Recognition (codex_context_genus, score=77).",
+    "confidence": 0.95,
+    "rationale": "MinkLoc3D-SI is a dedicated LiDAR-based VPR descriptor using sparse convolutions with intensity.",
     "matched_paths": [
       {
         "phylum": "Measurement Front-End",
@@ -54955,8 +55063,17 @@
         "order": "Place Recognition",
         "genus": "LiDAR Place Recognition",
         "role": "primary",
-        "confidence": 0.9,
-        "reason": "Cited in radar place recognition context. Strongest Handbook context: 9.3 Radar Place Recognition  271. Genus label: LiDAR Place Recognition (codex_context_genus, score=77)."
+        "confidence": 0.95,
+        "reason": "MinkLoc3D-SI is a dedicated LiDAR-based VPR descriptor using sparse convolutions with intensity."
+      },
+      {
+        "phylum": "Learning, Semantics & Spatial AI",
+        "class": "Learning for Classical SLAM Components",
+        "order": "Learned Correspondence",
+        "genus": "Learned Place Recognition",
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Learning-based descriptor; squarely a learned-place-recognition contribution."
       }
     ]
   }

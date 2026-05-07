@@ -1,0 +1,1430 @@
+[
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Localization vs Mapping vs SLAM",
+    "Known-map Localization"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Localization vs Mapping vs SLAM",
+    "Mapping with Known Poses"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Localization vs Mapping vs SLAM",
+    "Joint Localization and Mapping"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Autonomy Role",
+    "Navigation Support"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Autonomy Role",
+    "Manipulation Support"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Autonomy Role",
+    "Exploration Support"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "SLAM Problem Definition",
+    "Autonomy Role",
+    "Long-term Spatial Memory"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Modern SLAM Pipeline",
+    "Front-end / Back-end Split"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Modern SLAM Pipeline",
+    "Odometry Stream"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Modern SLAM Pipeline",
+    "Loop-Closure Stream"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Modern SLAM Pipeline",
+    "Map Update Loop"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Autonomy Integration",
+    "Control Loop Interface"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Autonomy Integration",
+    "Planning Loop Interface"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Autonomy Integration",
+    "Latency and Rate Separation"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "System Architecture",
+    "Autonomy Integration",
+    "Online Operation"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "Historical and Scope Framing",
+    "SLAM Eras",
+    "Probabilistic Robotics Era"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "Historical and Scope Framing",
+    "SLAM Eras",
+    "Graph Optimization Era"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "Historical and Scope Framing",
+    "SLAM Eras",
+    "Robust Perception Era"
+  ],
+  [
+    "SLAM",
+    "Problem & System Context",
+    "Historical and Scope Framing",
+    "SLAM Eras",
+    "Spatial AI Era"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "Graphical Model Formulation",
+    "Variables and Factors"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "Graphical Model Formulation",
+    "Landmark-based Models"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "Graphical Model Formulation",
+    "Pose-Graph Models"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "Graphical Model Formulation",
+    "Hybrid Factor Graphs"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "MAP Inference",
+    "Negative Log-Likelihood"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "MAP Inference",
+    "Least-Squares Formulation"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Factor Graph Modeling",
+    "MAP Inference",
+    "Noise Models"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Lie Groups and Manifolds",
+    "SO(3) Rotation States"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Lie Groups and Manifolds",
+    "SE(3) Pose States"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Lie Groups and Manifolds",
+    "Retractions and Local Coordinates"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Continuous-Time Trajectories",
+    "Gaussian Process Trajectories"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Continuous-Time Trajectories",
+    "Spline Trajectories"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "State Representations",
+    "Continuous-Time Trajectories",
+    "Asynchronous Sensor Fusion"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Estimation Consistency",
+    "Gauge Freedom"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Estimation Consistency",
+    "Degeneracy"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Estimation Consistency",
+    "Covariance and Marginals"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Inertial Observability",
+    "Bias Observability"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Inertial Observability",
+    "Gravity Alignment"
+  ],
+  [
+    "SLAM",
+    "State, Geometry & Probabilistic Modeling",
+    "Observability and Uncertainty",
+    "Inertial Observability",
+    "Scale Observability"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Feature Extraction",
+    "Keypoints and Descriptors"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Feature Extraction",
+    "Lines and Planes"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Feature Extraction",
+    "Learned Features"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Direct Measurement Formation",
+    "Photometric Residuals"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Direct Measurement Formation",
+    "Range Residuals"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Direct Measurement Formation",
+    "Event Residuals"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Registration",
+    "ICP"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Registration",
+    "Scan-to-Map Matching"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Raw-to-Pseudo Measurement Processing",
+    "Registration",
+    "Point-to-Plane Matching"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Frame-to-Frame Motion Estimation",
+    "Visual Odometry"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Frame-to-Frame Motion Estimation",
+    "LiDAR Odometry"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Frame-to-Frame Motion Estimation",
+    "Radar Odometry"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Frame-to-Frame Motion Estimation",
+    "Event Odometry"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Preintegration and Propagation",
+    "IMU Preintegration"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Preintegration and Propagation",
+    "Leg Odometry Propagation"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Odometry Front-End",
+    "Preintegration and Propagation",
+    "Wheel / Kinematic Propagation"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Place Recognition",
+    "Visual Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Place Recognition",
+    "LiDAR Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Place Recognition",
+    "Radar Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Place Recognition",
+    "Cross-Modal Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Loop Closure Validation",
+    "Geometric Verification"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Loop Closure Validation",
+    "Temporal Consistency"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Place Recognition and Loop Closure",
+    "Loop Closure Validation",
+    "Outlier-aware Loop Closure"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Correspondence Estimation",
+    "Landmark Association"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Correspondence Estimation",
+    "Scan Correspondence"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Correspondence Estimation",
+    "Object Association"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Ambiguity Handling",
+    "Perceptual Aliasing"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Ambiguity Handling",
+    "Incorrect Association Detection"
+  ],
+  [
+    "SLAM",
+    "Measurement Front-End",
+    "Data Association",
+    "Ambiguity Handling",
+    "Multi-Hypothesis Association"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Linear Least Squares",
+    "Normal Equations"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Linear Least Squares",
+    "QR / Cholesky"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Linear Least Squares",
+    "Sparse Linear Algebra"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Nonlinear Optimization",
+    "Gauss-Newton"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Nonlinear Optimization",
+    "Levenberg-Marquardt"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Least-Squares Solvers",
+    "Nonlinear Optimization",
+    "Trust Region Methods"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Variable Elimination",
+    "Bayes Trees"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Variable Elimination",
+    "Fill-in Reduction"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Variable Elimination",
+    "Schur Complement"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Incremental SLAM",
+    "iSAM-style Updates"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Incremental SLAM",
+    "Fixed-Lag Smoothing"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Sparsity and Incrementality",
+    "Incremental SLAM",
+    "Marginalization"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Robust Cost Functions",
+    "M-estimators"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Robust Cost Functions",
+    "Switchable Constraints"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Robust Cost Functions",
+    "Graduated Non-Convexity"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Outlier-Robust Optimization",
+    "Max-Mixture Models"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Outlier-Robust Optimization",
+    "Pairwise Consistency"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Robust Back-End",
+    "Outlier-Robust Optimization",
+    "Robust Pose Graph Optimization"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Certifiably Optimal SLAM",
+    "Semidefinite Relaxation"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Certifiably Optimal SLAM",
+    "Tightness Certification"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Certifiably Optimal SLAM",
+    "SE-Sync-style Solvers"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Differentiable Optimization",
+    "Differentiating Through Least Squares"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Differentiable Optimization",
+    "Implicit Differentiation"
+  ],
+  [
+    "SLAM",
+    "Back-End Optimization & Inference",
+    "Certifiable and Differentiable Solvers",
+    "Differentiable Optimization",
+    "Differentiation on Manifolds"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Landmark Maps",
+    "Point Landmarks"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Landmark Maps",
+    "Line Landmarks"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Landmark Maps",
+    "Plane Landmarks"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Pose Graph Maps",
+    "Topological Graphs"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Pose Graph Maps",
+    "Submap Graphs"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Sparse Geometric Maps",
+    "Pose Graph Maps",
+    "Multi-Session Graphs"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Range-Derived Maps",
+    "Occupancy Grids"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Range-Derived Maps",
+    "TSDF / ESDF"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Range-Derived Maps",
+    "Point Cloud Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Range-Derived Maps",
+    "Mesh Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Dense Reconstruction",
+    "Real-Time Dense Reconstruction"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Dense Reconstruction",
+    "RGB-D Reconstruction"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dense Geometric Maps",
+    "Dense Reconstruction",
+    "Large-Scale Dense Mapping"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Neural Implicit Maps",
+    "NeRF Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Neural Implicit Maps",
+    "Neural SDF Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Neural Implicit Maps",
+    "Learned Occupancy Fields"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Gaussian Maps",
+    "3D Gaussian Splatting"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Gaussian Maps",
+    "Differentiable Rendering Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Neural and Differentiable Maps",
+    "Gaussian Maps",
+    "Hybrid Explicit-Implicit Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Metric-Semantic Maps",
+    "Sparse Semantic Landmarks"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Metric-Semantic Maps",
+    "Dense Semantic Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Metric-Semantic Maps",
+    "Object-Level Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Hierarchical Spatial Maps",
+    "3D Scene Graphs"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Hierarchical Spatial Maps",
+    "Room / Place Graphs"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Semantic and Structured Maps",
+    "Hierarchical Spatial Maps",
+    "Open-Vocabulary Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Dynamic SLAM Maps",
+    "Short-Term Dynamic Objects"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Dynamic SLAM Maps",
+    "Long-Term Lifelong Changes"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Dynamic SLAM Maps",
+    "Multi-Body Scene Models"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Deformable SLAM Maps",
+    "Non-Rigid Surfaces"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Deformable SLAM Maps",
+    "Deformable Object Maps"
+  ],
+  [
+    "SLAM",
+    "Map Representations",
+    "Dynamic and Deformable Maps",
+    "Deformable SLAM Maps",
+    "Elastic Scene Models"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Camera Models and Pipelines",
+    "Monocular SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Camera Models and Pipelines",
+    "Stereo SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Camera Models and Pipelines",
+    "RGB-D SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Visual System Families",
+    "Feature-Based Visual SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Visual System Families",
+    "Direct Visual SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Visual SLAM",
+    "Visual System Families",
+    "Hybrid Visual SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR Sensing",
+    "2D LiDAR"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR Sensing",
+    "3D Spinning LiDAR"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR Sensing",
+    "Solid-State LiDAR"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR System Families",
+    "LOAM-style Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR System Families",
+    "Scan-Matching SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "LiDAR SLAM",
+    "LiDAR System Families",
+    "LiDAR-Inertial SLAM"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar Sensing",
+    "FMCW Radar"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar Sensing",
+    "Imaging Radar"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar Sensing",
+    "4D Radar"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar System Families",
+    "Radar Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar System Families",
+    "Radar Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Radar SLAM",
+    "Radar System Families",
+    "Radar Mapping"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event Sensor Processing",
+    "Event Representations"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event Sensor Processing",
+    "Event Feature Tracking"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event Sensor Processing",
+    "Event Time Surfaces"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event System Families",
+    "Event Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event System Families",
+    "Event-Inertial Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Event-Based SLAM",
+    "Event System Families",
+    "Event-Based Mapping"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Inertial Odometry",
+    "Strapdown Integration"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Inertial Odometry",
+    "IMU Preintegration"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Inertial Odometry",
+    "Visual-Inertial Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Leg Odometry",
+    "Contact Estimation"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Leg Odometry",
+    "Kinematic Factors"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Leg Odometry",
+    "Legged State Estimation"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Other Aiding Signals",
+    "Wheel Odometry"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Other Aiding Signals",
+    "GNSS Factors"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Proprioceptive and Aided Odometry",
+    "Other Aiding Signals",
+    "UWB / Radio Factors"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Sensor Fusion Architectures",
+    "Tightly Coupled Fusion"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Sensor Fusion Architectures",
+    "Loosely Coupled Fusion"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Sensor Fusion Architectures",
+    "Cross-Modal Factors"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Calibration and Synchronization",
+    "Extrinsic Calibration"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Calibration and Synchronization",
+    "Temporal Calibration"
+  ],
+  [
+    "SLAM",
+    "Sensor & Odometry Modalities",
+    "Multi-Modal Fusion",
+    "Calibration and Synchronization",
+    "Online Calibration"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Front-End Robustness",
+    "RANSAC-style Rejection"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Front-End Robustness",
+    "Descriptor Ambiguity Handling"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Front-End Robustness",
+    "Dynamic Object Rejection"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Back-End Robustness",
+    "Robust Kernels"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Back-End Robustness",
+    "Certifiable Outlier Rejection"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Outlier and Failure Robustness",
+    "Back-End Robustness",
+    "Failure Recovery"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Metrics",
+    "Absolute Trajectory Error"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Metrics",
+    "Relative Pose Error"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Metrics",
+    "Map Quality Metrics"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Metrics",
+    "Place Recognition Metrics"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Datasets and Benchmarks",
+    "Visual SLAM Datasets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Datasets and Benchmarks",
+    "LiDAR SLAM Datasets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Datasets and Benchmarks",
+    "Radar SLAM Datasets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Datasets and Benchmarks",
+    "Event SLAM Datasets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Evaluation",
+    "Datasets and Benchmarks",
+    "Legged SLAM Datasets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Real-Time Performance",
+    "Embedded Runtime"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Real-Time Performance",
+    "Latency Budgets"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Real-Time Performance",
+    "Memory Growth Control"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Deployment Conditions",
+    "GPS-Denied Operation"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Deployment Conditions",
+    "Large-Scale Operation"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Deployment Conditions",
+    "Long-Term Operation"
+  ],
+  [
+    "SLAM",
+    "Robustness, Evaluation & Operations",
+    "Operational Constraints",
+    "Deployment Conditions",
+    "Resource-Constrained Operation"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Geometry",
+    "Depth Prediction"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Geometry",
+    "Camera Pose Prediction"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Geometry",
+    "Optical Flow"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Correspondence",
+    "Feature Matching"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Correspondence",
+    "Dense Matching"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Correspondence",
+    "Learned Place Recognition"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Optimization",
+    "Differentiable Bundle Adjustment"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Optimization",
+    "DROID-SLAM-style Recurrent Updates"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Learning for Classical SLAM Components",
+    "Learned Optimization",
+    "Learned Priors"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Foundation Models for Spatial AI",
+    "Vision-Language Grounding"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Foundation Models for Spatial AI",
+    "Open-Vocabulary Recognition"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Foundation Models for Spatial AI",
+    "Large-Scale Semantic Priors"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Open-World Mapping",
+    "Open-Set Object Maps"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Open-World Mapping",
+    "Language-Grounded Maps"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Foundation and Open-World Spatial AI",
+    "Open-World Mapping",
+    "Continual Map Expansion"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Spatial AI Graphs",
+    "Factor-Graph Computation"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Spatial AI Graphs",
+    "Scene-Graph Computation"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Spatial AI Graphs",
+    "Hybrid Neural-Symbolic Graphs"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Distributed and Hardware-Aware Computation",
+    "Processor / Sensor Co-Design"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Distributed and Hardware-Aware Computation",
+    "Gaussian Belief Propagation"
+  ],
+  [
+    "SLAM",
+    "Learning, Semantics & Spatial AI",
+    "Computational Structure",
+    "Distributed and Hardware-Aware Computation",
+    "Continual Learning in Graphs"
+  ]
+]

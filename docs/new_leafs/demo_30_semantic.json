@@ -1,0 +1,578 @@
+[
+  {
+    "id": 1,
+    "title": "Socratic Models: Composing Zero-Shot Multimodal Reasoning with Language",
+    "primary_path": ["SLAM", "Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Foundation Models for Spatial AI", "Vision-Language Grounding"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Foundation Models for Spatial AI", "Vision-Language Grounding"],
+        "role": "primary",
+        "confidence": 0.92,
+        "reason": "Socratic Models composes pretrained VLMs and LLMs for zero-shot multimodal reasoning. The Handbook citation context (Black-Rangarajan duality) appears to be a citation-key collision with an unrelated paper; the actual paper is a foundation-model VLM composition work."
+      }
+    ],
+    "uncertainty": "Current label was derived from a Handbook context that does not match the paper title; confidence based on title content rather than the (wrong) cited section."
+  },
+  {
+    "id": 3,
+    "title": "Kimera2: Robust and Accurate Metric-Semantic SLAM in the Real World",
+    "primary_path": ["SLAM", "Map Representations", "Semantic and Structured Maps", "Metric-Semantic Maps", "Dense Semantic Maps"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Semantic and Structured Maps", "Metric-Semantic Maps", "Dense Semantic Maps"],
+        "role": "primary",
+        "confidence": 0.88,
+        "reason": "Kimera2 is centrally a metric-semantic SLAM system that builds dense semantic 3D meshes; this is the principal contribution beyond the underlying VIO."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry", "Visual-Inertial Odometry"],
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Built on a stereo-VIO front-end and explicitly cited in the Handbook's VIO practical considerations section."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 5,
+    "title": "GPT-4 Technical Report",
+    "primary_path": ["SLAM", "Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Foundation Models for Spatial AI", "Large-Scale Semantic Priors"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Foundation Models for Spatial AI", "Large-Scale Semantic Priors"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "GPT-4 is a large-scale foundation model providing world/semantic priors. Cited in 17.3 Open-World Mapping and 17.4.2 (whether maps can be replaced by long-context VLMs)."
+      },
+      {
+        "path": ["SLAM", "Learning, Semantics & Spatial AI", "Foundation and Open-World Spatial AI", "Open-World Mapping", "Language-Grounded Maps"],
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Used as the language backbone for language-grounded mapping discussions in the open-world chapter."
+      }
+    ],
+    "uncertainty": "GPT-4 is a generic foundation model; primary leaf depends on whether it is read as 'semantic prior' (chosen) or 'open-set object map' (current label, less precise)."
+  },
+  {
+    "id": 6,
+    "title": "CFEAR Radarodometry - Conservative Filtering for Efficient and Accurate Radar Odometry",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Radar SLAM", "Radar System Families", "Radar Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Radar SLAM", "Radar System Families", "Radar Odometry"],
+        "role": "primary",
+        "confidence": 0.93,
+        "reason": "CFEAR is a full radar-odometry system contribution, exactly matching the radar SLAM family leaf."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation", "Radar Odometry"],
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "Also contributes a registration-based front-end with conservative filtering and k-strongest peak detection."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 10,
+    "title": "Convergence of Iteratively Re-weighted Least Squares to Robust M-estimators",
+    "primary_path": ["SLAM", "Back-End Optimization & Inference", "Robust Back-End", "Robust Cost Functions", "M-estimators"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Back-End Optimization & Inference", "Robust Back-End", "Robust Cost Functions", "M-estimators"],
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "Theoretical convergence result for IRLS as a solver for M-estimators; canonical M-estimator-theory citation. Cited in the Handbook's robustness-to-incorrect-association section."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 25,
+    "title": "BFAR: Improving Radar Odometry Estimation Using a Bounded False Alarm Rate Detector",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Radar SLAM", "Radar System Families", "Radar Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Radar SLAM", "Radar System Families", "Radar Odometry"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "Full radar-odometry system using a learned BFAR detector; sits in the radar SLAM family."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation", "Radar Odometry"],
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "BFAR is also a radar-front-end detector contribution improving point selection prior to scan registration."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 30,
+    "title": "VISTA 2.0: An Open, Data-driven Simulator for Multimodal Sensing and Policy Learning for Autonomous Vehicles",
+    "primary_path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Visual SLAM Datasets"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Visual SLAM Datasets"],
+        "role": "primary",
+        "confidence": 0.6,
+        "reason": "VISTA 2.0 is an AV simulator covering RGB, event, and LiDAR; the closest taxonomy leaf is Visual SLAM Datasets given its primary RGB camera focus and end-to-end policy learning use case."
+      },
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Event SLAM Datasets"],
+        "role": "secondary",
+        "confidence": 0.5,
+        "reason": "Cited in the event-camera datasets/simulators section because VISTA 2.0 also synthesizes event streams."
+      }
+    ],
+    "uncertainty": "VISTA 2.0 is multi-modal; current label (event-only) over-narrows it. No 'simulator' leaf exists, so dataset leaves are the closest fit."
+  },
+  {
+    "id": 50,
+    "title": "Batch Continuous-Time Trajectory Estimation as Exactly Sparse Gaussian Process Regression",
+    "primary_path": ["SLAM", "State, Geometry & Probabilistic Modeling", "State Representations", "Continuous-Time Trajectories", "Gaussian Process Trajectories"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "State, Geometry & Probabilistic Modeling", "State Representations", "Continuous-Time Trajectories", "Gaussian Process Trajectories"],
+        "role": "primary",
+        "confidence": 0.97,
+        "reason": "Anderson and Barfoot's foundational GP-trajectory paper; the canonical reference for sparse-GP continuous-time SLAM."
+      }
+    ],
+    "uncertainty": "Current label ('SLAM Eras > Spatial AI Era') is incorrect; this is a state-representation/continuous-time paper."
+  },
+  {
+    "id": 75,
+    "title": "Removing Dynamic Objects from 3D Maps Using Geometry and Learning",
+    "primary_path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Short-Term Dynamic Objects"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Short-Term Dynamic Objects"],
+        "role": "primary",
+        "confidence": 0.88,
+        "reason": "Targets removal of short-term dynamic objects from 3D maps to keep static map clean; cited in 15.2 Short-term Dynamics and Dynamic SLAM."
+      },
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Outlier and Failure Robustness", "Front-End Robustness", "Dynamic Object Rejection"],
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Dynamic object rejection at the front-end is the operational mechanism that produces the cleaned maps."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 80,
+    "title": "Convergence of Alternating Optimization",
+    "primary_path": ["SLAM", "Back-End Optimization & Inference", "Robust Back-End", "Robust Cost Functions", "M-estimators"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Back-End Optimization & Inference", "Robust Back-End", "Robust Cost Functions", "M-estimators"],
+        "role": "primary",
+        "confidence": 0.78,
+        "reason": "Alternating-minimization convergence theory underlies the IRLS / Black-Rangarajan algorithmic schemes used for M-estimators in robust SLAM optimization."
+      }
+    ],
+    "uncertainty": "Pure optimization-theory paper; closest SLAM-relevant genus is M-estimators since the Handbook uses it for B-R duality / alternating min in robust optimization."
+  },
+  {
+    "id": 100,
+    "title": "Continuous 3D Scan-Matching with a Spinning 2D Laser",
+    "primary_path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation", "LiDAR Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation", "LiDAR Odometry"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "Continuous-time 3D LiDAR odometry from a rolling 2D laser; classic LiDAR odometry contribution."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Raw-to-Pseudo Measurement Processing", "Registration", "Scan-to-Map Matching"],
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "The method is fundamentally scan-matching with motion compensation; contributes to the registration genus."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 150,
+    "title": "Attention and Anticipation in Fast Visual-Inertial Navigation",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry", "Visual-Inertial Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry", "Visual-Inertial Odometry"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "VIO system with attention-based feature selection for fast navigation."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 200,
+    "title": "Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots",
+    "primary_path": ["SLAM", "Problem & System Context", "SLAM Problem Definition", "Autonomy Role", "Manipulation Support"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Problem & System Context", "SLAM Problem Definition", "Autonomy Role", "Manipulation Support"],
+        "role": "primary",
+        "confidence": 0.7,
+        "reason": "UMI is fundamentally a robot teleoperation/teaching framework for manipulation; in the SLAM taxonomy the closest fit is the autonomy role of supporting manipulation, not open-world mapping."
+      }
+    ],
+    "uncertainty": "UMI is barely a SLAM paper; current label (Open-Set Object Maps) is poor. Listing only one path with moderate confidence to avoid inflating membership."
+  },
+  {
+    "id": 250,
+    "title": "Factor Graphs: Exploiting Structure in Robotics",
+    "primary_path": ["SLAM", "State, Geometry & Probabilistic Modeling", "Factor Graph Modeling", "Graphical Model Formulation", "Variables and Factors"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "State, Geometry & Probabilistic Modeling", "Factor Graph Modeling", "Graphical Model Formulation", "Variables and Factors"],
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "Dellaert and Kaess' canonical factor-graphs reference defining variables, factors, and the graphical structure used throughout SLAM."
+      },
+      {
+        "path": ["SLAM", "Back-End Optimization & Inference", "Sparsity and Incrementality", "Variable Elimination", "Bayes Trees"],
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "Also contains the Bayes-tree elimination machinery that underlies iSAM-style incremental SLAM."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 300,
+    "title": "Closed-form Preintegration Methods for Graph-based Visual-Inertial Navigation",
+    "primary_path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Preintegration and Propagation", "IMU Preintegration"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Preintegration and Propagation", "IMU Preintegration"],
+        "role": "primary",
+        "confidence": 0.93,
+        "reason": "Eckenhoff et al.'s closed-form IMU preintegration paper; central preintegration-formula contribution."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry", "Visual-Inertial Odometry"],
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Preintegration is integrated into a graph-based VIO pipeline."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 350,
+    "title": "Unified Temporal and Spatial Calibration for Multi-Sensor Systems",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Multi-Modal Fusion", "Calibration and Synchronization", "Temporal Calibration"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Multi-Modal Fusion", "Calibration and Synchronization", "Temporal Calibration"],
+        "role": "primary",
+        "confidence": 0.92,
+        "reason": "Furgale et al.'s unified spatio-temporal calibration paper; canonical reference for joint extrinsic + time-offset estimation."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Multi-Modal Fusion", "Calibration and Synchronization", "Extrinsic Calibration"],
+        "role": "secondary",
+        "confidence": 0.88,
+        "reason": "Also estimates spatial extrinsics; the paper explicitly unifies both."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 400,
+    "title": "Non-linear Constraint Network Optimization for Efficient Map Learning (TORO)",
+    "primary_path": ["SLAM", "Back-End Optimization & Inference", "Least-Squares Solvers", "Nonlinear Optimization", "Gauss-Newton"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Back-End Optimization & Inference", "Least-Squares Solvers", "Nonlinear Optimization", "Gauss-Newton"],
+        "role": "primary",
+        "confidence": 0.78,
+        "reason": "Grisetti et al.'s TORO is a tree-parameterized stochastic-gradient pose-graph solver; an iterative nonlinear least-squares method, NOT a certifiable/SDP-style solver."
+      },
+      {
+        "path": ["SLAM", "State, Geometry & Probabilistic Modeling", "Factor Graph Modeling", "Graphical Model Formulation", "Pose-Graph Models"],
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "Foundational pose-graph optimization formulation referenced widely."
+      }
+    ],
+    "uncertainty": "Current label ('SE-Sync-style / Certifiably Optimal') is wrong; TORO predates and is independent of certifiable SLAM."
+  },
+  {
+    "id": 450,
+    "title": "BodySLAM++: Fast and Tightly-Coupled Visual-Inertial Camera and Human Motion Tracking",
+    "primary_path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Multi-Body Scene Models"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Multi-Body Scene Models"],
+        "role": "primary",
+        "confidence": 0.85,
+        "reason": "Jointly tracks the camera and an articulated human body; canonical multi-body dynamic SLAM contribution."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Inertial Odometry", "Visual-Inertial Odometry"],
+        "role": "secondary",
+        "confidence": 0.82,
+        "reason": "Built on a tightly-coupled VIO front-end."
+      },
+      {
+        "path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Deformable SLAM Maps", "Deformable Object Maps"],
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Human-body model is articulated/deformable; touches the deformable-map genus."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 500,
+    "title": "ICRA Quadruped Robot Challenge",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Leg Odometry", "Legged State Estimation"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Leg Odometry", "Legged State Estimation"],
+        "role": "primary",
+        "confidence": 0.88,
+        "reason": "ICRA challenge focused on quadruped state estimation in unstructured terrain; primary contribution is legged-robot SLAM benchmarking."
+      },
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Legged SLAM Datasets"],
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "Provides a quadruped-specific benchmark/competition dataset."
+      }
+    ],
+    "uncertainty": "Current label (VIO) is clearly wrong; this is legged."
+  },
+  {
+    "id": 600,
+    "title": "Special Issue on Advancements and Lessons Learned during Phases I and II of the DARPA Subterranean Challenge",
+    "primary_path": ["SLAM", "Robustness, Evaluation & Operations", "Operational Constraints", "Deployment Conditions", "GPS-Denied Operation"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Operational Constraints", "Deployment Conditions", "GPS-Denied Operation"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "DARPA SubT is the canonical large-scale GPS-denied multi-robot SLAM deployment study."
+      },
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Operational Constraints", "Deployment Conditions", "Large-Scale Operation"],
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Multi-kilometer subterranean operations with multi-robot fleets are large-scale by definition."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 700,
+    "title": "Robot Pose Estimation in Unknown Environments by Matching 2D Range Scans (Lu and Milios)",
+    "primary_path": ["SLAM", "Problem & System Context", "Historical and Scope Framing", "SLAM Eras", "Probabilistic Robotics Era"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Problem & System Context", "Historical and Scope Framing", "SLAM Eras", "Probabilistic Robotics Era"],
+        "role": "primary",
+        "confidence": 0.88,
+        "reason": "Lu and Milios 1997 is the seminal pose-graph / scan-matching SLAM paper, foundational for the probabilistic robotics era."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Raw-to-Pseudo Measurement Processing", "Registration", "Scan-to-Map Matching"],
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Introduced a foundational 2D-range-scan matching scheme that is still cited as the basis of modern scan-matching SLAM."
+      },
+      {
+        "path": ["SLAM", "State, Geometry & Probabilistic Modeling", "Factor Graph Modeling", "Graphical Model Formulation", "Pose-Graph Models"],
+        "role": "secondary",
+        "confidence": 0.78,
+        "reason": "Defined the pose-graph formulation that became the dominant SLAM back-end model."
+      }
+    ],
+    "uncertainty": "Current label ('Spatial AI Era') is anachronistic; this 1997 paper predates the spatial-AI era by ~20 years."
+  },
+  {
+    "id": 800,
+    "title": "DTAM: Dense Tracking and Mapping in Real-Time",
+    "primary_path": ["SLAM", "Map Representations", "Dense Geometric Maps", "Dense Reconstruction", "Real-Time Dense Reconstruction"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Dense Geometric Maps", "Dense Reconstruction", "Real-Time Dense Reconstruction"],
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "DTAM is the canonical real-time dense visual SLAM paper; its principal contribution is dense reconstruction at frame rate."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Visual SLAM", "Visual System Families", "Direct Visual SLAM"],
+        "role": "secondary",
+        "confidence": 0.88,
+        "reason": "DTAM is a direct method using photometric residuals over the dense depth map."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Raw-to-Pseudo Measurement Processing", "Direct Measurement Formation", "Photometric Residuals"],
+        "role": "secondary",
+        "confidence": 0.75,
+        "reason": "Introduces a per-pixel photometric residual formulation against a dense depth model."
+      }
+    ],
+    "uncertainty": "Current label ('Processor / Sensor Co-Design') is incorrect; DTAM is a representation/dense-reconstruction paper, not co-design."
+  },
+  {
+    "id": 900,
+    "title": "Image Change Detection Algorithms: A Systematic Survey",
+    "primary_path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Long-Term Lifelong Changes"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Dynamic and Deformable Maps", "Dynamic SLAM Maps", "Long-Term Lifelong Changes"],
+        "role": "primary",
+        "confidence": 0.78,
+        "reason": "A survey of image-domain change detection cited as background for long-term/lifelong SLAM map updates."
+      }
+    ],
+    "uncertainty": "Survey paper from CV literature; SLAM relevance is secondary, hence single-path moderate-confidence."
+  },
+  {
+    "id": 1000,
+    "title": "Robust Place Recognition Using an Imaging LiDAR",
+    "primary_path": ["SLAM", "Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition", "LiDAR Place Recognition"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition", "LiDAR Place Recognition"],
+        "role": "primary",
+        "confidence": 0.85,
+        "reason": "Performs LiDAR-based place recognition by treating imaging-LiDAR returns as range images; data origin is still LiDAR."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition", "Cross-Modal Place Recognition"],
+        "role": "secondary",
+        "confidence": 0.55,
+        "reason": "Uses image-style descriptors on LiDAR range/intensity, so retains some cross-modal flavor; weaker than the LiDAR primary."
+      }
+    ],
+    "uncertainty": "Imaging-LiDAR straddles LiDAR vs cross-modal; primary moved from cross-modal to LiDAR because the underlying sensor is LiDAR."
+  },
+  {
+    "id": 1100,
+    "title": "A Brief History of Walking Machines (Springer, 1985)",
+    "primary_path": ["SLAM", "Problem & System Context", "Historical and Scope Framing", "SLAM Eras", "Probabilistic Robotics Era"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Problem & System Context", "Historical and Scope Framing", "SLAM Eras", "Probabilistic Robotics Era"],
+        "role": "primary",
+        "confidence": 0.7,
+        "reason": "Historical Springer chapter on walking-robot history; cited as background context in the Handbook's legged-robot historical note."
+      },
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Leg Odometry", "Legged State Estimation"],
+        "role": "secondary",
+        "confidence": 0.6,
+        "reason": "Cited inside the legged state-estimation chapter to introduce walking-machine antecedents (e.g. GE Walking Truck)."
+      }
+    ],
+    "uncertainty": "1985 history reference predates SLAM as a discipline; closest era leaf is Probabilistic Robotics Era as a coarse historical bucket."
+  },
+  {
+    "id": 1150,
+    "title": "F-LOAM: Fast LiDAR Odometry and Mapping",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "LiDAR SLAM", "LiDAR System Families", "LOAM-style Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "LiDAR SLAM", "LiDAR System Families", "LOAM-style Odometry"],
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "Direct descendant of LOAM with optimized feature association; canonical LOAM-family system."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Frame-to-Frame Motion Estimation", "LiDAR Odometry"],
+        "role": "secondary",
+        "confidence": 0.82,
+        "reason": "Front-end edge/plane feature-based LiDAR odometry."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 1200,
+    "title": "Wheel-SLAM: Simultaneous Localization and Terrain Mapping Using One Wheel-Mounted IMU",
+    "primary_path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Other Aiding Signals", "Wheel Odometry"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Sensor & Odometry Modalities", "Proprioceptive and Aided Odometry", "Other Aiding Signals", "Wheel Odometry"],
+        "role": "primary",
+        "confidence": 0.9,
+        "reason": "Wheel-mounted IMU exploits wheel kinematics; the central novelty is wheel-aided proprioceptive odometry."
+      },
+      {
+        "path": ["SLAM", "Measurement Front-End", "Odometry Front-End", "Preintegration and Propagation", "Wheel / Kinematic Propagation"],
+        "role": "secondary",
+        "confidence": 0.8,
+        "reason": "Contributes a wheel-IMU propagation/preintegration model used as a front-end factor."
+      }
+    ],
+    "uncertainty": "Current label (VIO) is wrong; this is single-IMU wheel SLAM, not visual-inertial."
+  },
+  {
+    "id": 1250,
+    "title": "M2DGR: A Multi-Sensor and Multi-Scenario SLAM Dataset for Ground Robots",
+    "primary_path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Visual SLAM Datasets"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "Visual SLAM Datasets"],
+        "role": "primary",
+        "confidence": 0.78,
+        "reason": "Ground-robot SLAM dataset with stereo + RGB + IR cameras as primary modality, plus IMU/GNSS/LiDAR. Visual SLAM Datasets is the closest leaf for a ground-robot multi-camera benchmark."
+      },
+      {
+        "path": ["SLAM", "Robustness, Evaluation & Operations", "Evaluation", "Datasets and Benchmarks", "LiDAR SLAM Datasets"],
+        "role": "secondary",
+        "confidence": 0.7,
+        "reason": "Also includes 3D LiDAR sequences widely used for LiDAR SLAM evaluation."
+      }
+    ],
+    "uncertainty": "Current label (Event SLAM Datasets) is wrong; M2DGR has no event camera."
+  },
+  {
+    "id": 1300,
+    "title": "StarMap for Category-Agnostic Keypoint and Viewpoint Estimation",
+    "primary_path": ["SLAM", "Map Representations", "Semantic and Structured Maps", "Metric-Semantic Maps", "Sparse Semantic Landmarks"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Map Representations", "Semantic and Structured Maps", "Metric-Semantic Maps", "Sparse Semantic Landmarks"],
+        "role": "primary",
+        "confidence": 0.78,
+        "reason": "In the SLAM context StarMap is used as a category-agnostic semantic-keypoint detector to instantiate sparse semantic landmarks."
+      },
+      {
+        "path": ["SLAM", "Learning, Semantics & Spatial AI", "Learning for Classical SLAM Components", "Learned Geometry", "Camera Pose Prediction"],
+        "role": "secondary",
+        "confidence": 0.55,
+        "reason": "Also predicts viewpoint from images, a learned-geometry component used in the SLAM pipeline."
+      }
+    ],
+    "uncertainty": ""
+  },
+  {
+    "id": 1320,
+    "title": "MinkLoc3D-SI: 3D LiDAR Place Recognition with Sparse Convolutions, Spherical Coordinates, and Intensity",
+    "primary_path": ["SLAM", "Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition", "LiDAR Place Recognition"],
+    "matched_paths": [
+      {
+        "path": ["SLAM", "Measurement Front-End", "Place Recognition and Loop Closure", "Place Recognition", "LiDAR Place Recognition"],
+        "role": "primary",
+        "confidence": 0.95,
+        "reason": "MinkLoc3D-SI is a dedicated LiDAR-based VPR descriptor using sparse convolutions with intensity."
+      },
+      {
+        "path": ["SLAM", "Learning, Semantics & Spatial AI", "Learning for Classical SLAM Components", "Learned Correspondence", "Learned Place Recognition"],
+        "role": "secondary",
+        "confidence": 0.85,
+        "reason": "Learning-based descriptor; squarely a learned-place-recognition contribution."
+      }
+    ],
+    "uncertainty": ""
+  }
+]
