@@ -1412,7 +1412,7 @@
       expandedKeys.add("SLAM");
       const entry = entryForLineage(lineageFromSlug(params.get("path"))) || allNodes[0];
       const searchEntry = searchEl.value.trim() ? bestEntryForSearch(searchEl.value.trim()) : null;
-      selectNode(searchEntry || entry, { toggle: false, updateUrl });
+      selectNode(searchEntry || entry, { toggle: false, updateUrl, persistExpansion: !searchEntry });
       if (updateUrl) updateUrlState({ replace: replaceUrl });
     }
 
@@ -1738,17 +1738,20 @@
     function selectNode(entry, options = {}) {
       const { toggle = true } = options;
       const { updateUrl = true } = options;
+      const { persistExpansion = true } = options;
       const { node, lineage, depth, button } = entry;
       const wasExpanded = expandedKeys.has(entry.key);
       selected = { node, lineage, depth, color: colorOf(lineage) };
-      expandAncestors(entry);
-      if (childCount(node)) {
-        collapseSiblings(entry);
-        if (toggle && depth > 0 && wasExpanded) {
-          expandedKeys.delete(entry.key);
-          collapseDescendants(entry);
-        } else {
-          expandedKeys.add(entry.key);
+      if (persistExpansion) {
+        expandAncestors(entry);
+        if (childCount(node)) {
+          collapseSiblings(entry);
+          if (toggle && depth > 0 && wasExpanded) {
+            expandedKeys.delete(entry.key);
+            collapseDescendants(entry);
+          } else {
+            expandedKeys.add(entry.key);
+          }
         }
       }
       if (activeButton) activeButton.classList.remove("active");
@@ -1820,7 +1823,7 @@
       const query = searchEl.value.trim();
       const best = query && !selectedMatchesSearch(query) ? bestEntryForSearch(query) : null;
       if (best) {
-        selectNode(best, { toggle: false, updateUrl: false });
+        selectNode(best, { toggle: false, updateUrl: false, persistExpansion: false });
       } else {
         applyFilters();
         if (selected && selected.lineage) renderReferenceMap(selected.lineage);
