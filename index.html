@@ -1366,6 +1366,11 @@
       return allNodes.find((entry) => entry.key === key);
     }
 
+    function isPrefixLineage(prefix, lineage) {
+      if (prefix.length > lineage.length) return false;
+      return prefix.every((part, index) => lineage[index] === part);
+    }
+
     function setDepthFilter(nextDepth) {
       const validDepths = new Set(["all", "1", "2", "3", "4"]);
       depthFilter = validDepths.has(String(nextDepth)) ? String(nextDepth) : "1";
@@ -1406,7 +1411,8 @@
       expandedKeys.clear();
       expandedKeys.add("SLAM");
       const entry = entryForLineage(lineageFromSlug(params.get("path"))) || allNodes[0];
-      selectNode(entry, { toggle: false, updateUrl });
+      const searchEntry = searchEl.value.trim() ? bestEntryForSearch(searchEl.value.trim()) : null;
+      selectNode(searchEntry || entry, { toggle: false, updateUrl });
       if (updateUrl) updateUrlState({ replace: replaceUrl });
     }
 
@@ -1582,6 +1588,66 @@
       ].filter(Boolean).join(" ").toLowerCase();
     }
 
+    function lineageFromRefPath(path) {
+      return ["SLAM", path.phylum, path.class, path.order, path.genus].filter(Boolean);
+    }
+
+    function searchHitLineages(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      const byKey = new Map();
+      allNodes.forEach((entry) => {
+        if (entry.button.dataset.text.includes(q)) byKey.set(entry.key, entry.lineage);
+      });
+      references.forEach((ref) => {
+        if (!referenceSearchText(ref).includes(q)) return;
+        refPathList(ref).forEach((path) => {
+          const lineage = lineageFromRefPath(path);
+          byKey.set(lineageKey(lineage), lineage);
+        });
+      });
+      return [...byKey.values()].sort((a, b) => b.length - a.length || a.join(" > ").localeCompare(b.join(" > ")));
+    }
+
+    function searchExpansionKeys(hitLineages) {
+      const keys = new Set(["SLAM"]);
+      hitLineages.forEach((lineage) => {
+        for (let index = 1; index < lineage.length; index += 1) {
+          keys.add(lineageKey(lineage.slice(0, index)));
+        }
+      });
+      return keys;
+    }
+
+    function bestEntryForSearch(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return null;
+      const nodeHit = allNodes
+        .filter((entry) => entry.button.dataset.text.includes(q))
+        .sort((a, b) => {
+          const aExact = a.node.name.toLowerCase() === q ? 1 : 0;
+          const bExact = b.node.name.toLowerCase() === q ? 1 : 0;
+          return bExact - aExact || b.depth - a.depth || a.node.name.localeCompare(b.node.name);
+        })[0];
+      if (nodeHit) return nodeHit;
+      for (const ref of references) {
+        if (!referenceSearchText(ref).includes(q)) continue;
+        const paths = refPathList(ref);
+        const primary = paths.find((path) => path.role === "primary") || paths[0];
+        const primaryEntry = primary ? entryForLineage(lineageFromRefPath(primary)) : null;
+        if (primaryEntry) return primaryEntry;
+      }
+      const hit = searchHitLineages(query)[0];
+      return hit ? entryForLineage(hit) : null;
+    }
+
+    function selectedMatchesSearch(query) {
+      if (!selected || !selected.lineage) return false;
+      return searchHitLineages(query).some((lineage) => {
+        return isPrefixLineage(selected.lineage, lineage) || isPrefixLineage(lineage, selected.lineage);
+      });
+    }
+
     function renderReferenceMap(lineage) {
       const holder = document.getElementById("referenceMap");
       const query = searchEl.value.trim();
@@ -1704,6 +1770,8 @@
     function applyFilters() {
       const q = searchEl.value.trim().toLowerCase();
       const presetDepth = depthFilter === "all" ? 99 : Number(depthFilter);
+      const hitLineages = q ? searchHitLineages(q) : [];
+      const searchExpanded = q ? searchExpansionKeys(hitLineages) : expandedKeys;
 
       const visibleByExpansion = (entry) => {
         if (entry.depth === 0) return true;
@@ -1711,18 +1779,20 @@
         return entry.depth <= presetDepth || expandedKeys.has(entry.parent.key);
       };
 
-      const visitSearch = (entry) => {
-        const selfSearchOk = entry.button.dataset.text.includes(q);
-        const childVisible = entry.children.map(visitSearch).some(Boolean);
-        const keepBranch = selfSearchOk || childVisible;
-        entry.button.classList.toggle("hidden", !keepBranch);
-        entry.button.classList.toggle("ancestor", !selfSearchOk && childVisible);
-        entry.li.style.display = keepBranch ? "" : "none";
-        return keepBranch;
+      const visibleBySearch = (entry) => {
+        if (entry.depth === 0 || entry.depth === 1) return true;
+        return hitLineages.some((lineage) => isPrefixLineage(entry.lineage, lineage));
       };
 
       if (q) {
-        visitSearch(allNodes[0]);
+        allNodes.forEach((entry) => {
+          const visible = visibleBySearch(entry);
+          const selfSearchOk = entry.button.dataset.text.includes(q);
+          const isAncestor = !selfSearchOk && hitLineages.some((lineage) => isPrefixLineage(entry.lineage, lineage));
+          entry.button.classList.toggle("hidden", !visible);
+          entry.button.classList.toggle("ancestor", visible && isAncestor && entry.depth > 0);
+          entry.li.style.display = visible ? "" : "none";
+        });
       } else {
         allNodes.forEach((entry) => {
           const visible = visibleByExpansion(entry);
@@ -1733,7 +1803,7 @@
       }
 
       allNodes.forEach((entry) => {
-        entry.button.classList.toggle("collapsed", childCount(entry.node) > 0 && !expandedKeys.has(entry.key));
+        entry.button.classList.toggle("collapsed", childCount(entry.node) > 0 && !searchExpanded.has(entry.key));
       });
     }
 
@@ -1747,8 +1817,14 @@
       });
     });
     searchEl.addEventListener("input", () => {
-      applyFilters();
-      if (selected && selected.lineage) renderReferenceMap(selected.lineage);
+      const query = searchEl.value.trim();
+      const best = query && !selectedMatchesSearch(query) ? bestEntryForSearch(query) : null;
+      if (best) {
+        selectNode(best, { toggle: false, updateUrl: false });
+      } else {
+        applyFilters();
+        if (selected && selected.lineage) renderReferenceMap(selected.lineage);
+      }
       updateUrlState({ replace: true });
     });
     document.querySelectorAll(".language-switch button").forEach((button) => {
