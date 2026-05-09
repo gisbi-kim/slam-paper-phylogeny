@@ -128,12 +128,14 @@
       padding: 48px 24px 26px;
     }
     .hero-inner {
-      max-width: 1120px;
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
-      gap: 32px;
-      align-items: end;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+      justify-items: center;
+      text-align: center;
     }
     .eyebrow {
       margin: 0 0 10px;
@@ -144,7 +146,7 @@
     }
     h1 {
       margin: 0;
-      max-width: 760px;
+      max-width: 920px;
       font-size: 46px;
       line-height: 1.08;
       font-weight: 400;
@@ -159,7 +161,7 @@
     }
     .lede {
       margin: 16px 0 0;
-      max-width: 760px;
+      max-width: 880px;
       color: var(--text-secondary);
       font-size: 16px;
       line-height: 1.65;
@@ -169,34 +171,39 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       box-shadow: var(--elev-1);
-      padding: 18px;
+      padding: 12px;
+      width: 100%;
+      max-width: 920px;
+      justify-self: center;
+      text-align: left;
     }
     .summary-card h2 {
-      margin: 0 0 12px;
-      font-size: 16px;
-      font-weight: 500;
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 400;
     }
     .stats {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 8px;
     }
     .stat {
       background: var(--bg-subtle);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 12px;
+      padding: 7px 9px;
+      min-height: 48px;
     }
     .stat strong {
       display: block;
-      font: 700 24px/1 "Roboto Mono", monospace;
+      font: 500 17px/1 "Roboto Mono", monospace;
       color: var(--text);
     }
     .stat span {
       display: block;
-      margin-top: 5px;
+      margin-top: 3px;
       color: var(--text-secondary);
-      font-size: 12px;
+      font-size: 10.5px;
     }
     .workspace {
       max-width: 1280px;
@@ -223,6 +230,7 @@
       margin: 0;
       color: var(--text-secondary);
       font-size: 13px;
+      font-weight: 400;
     }
     .relation-legend {
       display: flex;
@@ -231,11 +239,13 @@
       margin: -2px 0 12px;
       color: var(--text-secondary);
       font-size: 12.5px;
+      font-weight: 400;
     }
     .legend-item {
       display: inline-flex;
       align-items: center;
       gap: 7px;
+      font-weight: 400;
     }
     .legend-line {
       width: 34px;
@@ -308,6 +318,229 @@
       text-anchor: middle;
       dominant-baseline: middle;
     }
+    .tree-view-panel {
+      margin: 24px 0 18px;
+      padding: 20px;
+    }
+    .tree-view-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .tree-view-head h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .tree-view-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    .tree-view-canvas {
+      width: 100%;
+      overflow-x: hidden;
+      height: min(720px, calc(100vh - 170px));
+      min-height: 480px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background:
+        linear-gradient(#fff, #fff),
+        radial-gradient(circle at 1px 1px, #dfe3ea 1px, transparent 0);
+      background-size: auto, 22px 22px;
+      touch-action: none;
+      cursor: grab;
+    }
+    .tree-view-canvas.dragging {
+      cursor: grabbing;
+    }
+    .mindmap-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      user-select: none;
+    }
+    .mindmap-viewport {
+      will-change: transform;
+    }
+    .mindmap-link {
+      fill: none;
+      stroke: color-mix(in srgb, var(--link-color, var(--primary)) 42%, #d6dbe3);
+      stroke-width: 2;
+    }
+    .mindmap-node {
+      cursor: pointer;
+      outline: none;
+    }
+    .mindmap-node rect {
+      fill: #fff;
+      stroke: color-mix(in srgb, var(--node-color, var(--primary)) 42%, var(--border));
+      stroke-width: 1.2;
+      filter: drop-shadow(0 1px 2px rgba(60,64,67,.14));
+    }
+    .mindmap-node:hover rect,
+    .mindmap-node:focus rect {
+      fill: color-mix(in srgb, var(--node-color, var(--primary)) 7%, #fff);
+      stroke-width: 1.8;
+    }
+    .mindmap-node.active rect {
+      fill: color-mix(in srgb, var(--node-color, var(--primary)) 12%, #fff);
+      stroke-width: 2.4;
+    }
+    .mindmap-node.ancestor {
+      opacity: .72;
+    }
+    .mindmap-level {
+      fill: var(--text-muted);
+      font: 500 10px/1 "Roboto Mono", monospace;
+      text-transform: uppercase;
+    }
+    .mindmap-name {
+      fill: var(--text);
+      font: 500 12.5px/1.3 "Google Sans", "Noto Sans KR", sans-serif;
+    }
+    .mindmap-meta {
+      fill: var(--text-muted);
+      font: 500 10px/1.2 "Roboto Mono", monospace;
+    }
+    .taxonomy-map,
+    .taxonomy-map ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .taxonomy-map {
+      min-width: 0;
+    }
+    .taxonomy-map ul {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 14px;
+      padding-top: 28px;
+    }
+    .taxonomy-map > li > ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+      width: 100%;
+      align-items: stretch;
+    }
+    .taxonomy-map > li > ul > li {
+      min-width: 0;
+    }
+    .taxonomy-map > li > ul > li > ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      padding-top: 14px;
+    }
+    .taxonomy-map > li > ul > li > ul::before,
+    .taxonomy-map > li > ul > li > ul li::before,
+    .taxonomy-map > li > ul > li > ul li::after {
+      display: none;
+    }
+    .taxonomy-map > li > ul > li > ul li {
+      width: 100%;
+      min-width: 0;
+    }
+    .taxonomy-map ul::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      width: 1px;
+      height: 15px;
+      background: var(--border-strong);
+    }
+    .taxonomy-map li {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 110px;
+    }
+    .taxonomy-map li::before,
+    .taxonomy-map li::after {
+      content: "";
+      position: absolute;
+      top: -15px;
+      width: 50%;
+      height: 15px;
+      border-top: 1px solid var(--border-strong);
+    }
+    .taxonomy-map li::before {
+      right: 50%;
+    }
+    .taxonomy-map li::after {
+      left: 50%;
+      border-left: 1px solid var(--border-strong);
+    }
+    .taxonomy-map li:first-child::before,
+    .taxonomy-map li:last-child::after {
+      border-top: 0;
+    }
+    .taxonomy-map li:only-child::before,
+    .taxonomy-map li:only-child::after,
+    .taxonomy-map > li::before,
+    .taxonomy-map > li::after {
+      display: none;
+    }
+    .tree-view-node {
+      width: 100%;
+      max-width: none;
+      min-height: 48px;
+      border: 1px solid color-mix(in srgb, var(--node-color, var(--primary)) 36%, var(--border));
+      border-top: 4px solid var(--node-color, var(--primary));
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(60,64,67,.12);
+      cursor: pointer;
+      padding: 8px 10px;
+      text-align: left;
+      font: inherit;
+    }
+    .tree-view-node:hover,
+    .tree-view-node:focus {
+      background: color-mix(in srgb, var(--node-color, var(--primary)) 7%, #fff);
+      box-shadow: var(--elev-1);
+      outline: none;
+    }
+    .tree-view-node.active {
+      background: color-mix(in srgb, var(--node-color, var(--primary)) 12%, #fff);
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--node-color, var(--primary)) 42%, transparent),
+        var(--elev-1);
+    }
+    .tree-view-node.ancestor {
+      opacity: .72;
+    }
+    .tree-view-node .tree-view-label {
+      display: block;
+      color: var(--text-muted);
+      font: 500 10px/1 "Roboto Mono", monospace;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tree-view-node .tree-view-name {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 12.5px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+    .tree-view-node .tree-view-meta {
+      display: block;
+      margin-top: 5px;
+      color: var(--text-muted);
+      font: 500 10px/1.2 "Roboto Mono", monospace;
+    }
     .toolbar {
       display: grid;
       grid-template-columns: auto minmax(260px, 1fr);
@@ -324,13 +557,17 @@
       padding: 0 14px;
       box-shadow: var(--elev-1);
     }
-    .searchbox span { color: var(--text-muted); }
+    .searchbox span {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
     .searchbox input {
       width: 100%;
       height: 46px;
       border: 0;
       outline: 0;
       font: inherit;
+      font-weight: 400;
       color: var(--text);
       background: transparent;
     }
@@ -378,6 +615,9 @@
       max-height: calc(100vh - 104px);
       overflow: auto;
       padding: 14px;
+    }
+    .tree {
+      padding-top: 12px;
     }
     .tree ul {
       list-style: none;
@@ -452,6 +692,7 @@
     .depth-3 .level { color: #7e3ff2; }
     .depth-4 .level { color: #c5225f; }
     .node-name {
+      font-weight: 400;
       overflow-wrap: anywhere;
     }
     .count {
@@ -475,12 +716,14 @@
       margin: 0 0 12px;
       color: var(--text-muted);
       font-size: 12px;
+      font-weight: 400;
       overflow-wrap: anywhere;
     }
     .reference-note {
       margin: -2px 0 12px;
       color: var(--text-secondary);
       font-size: 13px;
+      font-weight: 400;
       line-height: 1.55;
       max-width: 860px;
     }
@@ -495,7 +738,7 @@
     .detail h2 {
       margin: 0;
       font-size: 28px;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0;
       overflow-wrap: anywhere;
     }
@@ -504,6 +747,7 @@
       max-width: 760px;
       color: var(--text-secondary);
       font-size: 14px;
+      font-weight: 400;
       line-height: 1.65;
     }
     .badge-stack {
@@ -556,6 +800,10 @@
       text-align: left;
       font: inherit;
     }
+    .child-card.depth-1 { background: #f4fbf6; }
+    .child-card.depth-2 { background: #fffdf6; }
+    .child-card.depth-3 { background: #fbf8ff; }
+    .child-card.depth-4 { background: #fff8fb; }
     .child-card:hover {
       transform: translateX(2px);
       box-shadow: var(--elev-1);
@@ -609,19 +857,28 @@
     .rules h3 {
       margin: 0 0 8px;
       font-size: 15px;
+      font-weight: 400;
       color: var(--green);
     }
     .rules ul {
       margin: 0;
       padding-left: 18px;
       color: var(--text);
+      font-weight: 400;
     }
-    .rules li { margin: 5px 0; }
+    .rules li {
+      margin: 5px 0;
+      font-weight: 400;
+    }
+    .rules strong {
+      font-weight: 400;
+    }
     .chapter-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 8px;
       font-size: 12.5px;
+      font-weight: 400;
     }
     .chapter-table th {
       text-align: left;
@@ -638,10 +895,12 @@
       border-bottom: 1px solid var(--border);
       vertical-align: top;
       color: var(--text-secondary);
+      font-weight: 400;
     }
     .chapter-table td:first-child {
       color: var(--text);
       font-family: "Roboto Mono", monospace;
+      font-weight: 400;
       white-space: nowrap;
     }
     .search-hit {
@@ -661,7 +920,7 @@
     .path-role {
       min-width: 42px;
       color: var(--text-muted);
-      font: 600 10px/1 "Roboto Mono", monospace;
+      font: 400 10px/1 "Roboto Mono", monospace;
       text-transform: uppercase;
     }
     .path-pill {
@@ -670,7 +929,7 @@
       border-radius: 999px;
       color: var(--text);
       padding: 4px 8px 4px 7px;
-      font: 500 12px/1.2 "Google Sans", "Noto Sans KR", sans-serif;
+      font: 400 12px/1.2 "Google Sans", "Noto Sans KR", sans-serif;
       cursor: pointer;
       max-width: 100%;
       text-align: left;
@@ -708,6 +967,7 @@
       padding: 24px;
       text-align: center;
       font-size: 13px;
+      font-weight: 400;
     }
     @media (max-width: 900px) {
       .hero-inner, .layout, .toolbar {
@@ -716,6 +976,21 @@
       .tree-panel {
         position: static;
         max-height: 44vh;
+      }
+      .tree-view-head {
+        display: block;
+      }
+      .tree-view-head p {
+        margin-top: 6px;
+      }
+      .tree-view-canvas {
+        height: 560px;
+      }
+      .taxonomy-map {
+        min-width: 0;
+      }
+      .taxonomy-map ul {
+        gap: 10px;
       }
       .detail-head {
         grid-template-columns: 1fr;
@@ -767,7 +1042,7 @@
     <div class="hero-inner">
       <div>
         <p class="eyebrow" data-i18n="eyebrow">SLAM Handbook decomposition</p>
-        <h1 data-i18n-html="heroTitle">SLAM 논문을 위한 <strong>MECE 계통도</strong></h1>
+        <h1 data-i18n-html="heroTitle">SLAM ?쇰Ц???꾪븳 <strong>MECE 怨꾪넻??/strong></h1>
         <p class="lede" data-i18n-html="heroLede">
           <a href="https://github.com/gisbi-kim/robotics-paper-phylogeny" target="_blank" rel="noreferrer">robotics-paper-phylogeny</a>의 문법을 따르되, SLAM Handbook을 장별 목차가 아니라 시스템 기능 축으로 재배열했습니다.
           논문 하나가 어디에 속하는지 판단하기 쉬운 4-depth tree입니다.
@@ -795,8 +1070,7 @@
       <div class="relation-legend">
         <span class="legend-item"><span class="legend-line"></span><span data-i18n="solidArrow">실선 화살표: SLAM main data flow</span></span>
         <span class="legend-item"><span class="legend-line dashed"></span><span data-i18n="dashedArrow">점선 화살표: 보조/피드백 관계 - 수학, 평가, learning, map cue는 여러 SLAM 모듈에 영향을 줌</span></span>
-      </div>
-      <div class="relation-figure" aria-label="SLAM phylum relationship diagram">
+      </div>      <div class="relation-figure" aria-label="SLAM phylum relationship diagram">
         <svg class="relation-svg" viewBox="0 0 1120 470" role="img" aria-labelledby="relationTitle relationDesc">
           <title id="relationTitle">SLAM Phylum relationship map</title>
           <desc id="relationDesc">Sensor and front-end produce measurements, back-end estimates state, map representations store the world, with modeling foundations below and spatial AI above.</desc>
@@ -886,7 +1160,7 @@
       </div>
       <label class="searchbox">
         <span data-i18n="search">Search</span>
-        <input id="search" type="search" placeholder="예: LiDAR, factor graph, loop closure, Gaussian">
+        <input id="search" type="search" placeholder="?? LiDAR, factor graph, loop closure, Gaussian">
       </label>
     </div>
 
@@ -933,6 +1207,13 @@
         </div>
       </section>
     </div>
+
+    <section class="panel tree-view-panel" id="treeView">
+      <div class="tree-view-head">
+        <h2>Taxonomy mind map</h2>
+      </div>
+      <div class="tree-view-canvas" id="treeViewCanvas" aria-label="SLAM taxonomy tree view"></div>
+    </section>
   </main>
 
   <footer>
@@ -1279,8 +1560,15 @@
     let currentLang = initialParams.get("lang") || localStorage.getItem("slamPhylogenyLang") || "ko";
     if (!uiText[currentLang]) currentLang = "ko";
     const expandedKeys = new Set(["SLAM"]);
+    const svgNS = "http://www.w3.org/2000/svg";
+    const mindMapTransform = { x: 24, y: 36, scale: 1 };
+    const mindMapPanSpeed = 1.25;
+    let mindMapDrag = null;
+    let mindMapFrame = 0;
+    let mindMapViewport = null;
 
     const treeEl = document.getElementById("tree");
+    const treeViewEl = document.getElementById("treeViewCanvas");
     const searchEl = document.getElementById("search");
 
     function textFor(key, replacements = {}) {
@@ -1457,6 +1745,252 @@
       return li;
     }
 
+    function treeViewMaxDepth() {
+      if (depthFilter === "all") return 4;
+      return Math.min(Number(depthFilter) + 1, 4);
+    }
+
+    function treeViewShouldShow(lineage, depth, hitLineages) {
+      if (!hitLineages.length) return depth <= treeViewMaxDepth();
+      return hitLineages.some((hit) => isPrefixLineage(lineage, hit) || isPrefixLineage(hit, lineage));
+    }
+
+    function buildMindMapTree(node, lineage, depth, hitLineages) {
+      if (!treeViewShouldShow(lineage, depth, hitLineages)) return null;
+      const children = orderedChildren(node, lineage)
+        .map((child) => buildMindMapTree(child, [...lineage, child.name], depth + 1, hitLineages))
+        .filter(Boolean);
+      return { node, lineage, depth, children };
+    }
+
+    function layoutMindMap(root) {
+      const xStep = 340;
+      const yStep = 104;
+      const nodeWidth = 286;
+      const nodeHeight = 82;
+      const nodes = [];
+      const links = [];
+
+      function placeBranch(item, side, depth, state) {
+        item.side = side;
+        item.x = side * depth * xStep;
+        if (!item.children.length) {
+          item.y = state.leafIndex * yStep;
+          state.leafIndex += 1;
+        } else {
+          item.children.forEach((child) => {
+            placeBranch(child, side, depth + 1, state);
+            links.push({ source: item, target: child });
+          });
+          item.y = (item.children[0].y + item.children[item.children.length - 1].y) / 2;
+        }
+        item.width = item.depth === 0 ? 286 : nodeWidth;
+        item.height = nodeHeight;
+        nodes.push(item);
+      }
+
+      root.side = 0;
+      root.x = 0;
+      root.y = 0;
+      root.width = 286;
+      root.height = nodeHeight;
+      nodes.push(root);
+
+      const rightChildren = root.children.filter((_, index) => index % 2 === 0);
+      const leftChildren = root.children.filter((_, index) => index % 2 === 1);
+      const sideGroups = [
+        { side: 1, children: rightChildren },
+        { side: -1, children: leftChildren }
+      ];
+
+      sideGroups.forEach((group) => {
+        const before = nodes.length;
+        const state = { leafIndex: 0 };
+        group.children.forEach((child) => {
+          placeBranch(child, group.side, 1, state);
+          links.push({ source: root, target: child });
+        });
+        const sideNodes = nodes.slice(before);
+        if (!sideNodes.length) return;
+        const minSideY = Math.min(...sideNodes.map((item) => item.y));
+        const maxSideY = Math.max(...sideNodes.map((item) => item.y + item.height));
+        const centerShift = -((minSideY + maxSideY) / 2) + root.height / 2;
+        sideNodes.forEach((item) => { item.y += centerShift; });
+      });
+
+      const minY = Math.min(...nodes.map((item) => item.y));
+      const minX = Math.min(...nodes.map((item) => item.x));
+      nodes.forEach((item) => {
+        item.x = item.x - minX + 30;
+        item.y = item.y - minY + 30;
+      });
+      return { nodes, links };
+    }
+
+    function setAttrs(el, attrs) {
+      Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+      return el;
+    }
+
+    function makeSvgEl(tag, attrs = {}) {
+      return setAttrs(document.createElementNS(svgNS, tag), attrs);
+    }
+
+    function wrapSvgText(text, maxChars = 31) {
+      const words = String(text || "").split(/\s+/).filter(Boolean);
+      const lines = [];
+      let current = "";
+      words.forEach((word) => {
+        const next = current ? `${current} ${word}` : word;
+        if (next.length > maxChars && current) {
+          lines.push(current);
+          current = word;
+        } else {
+          current = next;
+        }
+      });
+      if (current) lines.push(current);
+      return lines.slice(0, 2);
+    }
+
+    function applyMindMapTransform(group = mindMapViewport) {
+      if (!group) return;
+      group.setAttribute("transform", `translate(${mindMapTransform.x} ${mindMapTransform.y}) scale(${mindMapTransform.scale})`);
+    }
+
+    function scheduleMindMapTransform() {
+      if (mindMapFrame) return;
+      mindMapFrame = requestAnimationFrame(() => {
+        mindMapFrame = 0;
+        applyMindMapTransform();
+      });
+    }
+
+    function renderTreeView() {
+      if (!treeViewEl) return;
+      const q = searchEl.value.trim();
+      const hitLineages = q ? searchHitLineages(q) : [];
+      const rootData = buildMindMapTree(taxonomy, ["SLAM"], 0, hitLineages);
+      if (!rootData) {
+        treeViewEl.replaceChildren();
+        return;
+      }
+      const { nodes, links } = layoutMindMap(rootData);
+      const maxX = Math.max(...nodes.map((item) => item.x + item.width));
+      const maxY = Math.max(...nodes.map((item) => item.y + item.height));
+      const svg = makeSvgEl("svg", {
+        class: "mindmap-svg",
+        viewBox: `0 0 ${Math.max(maxX + 80, 960)} ${Math.max(maxY + 80, 520)}`,
+        role: "img",
+        "aria-label": "SLAM taxonomy mind map"
+      });
+      const viewport = makeSvgEl("g", { class: "mindmap-viewport" });
+      mindMapViewport = viewport;
+      applyMindMapTransform(viewport);
+      links.forEach((link) => {
+        const color = colorOf(link.target.lineage);
+        const goesLeft = link.target.x < link.source.x;
+        const startX = goesLeft ? link.source.x : link.source.x + link.source.width;
+        const startY = link.source.y + link.source.height / 2;
+        const endX = goesLeft ? link.target.x + link.target.width : link.target.x;
+        const endY = link.target.y + link.target.height / 2;
+        const mid = Math.max(70, Math.abs(endX - startX) * .55);
+        const bend = goesLeft ? -mid : mid;
+        const path = makeSvgEl("path", {
+          class: "mindmap-link",
+          d: `M${startX} ${startY} C${startX + bend} ${startY}, ${endX - bend} ${endY}, ${endX} ${endY}`
+        });
+        path.style.setProperty("--link-color", color);
+        viewport.appendChild(path);
+      });
+      nodes.forEach((item) => {
+        const entry = entryForLineage(item.lineage);
+        const color = colorOf(item.lineage);
+        const group = makeSvgEl("g", {
+          class: "mindmap-node",
+          tabindex: "0",
+          transform: `translate(${item.x} ${item.y})`
+        });
+        const isSelected = selected && lineageKey(selected.lineage) === lineageKey(item.lineage);
+        const selfSearchOk = q && entry && entry.button.dataset.text.includes(q.toLowerCase());
+        const isAncestor = hitLineages.length && !selfSearchOk && hitLineages.some((hit) => isPrefixLineage(item.lineage, hit));
+        group.classList.toggle("active", Boolean(isSelected));
+        group.classList.toggle("ancestor", Boolean(isAncestor));
+        group.style.setProperty("--node-color", color);
+        group.appendChild(makeSvgEl("rect", { width: item.width, height: item.height, rx: 8 }));
+        const level = makeSvgEl("text", { class: "mindmap-level", x: 14, y: 18 });
+        level.textContent = labels[item.depth];
+        group.appendChild(level);
+        const name = makeSvgEl("text", { class: "mindmap-name", x: 14, y: 38 });
+        wrapSvgText(item.node.name, item.depth === 0 ? 34 : 31).forEach((line, index) => {
+          const tspan = makeSvgEl("tspan", { x: 14, dy: index ? 16 : 0 });
+          tspan.textContent = line;
+          name.appendChild(tspan);
+        });
+        group.appendChild(name);
+        const meta = makeSvgEl("text", { class: "mindmap-meta", x: 14, y: item.height - 10 });
+        meta.textContent = `${childCount(item.node)} child / ${refsForLineage(item.lineage).length} refs`;
+        group.appendChild(meta);
+        group.addEventListener("click", (event) => {
+          event.stopPropagation();
+          if (entry) selectNode(entry, { toggle: false });
+        });
+        group.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            if (entry) selectNode(entry, { toggle: false });
+          }
+        });
+        viewport.appendChild(group);
+      });
+      svg.appendChild(viewport);
+      svg.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        const rect = svg.getBoundingClientRect();
+        const viewBox = svg.viewBox.baseVal;
+        mindMapDrag = {
+          x: event.clientX,
+          y: event.clientY,
+          tx: mindMapTransform.x,
+          ty: mindMapTransform.y,
+          unitX: viewBox.width / rect.width * mindMapPanSpeed,
+          unitY: viewBox.height / rect.height * mindMapPanSpeed
+        };
+        treeViewEl.classList.add("dragging");
+        svg.setPointerCapture(event.pointerId);
+      });
+      svg.addEventListener("pointermove", (event) => {
+        if (!mindMapDrag) return;
+        mindMapTransform.x = mindMapDrag.tx + (event.clientX - mindMapDrag.x) * mindMapDrag.unitX;
+        mindMapTransform.y = mindMapDrag.ty + (event.clientY - mindMapDrag.y) * mindMapDrag.unitY;
+        scheduleMindMapTransform();
+      });
+      svg.addEventListener("pointerup", (event) => {
+        mindMapDrag = null;
+        treeViewEl.classList.remove("dragging");
+        svg.releasePointerCapture(event.pointerId);
+      });
+      svg.addEventListener("pointerleave", () => {
+        mindMapDrag = null;
+        treeViewEl.classList.remove("dragging");
+      });
+      svg.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        const rect = svg.getBoundingClientRect();
+        const pointX = event.clientX - rect.left;
+        const pointY = event.clientY - rect.top;
+        const oldScale = mindMapTransform.scale;
+        const nextScale = Math.max(.35, Math.min(2.6, oldScale * (event.deltaY < 0 ? 1.12 : .88)));
+        const worldX = (pointX - mindMapTransform.x) / oldScale;
+        const worldY = (pointY - mindMapTransform.y) / oldScale;
+        mindMapTransform.scale = nextScale;
+        mindMapTransform.x = pointX - worldX * nextScale;
+        mindMapTransform.y = pointY - worldY * nextScale;
+        scheduleMindMapTransform();
+      }, { passive: false });
+      treeViewEl.replaceChildren(svg);
+    }
+
     function renderLineage(lineage) {
       const holder = document.getElementById("lineage");
       holder.innerHTML = "";
@@ -1496,7 +2030,6 @@
         holder.appendChild(card);
       });
     }
-
     function refPathList(ref) {
       if (Array.isArray(ref.matched_paths) && ref.matched_paths.length) return ref.matched_paths;
       return [{
@@ -1808,6 +2341,7 @@
       allNodes.forEach((entry) => {
         entry.button.classList.toggle("collapsed", childCount(entry.node) > 0 && !searchExpanded.has(entry.key));
       });
+      renderTreeView();
     }
 
     document.querySelectorAll(".segmented button").forEach((button) => {
